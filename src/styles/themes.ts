@@ -1,7 +1,4 @@
 const commonTheme = {
-	// font: {
-	// 	fontFamily: "'Ubuntu', sans-serif",
-	// },
 	screen: {
 		mobile: "40rem",
 		tablet: "48rem",
@@ -20,6 +17,7 @@ export const lightTheme = {
 		border: "#D9D9D9",
 		danger: "#E25555",
 		icon: "#3F3F3F",
+		iconSecondary: "#848484",
 	},
 	...commonTheme,
 };

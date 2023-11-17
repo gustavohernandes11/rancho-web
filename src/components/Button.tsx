@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 interface CheckBoxProps extends React.InputHTMLAttributes<HTMLButtonElement> {}
 
@@ -10,13 +10,18 @@ export const Button: React.FC<CheckBoxProps> = ({
 };
 
 const StyledButton = styled.button`
-	${() => css`
-		padding: 0.75rem 1.5rem;
-		background-color: ${({ theme }) => theme.color.primary};
-		border: 1px solid ${({ theme }) => theme.color.border};
-		border-radius: 0.5rem;
-		font-weight: 500;
-		color: white;
-		font-size: 1rem;
-	`}
+	padding: 0.75rem 1.5rem;
+	background-color: ${({ theme }) => theme.color.primary};
+	border: 1px solid ${({ theme }) => theme.color.border};
+	border-radius: 0.5rem;
+	font-weight: 500;
+	color: white;
+	font-size: 1rem;
+
+	&&:active {
+		background-color: ${({ theme }) => theme.color.secondary};
+	}
+	&&:hover {
+		cursor: pointer;
+	}
 `;
