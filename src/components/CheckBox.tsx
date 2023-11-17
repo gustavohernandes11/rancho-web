@@ -2,10 +2,13 @@ import styled, { css } from "styled-components";
 
 interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-export const CheckBox: React.FC<CheckBoxProps> = ({ children }: any) => {
+export const CheckBox: React.FC<CheckBoxProps> = ({
+	children,
+	...props
+}: any) => {
 	return (
 		<StyledSpan>
-			<StyledCheckBox type="checkbox" />
+			<StyledCheckBox {...props} type="checkbox" />
 			{children}
 		</StyledSpan>
 	);

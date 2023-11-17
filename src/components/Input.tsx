@@ -1,8 +1,11 @@
 import styled, { css } from "styled-components";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface IInputElementProps
+	extends React.InputHTMLAttributes<HTMLInputElement> {
+	messageOnFocus?: string;
+}
 
-export const Input: React.FC<InputProps> = ({ ...props }) => {
+export const Input: React.FC<IInputElementProps> = ({ ...props }) => {
 	return <StyledInput {...props} />;
 };
 

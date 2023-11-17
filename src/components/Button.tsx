@@ -1,7 +1,12 @@
 import styled, { css } from "styled-components";
 
-export const Button = ({ children }: any) => {
-	return <StyledButton>{children}</StyledButton>;
+interface CheckBoxProps extends React.InputHTMLAttributes<HTMLButtonElement> {}
+
+export const Button: React.FC<CheckBoxProps> = ({
+	children,
+	...props
+}: any) => {
+	return <StyledButton {...props}>{children}</StyledButton>;
 };
 
 const StyledButton = styled.button`

@@ -6,6 +6,7 @@ export const FormContainer = ({ children }: any) => {
 
 const StyledFormContainer = styled.form`
 	${() => css`
+	width: 100%;
 		& > input,
 		& > span {
 			margin-bottom: 1rem;
