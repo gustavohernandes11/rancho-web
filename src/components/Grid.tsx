@@ -10,4 +10,8 @@ const StyledGrid = styled.div`
 	grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
 	grid-auto-rows: 1fr;
 	grid-gap: 0.5rem;
+
+	@media (max-width: ${({ theme }) => theme.screen.laptop}) {
+		justify-content: space-around;
+	}
 `;
