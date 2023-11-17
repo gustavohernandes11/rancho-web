@@ -3,13 +3,9 @@ import { ITheme } from "./themes";
 
 const GlobalStyle = createGlobalStyle<ITheme>`
 * {
-   ${({ theme }) => css`
 		scroll-behavior: smooth;
 		box-sizing: border-box;
 		font-family: inherit;
-		color: ${theme.color.text};
-		background-color: ${theme.color.background};
-   `}
   }
 
 path {
