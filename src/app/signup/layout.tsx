@@ -2,7 +2,7 @@
 
 import { Cover } from "@/components/Cover";
 import { AuthContainer } from "@/components/AuthContainer";
-import { DesktopOnly } from "@/components/containers/DesktopOnly";
+import { DesktopOnly } from "@/components/utils/DesktopOnly";
 import styled from "styled-components";
 
 export default function LoginLayout({

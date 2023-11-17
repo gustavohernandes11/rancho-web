@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 import { Form } from "@/components/Form";
 import { Input } from "@/components/Input";
 import { Title } from "@/components/Title";
-import { Center } from "@/components/containers/Center";
+import { Center } from "@/components/utils/Center";
 import { NextPage } from "next";
 
 const LoginPage: NextPage = () => {
