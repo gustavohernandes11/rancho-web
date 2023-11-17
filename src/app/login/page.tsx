@@ -1,7 +1,7 @@
 "use client";
 import { Brand } from "@/components/Brand";
 import { Button } from "@/components/Button";
-import { FormContainer } from "@/components/FormContainer";
+import { Form } from "@/components/Form";
 import { Input } from "@/components/Input";
 import { Title } from "@/components/Title";
 import { Center } from "@/components/containers/Center";
@@ -12,13 +12,13 @@ const LoginPage: NextPage = () => {
 		<>
 			<Brand />
 			<Title>Entre na sua conta</Title>
-			<FormContainer>
+			<Form>
 				<Input placeholder="Email" />
 				<Input placeholder="Senha" type="password" />
 				<Center>
 					<Button>Entrar</Button>
 				</Center>
-			</FormContainer>
+			</Form>
 			<p>
 				Não tem uma conta? <a>Crie uma aqui</a>.
 			</p>
