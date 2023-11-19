@@ -1,24 +1,34 @@
 import styled, { css } from "styled-components";
 import { Button } from "./Button";
+import Link from "next/link";
 
 interface IconButtonProps extends React.InputHTMLAttributes<HTMLButtonElement> {
 	icon: React.ReactNode;
 	type?: "primary" | "light" | "secondary";
+	active?: boolean;
+	href?: string;
 }
 
 export const IconButton: React.FC<IconButtonProps> = ({
 	children,
 	icon,
+	href,
 	...props
 }) => {
-	return <StyledIconButton {...props}>{icon}</StyledIconButton>;
+	return href ? (
+		<Link href={href}>
+			<StyledIconButton {...props}>{icon}</StyledIconButton>
+		</Link>
+	) : (
+		<StyledIconButton {...props}>{icon}</StyledIconButton>
+	);
 };
-
-const StyledIconButton = styled(Button)`
-	${({ theme, type }) => css`
+const StyledIconButton = styled(Button)<IconButtonProps>`
+	${({ theme, type, active }) => css`
 		padding: 0.75rem;
 		border: none;
 		border-radius: 0.5rem;
+		transition: background-color ease-in-out 250ms;
 
 		${type === "primary" &&
 		css`
@@ -26,6 +36,10 @@ const StyledIconButton = styled(Button)`
 			path {
 				fill: white;
 			}
+			${active &&
+			css`
+				background-color: ${({ theme }) => theme.color.secondary};
+			`}
 		`}
 		${type === "light" &&
 		css`
@@ -49,3 +63,5 @@ const StyledIconButton = styled(Button)`
 		`}
 	`}
 `;
+
+const StyledLinkIconButton = styled(StyledIconButton)``;

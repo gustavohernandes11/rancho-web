@@ -13,7 +13,7 @@ export const lightTheme = {
 		text: "#000000",
 		secondaryText: "#696969",
 		primary: "#56A763",
-		secondary: "#1E6229",
+		secondary: "#4a8954",
 		border: "#D9D9D9",
 		danger: "#E25555",
 		icon: "#3F3F3F",

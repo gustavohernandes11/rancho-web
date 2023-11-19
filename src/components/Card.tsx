@@ -1,23 +1,24 @@
 import Image, { StaticImageData } from "next/image";
 import styled, { css } from "styled-components";
-import { Span } from "./Span";
+import Link from "next/link";
 
 type ICardProps = {
 	text: string;
 	image: StaticImageData | string;
 	alt: string;
+	href: string;
 };
 
-export const Card = ({ text, image, alt }: ICardProps) => {
+export const Card = ({ text, image, alt, href }: ICardProps) => {
 	return (
-		<StyledCard>
+		<StyledCard href={href}>
 			<Image src={image} alt={alt} height={60} width={65} />
 			<StyledHeading>{text}</StyledHeading>
 		</StyledCard>
 	);
 };
 
-const StyledCard = styled.div`
+const StyledCard = styled(Link)`
 	${({ theme }) => css`
 		display: flex;
 		align-items: center;
@@ -29,9 +30,11 @@ const StyledCard = styled.div`
 		padding: 1rem;
 		gap: 1rem;
 		border-radius: 0.5rem;
+		transition: background-color ease-in-out 250ms;
 
 		&&:hover {
 			cursor: pointer;
+			background-color: ${theme.color.secondary};
 		}
 
 		@media (min-width: ${({ theme }) => theme.screen.laptop}) {

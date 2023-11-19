@@ -1,7 +1,6 @@
 import { createGlobalStyle, css } from "styled-components";
-import { ITheme } from "./themes";
 
-const GlobalStyle = createGlobalStyle<ITheme>`
+const GlobalStyle = createGlobalStyle`
 * {
 		scroll-behavior: smooth;
 		box-sizing: border-box;
