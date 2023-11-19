@@ -33,7 +33,7 @@ const StyledIconButton = styled(Button)`
 			path {
 				fill: ${theme.color.icon};
 			}
-			&&:active {
+			&&:hover {
 				background-color: ${({ theme }) => theme.color.border};
 			}
 		`}

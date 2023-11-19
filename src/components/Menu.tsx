@@ -8,24 +8,24 @@ export const Menu = () => {
 	return (
 		<>
 			<MobileOnly>
-				<HorizontalContainer>
+				<HorizontalStyledMenu>
 					<IconButton type="light" icon={<House size={20} />} />
 					<IconButton type="primary" icon={<Plus size={20} />} />
 					<IconButton type="light" icon={<List size={20} />} />
-				</HorizontalContainer>
+				</HorizontalStyledMenu>
 			</MobileOnly>
 			<DesktopOnly>
-				<VerticalAsideContainer>
+				<VerticalStyledMenu>
 					<IconButton type="primary" icon={<House size={20} />} />
 					<IconButton type="primary" icon={<Plus size={20} />} />
 					<IconButton type="primary" icon={<List size={20} />} />
-				</VerticalAsideContainer>
+				</VerticalStyledMenu>
 			</DesktopOnly>
 		</>
 	);
 };
 
-const HorizontalContainer = styled.menu`
+const HorizontalStyledMenu = styled.menu`
 	${() => css`
 		display: flex;
 		align-items: center;
@@ -33,13 +33,14 @@ const HorizontalContainer = styled.menu`
 		width: 100%;
 	`}
 `;
-const VerticalAsideContainer = styled.menu`
+const VerticalStyledMenu = styled.menu`
 	${() => css`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		grid-area: menu;
+		gap: 0.5rem;
 		width: 5rem;
 		background-color: ${({ theme }) => theme.color.primary};
 		border-radius: 0.5rem;
