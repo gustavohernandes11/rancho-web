@@ -55,11 +55,22 @@ export default function Home() {
 const Layout = styled.main`
 	display: grid;
 	height: 100vh;
-	overflow: hidden;
+	overflow-y: auto;
 
 	grid-template-columns: 1fr;
 	grid-template-rows: 3.75rem 1fr 3.75rem;
+	grid-template-areas: "header" "content" "menu";
+
+	@media (min-width: ${({ theme }) => theme.screen.laptop}) {
+		grid-template-columns: 5rem 1fr;
+		padding: 0rem 1rem;
+		grid-auto-flow: column;
+		column-gap: 4rem;
+		grid-template-areas: "menu header" "menu content" "menu content";
+	}
 `;
+
 const Content = styled.main`
 	padding: 1rem;
+	grid-area: content;
 `;

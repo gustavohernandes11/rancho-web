@@ -6,6 +6,7 @@ export const Header = ({ children }: { children: React.ReactNode }) => {
 
 const StyledHeader = styled.header`
 	display: flex;
+	grid-area: header;
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;

@@ -22,7 +22,6 @@ const StyledIconButton = styled(Button)`
 
 		${type === "primary" &&
 		css`
-			border: 1px solid ${theme.color.border};
 			background-color: ${theme.color.primary};
 			path {
 				fill: white;

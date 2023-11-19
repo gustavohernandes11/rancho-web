@@ -33,6 +33,10 @@ const StyledCard = styled.div`
 		&&:hover {
 			cursor: pointer;
 		}
+
+		@media (min-width: ${({ theme }) => theme.screen.laptop}) {
+			padding: 2rem;
+		}
 	`}
 `;
 const StyledHeading = styled.h2`
