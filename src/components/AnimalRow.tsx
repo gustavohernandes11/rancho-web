@@ -1,18 +1,18 @@
 import styled, { css } from "styled-components";
 import { Button } from "./Button";
 import { IconButton } from "./IconButton";
-import { Trash, EllipsisVertical } from "@styled-icons/fa-solid";
+import { Trash, EllipsisVertical, Eye } from "@styled-icons/fa-solid";
 import { DesktopOnly } from "./utils/DesktopOnly";
 import { MobileOnly } from "./utils/MobileOnly";
 import { DropdownWrapper } from "./DropdownWrapper";
 const Actions = () => {
 	return (
 		<Span>
-			<StyledButton>Detalhes</StyledButton>
 			<IconButton
 				type="secondary"
 				icon={<Trash color="white" size={16} />}
 			/>
+			<IconButton type="primary" icon={<Eye color="white" size={16} />} />
 		</Span>
 	);
 };

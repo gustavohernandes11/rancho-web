@@ -6,32 +6,35 @@ import { Menu } from "@/components/Menu";
 import styled from "styled-components";
 import AddBarnImage from "../../assets/AddBarn.svg";
 import AddAnimalImage from "../../assets/AddAnimal.svg";
-import { Search } from "@/components/Search";
-import { AnimalRow } from "@/components/AnimalRow";
-import { AnimalRowHeader } from "@/components/AnimalRowHeader";
+import { BatchDropdown } from "@/components/BatchDropdown";
 
-export default function AnimalsPage() {
+export default function BatchesPage() {
 	return (
 		<Layout>
 			<Container>
-				<Header title={"Animais"} />
+				<Header title={"Lotes"} />
 				<Content>
-					<Search />
-					<AnimalRowHeader />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
+					<BatchDropdown
+						title="Bezerros"
+						description="Bezerros que estão com as vacas de leite"
+						animals={[
+							{ name: "any-name", id: "any-id" },
+							{ name: "any-name", id: "any-id2" },
+							{ name: "any-name", id: "any-id3" },
+						]}
+					/>
+					<BatchDropdown
+						title="Vacas em lactação"
+						animals={[{ name: "any-name", id: "any-id2" }]}
+					/>
+					<BatchDropdown
+						title="Touros"
+						animals={[{ name: "any-name", id: "any-id3" }]}
+					/>
+					<BatchDropdown
+						title="Vacas solteiras"
+						animals={[{ name: "any-name", id: "any-id4" }]}
+					/>
 				</Content>
 				<Aside>
 					<Grid>
@@ -39,13 +42,13 @@ export default function AnimalsPage() {
 							image={AddBarnImage}
 							alt="Adicionar lote"
 							text="Adicionar Lote"
-							href="/"
+							href="/batches/add"
 						/>
 						<Card
 							image={AddAnimalImage}
 							alt="Adicionar Animal"
 							text="Adicionar Animal"
-							href="/"
+							href="/animals/add"
 						/>
 					</Grid>
 				</Aside>

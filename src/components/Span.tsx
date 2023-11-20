@@ -6,6 +6,7 @@ export const Span = ({ children }: any) => {
 
 const StyledSpan = styled.span`
 	${() => css`
+		display: inline-flex;
 		gap: 0.5rem;
 	`}
 `;

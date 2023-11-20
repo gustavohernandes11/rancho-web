@@ -23,9 +23,14 @@ export const IconButton: React.FC<IconButtonProps> = ({
 		<StyledIconButton {...props}>{icon}</StyledIconButton>
 	);
 };
-const StyledIconButton = styled(Button)<IconButtonProps>`
+const StyledIconButton = styled(Button)<any>`
 	${({ theme, type, active }) => css`
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row;
 		padding: 0.75rem;
+
 		border: none;
 		border-radius: 0.5rem;
 		transition: background-color ease-in-out 250ms;
@@ -63,5 +68,3 @@ const StyledIconButton = styled(Button)<IconButtonProps>`
 		`}
 	`}
 `;
-
-const StyledLinkIconButton = styled(StyledIconButton)``;
