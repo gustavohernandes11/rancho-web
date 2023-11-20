@@ -20,26 +20,26 @@ export default function Home() {
 							image={AddBarnImage}
 							alt="Visualizar lotes"
 							text="Visualizar Lotes"
-							href="/"
+							href="/batches"
 						/>
 						<Card
 							image={AnimalImage}
 							alt="Visualizar Rebanho"
 							text="Visualizar Rebanho"
-							href="/"
+							href="/animals"
 						/>
 
 						<Card
 							image={BarnImage}
 							alt="Adicionar lote"
 							text="Adicionar Lote"
-							href="/"
+							href="/batches/add"
 						/>
 						<Card
 							image={AddAnimalImage}
 							alt="Adicionar Animal"
 							text="Adicionar Animal"
-							href="/"
+							href="/animals/add"
 						/>
 					</Grid>
 				</Content>
