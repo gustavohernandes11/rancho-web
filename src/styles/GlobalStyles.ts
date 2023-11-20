@@ -66,7 +66,7 @@ input {
 
   ::-webkit-scrollbar-thumb {
     border: 1px solid ${({ theme }) => theme.color.border};
-    background: ${({ theme }) => theme.color.surface};
+    background: ${({ theme }) => theme.color.secondary};
     border-radius: 0.5rem;
   }
 }

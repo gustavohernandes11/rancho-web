@@ -1,16 +1,20 @@
 import styled from "styled-components";
 
-export const Brand = () => {
+type IBrand = {
+	textAlign?: "center" | "start";
+};
+
+export const Brand = ({ textAlign }: IBrand) => {
 	return (
-		<Container>
+		<Container textAlign={textAlign}>
 			<Title>Rancho</Title>
 			<Subtitle>Gerenciamento de gado leiteiro</Subtitle>
 		</Container>
 	);
 };
 
-const Container = styled.div`
-	text-align: center;
+const Container = styled.div<IBrand>`
+	text-align: ${({ textAlign }) => textAlign || "center"};
 `;
 const Title = styled.h1`
 	font-weight: bold;
