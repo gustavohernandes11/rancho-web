@@ -27,15 +27,15 @@ export const Menu = () => {
 					/>
 
 					<IconButton
-						href={"/animais/adicionar"}
+						href={"/animals/add"}
 						type="primary"
-						active={pathname === "/animais/adicionar"}
+						active={pathname === "/animals/add"}
 						icon={<Plus size={20} />}
 					/>
 					<IconButton
-						href="/animais"
+						href="/animals"
 						type="primary"
-						active={pathname === "/animais"}
+						active={pathname === "/animals"}
 						icon={<List size={20} />}
 					/>
 				</VerticalStyledMenu>
@@ -65,5 +65,6 @@ const VerticalStyledMenu = styled.menu`
 		background-color: ${({ theme }) => theme.color.primary};
 		border-radius: 0.5rem;
 		padding: 1rem;
+		margin: 0;
 	`}
 `;
