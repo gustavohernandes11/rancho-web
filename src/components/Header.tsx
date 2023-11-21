@@ -3,32 +3,39 @@ import styled from "styled-components";
 import { IconButton } from "./IconButton";
 import { Title } from "./Title";
 import { DesktopOnly } from "./utils/DesktopOnly";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export const Header = ({ title }: { title: string }) => {
 	const { back } = useRouter();
+	const pathname = usePathname();
 	return (
 		<StyledHeader>
-			<IconButton
-				onClick={back}
-				type="light"
-				icon={<ArrowLeft size={16} />}
-			/>
-			<Title textAlign="center">{title}</Title>
-			<JustifyEnd>
+			<GoBackContainer>
+				{pathname !== "/" ? (
+					<IconButton
+						onClick={back}
+						type="light"
+						icon={<ArrowLeft size={16} />}
+					/>
+				) : null}
+			</GoBackContainer>
+			<Title>{title}</Title>
+			<ActionsContainer>
 				<DesktopOnly>
 					<Paragraph>account.exemple@gmail.com</Paragraph>
 					<IconButton type="light" icon={<SignOut size={16} />} />
 				</DesktopOnly>
 				<IconButton type="light" icon={<Cog size={16} />} />
-			</JustifyEnd>
+			</ActionsContainer>
 		</StyledHeader>
 	);
 };
 
 const StyledHeader = styled.header`
 	display: grid;
-	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-columns: auto 2fr 1fr;
+	grid-template-areas: "goback title actions";
+	column-gap: 1rem;
 	grid-auto-flow: row;
 	grid-area: header;
 	align-items: center;
@@ -44,9 +51,17 @@ const Paragraph = styled.p`
 	display: inline;
 	text-align: start;
 	padding-block: 1rem;
+	grid-area: title;
 `;
-const JustifyEnd = styled.span`
+const ActionsContainer = styled.span`
 	display: inline-flex;
 	gap: 0.5rem;
 	justify-self: end;
+	grid-area: actions;
+`;
+const GoBackContainer = styled.span`
+	display: inline-flex;
+	gap: 0.5rem;
+	justify-self: start;
+	grid-area: goback;
 `;
