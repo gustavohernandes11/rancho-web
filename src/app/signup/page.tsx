@@ -36,7 +36,11 @@ const LoginPage: NextPage = () => {
 				<CheckBox required>
 					<p>
 						Concordo com os
-						<a href="http://?"> termos de uso e privacidade</a>.
+						<a href="http://?">
+							{" "}
+							Termos de Uso e nossa Política de Privacidade
+						</a>
+						.
 					</p>
 				</CheckBox>
 				<Center>

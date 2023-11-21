@@ -3,6 +3,7 @@ type ITitleProps = {
 	marginBottom?: string;
 	textAlign?: string;
 	children: string;
+	as?: string;
 };
 
 export const Title = ({ children, ...props }: ITitleProps) => {
