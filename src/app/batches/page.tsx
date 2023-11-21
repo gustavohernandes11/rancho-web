@@ -85,7 +85,7 @@ const Container = styled.section`
 	width: 100%;
 	height: 100%;
 
-	grid-template-rows: 1fr;
+	grid-template-columns: 1fr;
 	grid-template-rows: 3.75rem 2fr 1fr;
 	grid-template-areas:
 		"header"

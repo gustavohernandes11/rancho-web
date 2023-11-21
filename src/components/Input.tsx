@@ -48,6 +48,6 @@ const StyledMessageOnFocus = styled.span`
 		display: block;
 		margin-top: 0.25rem;
 		font-size: 0.75rem;
-		font-color: ${theme.color.secondaryText};
+		color: ${theme.color.secondaryText};
 	`}
 `;

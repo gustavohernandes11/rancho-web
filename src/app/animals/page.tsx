@@ -24,14 +24,6 @@ export default function AnimalsPage() {
 					<AnimalRow />
 					<AnimalRow />
 					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
 				</Content>
 				<Aside>
 					<Grid>

@@ -12,9 +12,9 @@ export const Header = ({ title }: { title: string }) => {
 			<Span>
 				<DesktopOnly>
 					<Paragraph>account.exemple@gmail.com</Paragraph>
+					<IconButton type="light" icon={<SignOut size={16} />} />
 				</DesktopOnly>
-				<IconButton type="light" icon={<SignOut size={20} />} />
-				<IconButton type="light" icon={<Cog size={20} />} />
+				<IconButton type="light" icon={<Cog size={16} />} />
 			</Span>
 		</StyledHeader>
 	);
@@ -30,10 +30,10 @@ const StyledHeader = styled.header`
 	padding-inline: 1rem;
 
 	@media (min-width: ${({ theme }) => theme.screen.laptop}) {
-		padding-inline: 0;
+		padding-inline: 1rem;
 	}
 `;
 const Paragraph = styled.p`
 	display: inline;
-	padding: 1rem;
+	padding-block: 1rem;
 `;

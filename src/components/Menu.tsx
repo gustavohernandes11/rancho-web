@@ -12,9 +12,9 @@ export const Menu = () => {
 		<>
 			<MobileOnly>
 				<HorizontalStyledMenu>
-					<IconButton type="light" icon={<House size={20} />} />
-					<IconButton type="primary" icon={<Plus size={20} />} />
-					<IconButton type="light" icon={<List size={20} />} />
+					<IconButton type="light" icon={<House size={16} />} />
+					<IconButton type="primary" icon={<Plus size={16} />} />
+					<IconButton type="light" icon={<List size={16} />} />
 				</HorizontalStyledMenu>
 			</MobileOnly>
 			<DesktopOnly>
@@ -23,20 +23,20 @@ export const Menu = () => {
 						href="/"
 						type="primary"
 						active={pathname === "/"}
-						icon={<House size={20} />}
+						icon={<House size={16} />}
 					/>
 
 					<IconButton
 						href={"/animals/add"}
 						type="primary"
 						active={pathname === "/animals/add"}
-						icon={<Plus size={20} />}
+						icon={<Plus size={16} />}
 					/>
 					<IconButton
 						href="/animals"
 						type="primary"
 						active={pathname === "/animals"}
-						icon={<List size={20} />}
+						icon={<List size={16} />}
 					/>
 				</VerticalStyledMenu>
 			</DesktopOnly>
