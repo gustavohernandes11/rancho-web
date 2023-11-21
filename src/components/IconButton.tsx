@@ -30,7 +30,7 @@ const StyledIconButton = styled(Button)<any>`
 		justify-content: center;
 		flex-direction: row;
 		padding: 0.75rem;
-
+		width: fit-content;
 		border: none;
 		border-radius: 0.5rem;
 		transition: background-color ease-in-out 250ms;

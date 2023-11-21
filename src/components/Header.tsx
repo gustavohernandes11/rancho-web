@@ -1,7 +1,6 @@
 import { SignOut, Cog, ArrowLeft } from "@styled-icons/fa-solid";
 import styled from "styled-components";
 import { IconButton } from "./IconButton";
-import { Span } from "./Span";
 import { Title } from "./Title";
 import { DesktopOnly } from "./utils/DesktopOnly";
 import { useRouter } from "next/navigation";

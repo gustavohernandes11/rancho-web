@@ -12,9 +12,21 @@ export const Menu = () => {
 		<>
 			<MobileOnly>
 				<HorizontalStyledMenu>
-					<IconButton type="light" icon={<House size={16} />} />
-					<IconButton type="primary" icon={<Plus size={16} />} />
-					<IconButton type="light" icon={<List size={16} />} />
+					<IconButton
+						href="/"
+						type="light"
+						icon={<House size={16} />}
+					/>
+					<IconButton
+						href="/animals/add"
+						type="primary"
+						icon={<Plus size={16} />}
+					/>
+					<IconButton
+						href="/animals"
+						type="light"
+						icon={<List size={16} />}
+					/>
 				</HorizontalStyledMenu>
 			</MobileOnly>
 			<DesktopOnly>

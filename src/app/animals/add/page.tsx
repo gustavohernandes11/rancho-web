@@ -1,18 +1,22 @@
 "use client";
+import { useState } from "react";
+import styled from "styled-components";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Menu } from "@/components/Menu";
-import styled from "styled-components";
 import { Button } from "@/components/Button";
 import { Form } from "@/components/Form";
 import { Input } from "@/components/Input";
 import { TextArea } from "@/components/TextArea";
-import { useRouter } from "next/navigation";
 import { Span } from "@/components/Span";
 import { Select } from "@/components/Select";
 import { Option } from "@/components/Option";
-import { useState } from "react";
 import { GridTwoColumns } from "@/components/GridTwoColumns";
 import { WrappableFormRow } from "@/components/WrappableFormRow";
+import { Aside } from "@/layout/Aside";
+import { Content } from "@/layout/Content";
+import { ContainerAsideAtBottom } from "@/layout/ContainerAsideAtBottom";
+import { PageLayout } from "@/layout/PageLayout";
 
 export default function AddAnimalPage() {
 	const [ageType, SetAgeType] = useState("age");
@@ -20,8 +24,8 @@ export default function AddAnimalPage() {
 	const router = useRouter();
 
 	return (
-		<Layout>
-			<Container>
+		<PageLayout>
+			<ContainerAsideAtBottom>
 				<Header title={"Adicionar animal"} />
 				<Content>
 					<Form>
@@ -168,66 +172,11 @@ export default function AddAnimalPage() {
 						</Button>
 					</Span>
 				</Aside>
-			</Container>
+			</ContainerAsideAtBottom>
 			<Menu />
-		</Layout>
+		</PageLayout>
 	);
 }
-const Layout = styled.main`
-	display: grid;
-	height: 100vh;
-	overflow-y: auto;
-	background-color: #e9e9e9;
-	grid-template-columns: 1fr;
-	grid-template-rows: 3.75rem 1fr 3.75rem;
-	grid-template-areas: "container" "container" "menu";
-	column-gap: 0.5rem;
-
-	@media (min-width: ${({ theme }) => theme.screen.laptop}) {
-		padding: 0.5rem;
-		grid-template-columns: 5rem 1fr;
-		grid-template-rows: 1fr;
-		grid-auto-flow: column;
-		grid-template-areas: "menu container";
-	}
-`;
-
-const Container = styled.section`
-	display: grid;
-	grid-area: container;
-	border-radius: 0.5rem;
-	overflow-y: auto;
-	background-color: white;
-	width: 100%;
-	height: 100%;
-
-	grid-template-rows: 1fr;
-	grid-template-rows: 3.75rem 1fr auto;
-	grid-template-areas:
-		"header"
-		"content"
-		"aside";
-	padding: 1rem;
-
-	@media (min-width: ${({ theme }) => theme.screen.laptop}) {
-		grid-template-rows: 3.75rem 1fr;
-		grid-template-columns: 2fr 1fr;
-
-		grid-template-areas:
-			"header header"
-			"content aside";
-		padding: 3rem 5rem;
-		gap: 3rem;
-	}
-`;
-
-const Aside = styled.aside`
-	grid-area: aside;
-`;
-
-const Content = styled.main`
-	grid-area: content;
-`;
 
 const RadioContainer = styled.div`
 	display: grid;

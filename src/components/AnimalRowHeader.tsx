@@ -17,6 +17,7 @@ export const AnimalRowHeader = () => {
 const Container = styled.div`
 	padding: 0.5rem 0.5rem 0.5rem 1rem;
 	margin-bottom: 0.5rem;
+	column-gap: 1rem;
 
 	display: grid;
 	grid-auto-flow: column;

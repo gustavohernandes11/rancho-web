@@ -1,10 +1,8 @@
 import styled, { css } from "styled-components";
 import { useState } from "react";
-import { Button } from "./Button";
 import { IconButton } from "./IconButton";
 import { ChevronLeft, ChevronDown, Edit } from "@styled-icons/fa-solid";
 import { AnimalRow } from "./AnimalRow";
-import { Span } from "./Span";
 
 interface IBatchDropdown {
 	title: string;
@@ -62,6 +60,7 @@ const Container = styled.div`
 		display: grid;
 		grid-template-columns: 1fr auto 1fr;
 		grid-auto-flow: row;
+		column-gap: 1rem;
 		align-items: center;
 		justify-content: space-between;
 		padding: 0.5rem 0.5rem 0.5rem 1rem;
@@ -77,8 +76,10 @@ const Container = styled.div`
 		}
 	`}
 `;
+
 const BatchTitle = styled.h2`
 	font-weight: 400;
+	font-size: 1rem;
 `;
 const BatchDescription = styled.p`
 	font-size: 0.75rem;

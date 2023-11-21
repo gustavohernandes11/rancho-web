@@ -49,6 +49,7 @@ const Container = styled.div`
 		outline-color: ${theme.color.border};
 		margin-bottom: 0.5rem;
 		border-radius: 0.5rem;
+		column-gap: 1rem;
 
 		&&:hover {
 			cursor: pointer;

@@ -44,7 +44,7 @@ const LoginPage: NextPage = () => {
 				</Center>
 			</Form>
 			<p>
-				Já possui uma conta? <a>Faça login aqui</a>.
+				Já possui uma conta? <a href="/login">Faça login aqui</a>.
 			</p>
 		</>
 	);

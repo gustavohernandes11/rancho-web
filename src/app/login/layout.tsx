@@ -2,7 +2,7 @@
 import { Cover } from "@/components/Cover";
 import { AuthContainer } from "@/components/AuthContainer";
 import { DesktopOnly } from "@/components/utils/DesktopOnly";
-import styled from "styled-components";
+import { AuthPageLayout } from "@/layout/AuthPageLayout";
 
 export default function LoginLayout({
 	children,
@@ -10,18 +10,11 @@ export default function LoginLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<LoginContainer>
+		<AuthPageLayout>
 			<DesktopOnly>
 				<Cover />
 			</DesktopOnly>
 			<AuthContainer>{children}</AuthContainer>
-		</LoginContainer>
+		</AuthPageLayout>
 	);
 }
-
-const LoginContainer = styled.main`
-	width: 100vw;
-	height: 100vh;
-	display: inline-flex;
-	justify-content: space-between;
-`;
