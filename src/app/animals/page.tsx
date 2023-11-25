@@ -6,8 +6,8 @@ import { Menu } from "@/components/Menu";
 import AddBarnImage from "../../assets/AddBarn.svg";
 import AddAnimalImage from "../../assets/AddAnimal.svg";
 import { Search } from "@/components/Search";
-import { AnimalRow } from "@/components/AnimalRow";
-import { AnimalRowHeader } from "@/components/AnimalRowHeader";
+import { AnimalRow } from "@/components/AnimalTable/AnimalRow";
+import { AnimalTableHeader } from "@/components/AnimalTable/AnimalTableHeader";
 import { Aside } from "@/layout/Aside";
 import { Container } from "@/layout/Container";
 import { Content } from "@/layout/Content";
@@ -20,7 +20,7 @@ export default function AnimalsPage() {
 				<Header title={"Animais"} />
 				<Content>
 					<Search />
-					<AnimalRowHeader />
+					<AnimalTableHeader />
 					<AnimalRow />
 					<AnimalRow />
 					<AnimalRow />

@@ -4,7 +4,7 @@ import { Label } from "./Label";
 interface ITextAreaElementProps
 	extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
 	id?: string;
-	label: string;
+	label?: string;
 }
 
 export const TextArea = ({ label, id, ...props }: ITextAreaElementProps) => {
@@ -26,7 +26,7 @@ const StyledTextArea = styled.textarea`
 		width: 100%;
 		box-sizing: border-box;
 		resize: vertical;
-		max-height: 5rem;
+		max-height: 10rem;
 		min-height: 3rem;
 	`}
 `;

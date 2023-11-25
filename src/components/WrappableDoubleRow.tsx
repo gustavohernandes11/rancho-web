@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 
-export const WrappableFormRow = ({ children }: any) => {
+export const WrappableDoubleRow = ({
+	children,
+}: {
+	children: React.ReactNode;
+}) => {
 	return <Container>{children}</Container>;
 };
 

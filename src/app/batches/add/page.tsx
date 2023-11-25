@@ -8,7 +8,7 @@ import { TextArea } from "@/components/TextArea";
 import { useRouter } from "next/navigation";
 import { Span } from "@/components/Span";
 import { IAnimal } from "@/types/IAnimal";
-import { AnimalCheckBox } from "@/components/AnimalCheckbox";
+import { AnimalCheckBox } from "@/components/AnimalTable/AnimalCheckbox";
 import { Title } from "@/components/Title";
 import { Section } from "@/layout/Section";
 import { Aside } from "@/layout/Aside";

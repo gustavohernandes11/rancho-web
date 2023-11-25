@@ -12,7 +12,7 @@ import { Span } from "@/components/Span";
 import { Select } from "@/components/Select";
 import { Option } from "@/components/Option";
 import { GridTwoColumns } from "@/components/GridTwoColumns";
-import { WrappableFormRow } from "@/components/WrappableFormRow";
+import { WrappableDoubleRow } from "@/components/WrappableDoubleRow";
 import { Aside } from "@/layout/Aside";
 import { Content } from "@/layout/Content";
 import { ContainerAsideAtBottom } from "@/layout/ContainerAsideAtBottom";
@@ -29,7 +29,7 @@ export default function AddAnimalPage() {
 				<Header title={"Adicionar animal"} />
 				<Content>
 					<Form>
-						<WrappableFormRow>
+						<WrappableDoubleRow>
 							<span>
 								<Input
 									label="Nome*"
@@ -52,8 +52,8 @@ export default function AddAnimalPage() {
 									<Option value="batch_id_4">batch 4</Option>
 								</Select>
 							</span>
-						</WrappableFormRow>
-						<WrappableFormRow>
+						</WrappableDoubleRow>
+						<WrappableDoubleRow>
 							<span>
 								<Select label="Paternidade">
 									<Option value="">
@@ -92,7 +92,7 @@ export default function AddAnimalPage() {
 									</Option>
 								</Select>
 							</span>
-						</WrappableFormRow>
+						</WrappableDoubleRow>
 						<GridTwoColumns>
 							<span>
 								<Input label="Código" />
