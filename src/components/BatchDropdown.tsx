@@ -1,19 +1,27 @@
 import styled, { css } from "styled-components";
 import { useState } from "react";
 import { IconButton } from "./IconButton";
-import { ChevronLeft, ChevronDown, Edit } from "@styled-icons/fa-solid";
-import { AnimalRow } from "./AnimalRow";
+import {
+	ChevronLeft,
+	ChevronDown,
+	Edit,
+	Exchange,
+} from "@styled-icons/fa-solid";
+import { AnimalRow } from "./AnimalTable/AnimalRow";
+import { IAnimal } from "@/types/IAnimal";
 
 interface IBatchDropdown {
 	title: string;
+	viewMode?: boolean;
 	description?: string;
-	animals: any[];
+	animals: IAnimal[];
 }
 
 export const BatchDropdown = ({
 	animals,
 	title,
 	description,
+	viewMode,
 }: IBatchDropdown) => {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
@@ -30,21 +38,30 @@ export const BatchDropdown = ({
 					{animals.length > 1 ? " animais" : " animal"}
 				</BatchCount>
 				<ActionSpan>
-					<IconButton
-						type="secondary"
-						icon={<Edit color="white" size={16} />}
-					/>
-					<IconButton
-						onClick={() => setIsOpen(() => !isOpen)}
-						type="secondary"
-						icon={
-							isOpen ? (
-								<ChevronDown color="white" size={16} />
-							) : (
-								<ChevronLeft color="white" size={16} />
-							)
-						}
-					/>
+					{viewMode ? (
+						<IconButton
+							type="secondary"
+							icon={<Exchange size={16} />}
+						/>
+					) : (
+						<>
+							<IconButton
+								type="secondary"
+								icon={<Edit color="white" size={16} />}
+							/>
+							<IconButton
+								onClick={() => setIsOpen(() => !isOpen)}
+								type="secondary"
+								icon={
+									isOpen ? (
+										<ChevronDown color="white" size={16} />
+									) : (
+										<ChevronLeft color="white" size={16} />
+									)
+								}
+							/>
+						</>
+					)}
 				</ActionSpan>
 			</Container>
 			<AnimalsContainer>
