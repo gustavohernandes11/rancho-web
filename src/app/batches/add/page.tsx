@@ -1,11 +1,9 @@
 "use client";
 import { Header } from "@/components/Header";
 import { Menu } from "@/components/Menu";
-import { Button } from "@/components/Button";
 import { Form } from "@/components/Form";
 import { Input } from "@/components/Input";
 import { TextArea } from "@/components/TextArea";
-import { useRouter } from "next/navigation";
 import { Span } from "@/components/Span";
 import { IAnimal } from "@/types/IAnimal";
 import { AnimalCheckBox } from "@/components/AnimalTable/AnimalCheckbox";
@@ -15,6 +13,8 @@ import { Aside } from "@/layout/Aside";
 import { Content } from "@/layout/Content";
 import { ContainerAsideAtBottom } from "@/layout/ContainerAsideAtBottom";
 import { PageLayout } from "@/layout/PageLayout";
+import { CancelButton } from "@/components/Button/CancelButton";
+import { AddButton } from "@/components/Button/AddButton";
 
 const mockedAnimals: IAnimal[] = [
 	{
@@ -44,7 +44,6 @@ const mockedAnimals: IAnimal[] = [
 ];
 
 export default function AddBatchPage() {
-	const router = useRouter();
 	return (
 		<PageLayout>
 			<ContainerAsideAtBottom>
@@ -72,10 +71,8 @@ export default function AddBatchPage() {
 				</Content>
 				<Aside>
 					<Span>
-						<Button>Adicionar</Button>
-						<Button light onClick={() => router.back()}>
-							Cancelar
-						</Button>
+						<AddButton />
+						<CancelButton />
 					</Span>
 				</Aside>
 			</ContainerAsideAtBottom>

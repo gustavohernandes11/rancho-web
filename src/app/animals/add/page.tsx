@@ -17,6 +17,8 @@ import { Aside } from "@/layout/Aside";
 import { Content } from "@/layout/Content";
 import { ContainerAsideAtBottom } from "@/layout/ContainerAsideAtBottom";
 import { PageLayout } from "@/layout/PageLayout";
+import { CancelButton } from "@/components/Button/CancelButton";
+import { AddButton } from "@/components/Button/AddButton";
 
 export default function AddAnimalPage() {
 	const [ageType, SetAgeType] = useState("age");
@@ -166,10 +168,8 @@ export default function AddAnimalPage() {
 				</Content>
 				<Aside>
 					<Span>
-						<Button>Adicionar</Button>
-						<Button light onClick={() => router.back()}>
-							Cancelar
-						</Button>
+						<AddButton />
+						<CancelButton />
 					</Span>
 				</Aside>
 			</ContainerAsideAtBottom>
