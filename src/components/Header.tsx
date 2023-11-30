@@ -5,10 +5,13 @@ import { Title } from "./Title";
 import { DesktopOnly } from "./utils/DesktopOnly";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export const Header = ({ title }: { title: string }) => {
 	const { back } = useRouter();
 	const pathname = usePathname();
+	const { data } = useSession();
+
 	return (
 		<StyledHeader>
 			<GoBackContainer>
@@ -23,7 +26,7 @@ export const Header = ({ title }: { title: string }) => {
 			<Title>{title}</Title>
 			<ActionsContainer>
 				<DesktopOnly>
-					<Paragraph>account.exemple@gmail.com</Paragraph>
+					<Paragraph>{data?.name}</Paragraph>
 					<IconButton
 						onClick={() => signOut()}
 						type="light"
