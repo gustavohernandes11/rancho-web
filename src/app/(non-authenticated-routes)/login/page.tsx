@@ -1,6 +1,7 @@
 "use client";
 import { Brand } from "@/components/Brand";
 import { Button } from "@/components/Button";
+import { ErrorMessage } from "@/components/ErrorMessage";
 import { Form } from "@/components/Form";
 import { Input } from "@/components/Input";
 import { Title } from "@/components/Title";
@@ -12,22 +13,25 @@ import { useState } from "react";
 
 const LoginPage: NextPage = () => {
 	const [email, setEmail] = useState<string>("");
+	const [error, setError] = useState<string | null>();
+
 	const [password, setPassword] = useState<string>("");
 	const router = useRouter();
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
+		setError(null);
 
 		const response = await signIn("credentials", {
 			email,
 			password,
 			redirect: false,
 		});
+
 		if (response?.error) {
-			console.log(response);
+			setError(response.error);
 			return;
 		}
-		console.log(response);
 
 		router.replace("/");
 	};
@@ -50,6 +54,9 @@ const LoginPage: NextPage = () => {
 					minLength={3}
 					type="password"
 				/>
+				{error && (
+					<ErrorMessage>Email ou senha inválidos.</ErrorMessage>
+				)}
 				<Center>
 					<Button type="submit" onClick={handleSubmit}>
 						Entrar

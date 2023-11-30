@@ -12,7 +12,7 @@ const nextAuthOptions: NextAuthOptions = {
 
 			async authorize(credentials, req) {
 				const response = await fetch(
-					"http://localhost:8080/api/login",
+					`${process.env.SERVER_URL}/api/login`,
 					{
 						method: "POST",
 						headers: {
