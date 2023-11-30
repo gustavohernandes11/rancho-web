@@ -2,6 +2,7 @@ import { ThemeWrapper } from "@/styles/ThemeWrapper";
 import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import StyledComponentsRegistry from "./registry";
+import NextAuthSessionProvider from "./providers/sessionProvider";
 
 const ubuntu = Ubuntu({
 	weight: ["300", "400", "500", "700"],
@@ -26,7 +27,9 @@ export default function RootLayout({
 			</head>
 			<body className={ubuntu.className}>
 				<StyledComponentsRegistry>
-					<ThemeWrapper>{children}</ThemeWrapper>
+					<NextAuthSessionProvider>
+						<ThemeWrapper>{children}</ThemeWrapper>
+					</NextAuthSessionProvider>
 				</StyledComponentsRegistry>
 			</body>
 		</html>

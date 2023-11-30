@@ -4,6 +4,7 @@ import { IconButton } from "./IconButton";
 import { Title } from "./Title";
 import { DesktopOnly } from "./utils/DesktopOnly";
 import { usePathname, useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 export const Header = ({ title }: { title: string }) => {
 	const { back } = useRouter();
@@ -23,7 +24,11 @@ export const Header = ({ title }: { title: string }) => {
 			<ActionsContainer>
 				<DesktopOnly>
 					<Paragraph>account.exemple@gmail.com</Paragraph>
-					<IconButton type="light" icon={<SignOut size={16} />} />
+					<IconButton
+						onClick={() => signOut()}
+						type="light"
+						icon={<SignOut size={16} />}
+					/>
 				</DesktopOnly>
 				<IconButton type="light" icon={<Cog size={16} />} />
 			</ActionsContainer>

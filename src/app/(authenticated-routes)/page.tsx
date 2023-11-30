@@ -4,10 +4,10 @@ import { Grid } from "@/components/Grid";
 import { Header } from "@/components/Header";
 import { Menu } from "@/components/Menu";
 import styled from "styled-components";
-import BarnImage from "../assets/Barn.svg";
-import AddBarnImage from "../assets/AddBarn.svg";
-import AnimalImage from "../assets/Animal.svg";
-import AddAnimalImage from "../assets/AddAnimal.svg";
+import BarnImage from "@/assets/Barn.svg";
+import AddBarnImage from "@/assets/AddBarn.svg";
+import AnimalImage from "@/assets/Animal.svg";
+import AddAnimalImage from "@/assets/AddAnimal.svg";
 
 export default function Home() {
 	return (
