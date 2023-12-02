@@ -12,8 +12,21 @@ import { Aside } from "@/layout/Aside";
 import { Container } from "@/layout/Container";
 import { Content } from "@/layout/Content";
 import { PageLayout } from "@/layout/PageLayout";
+import { useSession } from "next-auth/react";
+import { IAnimal } from "@/types/IAnimal";
+import { useEffect, useState } from "react";
+import { listAnimals } from "@/requests/listAnimals";
 
 export default function AnimalsPage() {
+	const [animals, setAnimals] = useState<IAnimal[]>([]);
+	const session = useSession();
+
+	useEffect(() => {
+		listAnimals(session.data?.accessToken!).then((response) => {
+			setAnimals(response.data);
+		});
+	}, [session]);
+
 	return (
 		<PageLayout>
 			<Container>
@@ -21,12 +34,11 @@ export default function AnimalsPage() {
 				<Content>
 					<Search />
 					<AnimalTableHeader />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
-					<AnimalRow />
+					{animals &&
+						animals.length > 0 &&
+						animals?.map((al: IAnimal) => (
+							<AnimalRow animal={al} key={al.id} />
+						))}
 				</Content>
 				<Aside>
 					<Grid>

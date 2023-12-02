@@ -51,11 +51,9 @@ const validate = (credentials: ISignUpCredentials): ErrorOrNull => {
 	if (credentials.password.length < 5) {
 		return "Senha muito curta";
 	}
-
 	if (credentials.password.length > 24) {
 		return "Senha muito longa";
 	}
-
 	if (!credentials.password.match(/(?=.*[0-9])/)) {
 		return "Utilize pelo menos um número na senha";
 	}

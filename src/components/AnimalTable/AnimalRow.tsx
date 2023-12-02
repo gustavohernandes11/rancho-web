@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
-import { Button } from "../Button";
 import { IconButton } from "../IconButton";
 import { Trash, EllipsisVertical, Eye, Exchange } from "@styled-icons/fa-solid";
 import { DesktopOnly } from "../utils/DesktopOnly";
 import { MobileOnly } from "../utils/MobileOnly";
 import { DropdownWrapper } from "../DropdownWrapper";
+import { IAnimal } from "@/types/IAnimal";
 
 const Actions = () => {
 	return (
@@ -19,13 +19,14 @@ const Actions = () => {
 };
 type IAnimalRowProps = {
 	viewMode?: boolean;
+	animal: IAnimal;
 };
-export const AnimalRow = ({ viewMode }: IAnimalRowProps) => {
+export const AnimalRow = ({ viewMode, animal }: IAnimalRowProps) => {
 	return (
 		<Container>
-			<Item>Amarelinha</Item>
-			<Item>Fêmea</Item>
-			<Item>5 anos e 6 meses</Item>
+			<Item>{animal.name}</Item>
+			<Item>{animal.gender}</Item>
+			<Item>{new Date(animal.age).toLocaleDateString()}</Item>
 			{viewMode ? (
 				<Span>
 					<IconButton type="secondary" icon={<Eye size={16} />} />
@@ -91,10 +92,4 @@ const Item = styled.p`
 const Span = styled.span`
 	display: flex;
 	gap: 0.5rem;
-`;
-
-const StyledButton = styled(Button)`
-	padding: 0.5rem;
-	font-weight: 400;
-	font-size: 0.875rem;
 `;
