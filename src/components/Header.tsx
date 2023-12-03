@@ -51,9 +51,9 @@ const StyledHeader = styled.header`
 	width: 100%;
 	height: 3.75rem;
 
-	@media (min-width: ${({ theme }) => theme.screen.laptop}) {
+	/* @media (max-width: ${({ theme }) => theme.screen.laptop}) {
 		padding-inline: 1rem;
-	}
+	} */
 `;
 const Paragraph = styled.p`
 	display: inline;

@@ -44,7 +44,7 @@ const StyledContainer = styled.div<{ type: string }>`
 		min-height: 15rem;
 		min-width: 20rem;
 		border: 2px solid ${theme.color.border};
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		z-index: 15;
 
 		${type === "warning" &&

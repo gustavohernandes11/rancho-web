@@ -75,7 +75,7 @@ const VerticalStyledMenu = styled.menu`
 		gap: 0.5rem;
 		width: 5rem;
 		background-color: ${({ theme }) => theme.color.primary};
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		padding: 1rem;
 		margin: 0;
 	`}

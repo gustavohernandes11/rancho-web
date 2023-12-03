@@ -16,6 +16,7 @@ import { useSession } from "next-auth/react";
 import { IAnimal } from "@/types/IAnimal";
 import { useEffect, useState } from "react";
 import { listAnimals } from "@/requests/listAnimals";
+import { AnimalTable } from "@/components/AnimalTable";
 
 export default function AnimalsPage() {
 	const [animals, setAnimals] = useState<IAnimal[]>([]);
@@ -33,12 +34,7 @@ export default function AnimalsPage() {
 				<Header title={"Animais"} />
 				<Content>
 					<Search />
-					<AnimalTableHeader />
-					{animals &&
-						animals.length > 0 &&
-						animals?.map((al: IAnimal) => (
-							<AnimalRow animal={al} key={al.id} />
-						))}
+					<AnimalTable animals={animals} />
 				</Content>
 				<Aside>
 					<Grid>

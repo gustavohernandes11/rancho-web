@@ -7,7 +7,6 @@ import {
 	Edit,
 	Exchange,
 } from "@styled-icons/fa-solid";
-import { AnimalRow } from "./AnimalTable/AnimalRow";
 import { IAnimal } from "@/types/IAnimal";
 
 interface IBatchDropdown {
@@ -64,10 +63,10 @@ export const BatchDropdown = ({
 					)}
 				</ActionSpan>
 			</Container>
-			<AnimalsContainer>
+			{/* <AnimalsContainer>
 				{isOpen &&
 					animals.map((animal: any) => <AnimalRow key={animal.id} />)}
-			</AnimalsContainer>
+			</AnimalsContainer> */}
 		</>
 	);
 };
@@ -84,7 +83,7 @@ const Container = styled.div`
 		border: 1px solid ${theme.color.border};
 		outline-color: ${theme.color.border};
 		margin-bottom: 0.5rem;
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 
 		&&:hover {
 			cursor: pointer;

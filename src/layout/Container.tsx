@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.section`
 	display: grid;
 	grid-area: container;
-	border-radius: 0.5rem;
+	border-radius: 0.25rem;
 	overflow-y: auto;
 	background-color: white;
 	width: 100%;

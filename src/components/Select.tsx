@@ -24,7 +24,7 @@ export const Select: React.FC<ISelectElementProps> = ({
 const Wrapper = styled.div`
 	${({ theme }) => css`
 		border: 1px solid ${theme.color.border};
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		margin-bottom: 1rem;
 	`};
 `;
@@ -32,7 +32,7 @@ const Wrapper = styled.div`
 const StyledSelect = styled.select`
 	${({ theme }) => css`
 		border: none;
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		display: flex;
 		padding: 0.75rem;
 		background-color: ${theme.color.surface};

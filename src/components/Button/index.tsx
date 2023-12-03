@@ -15,7 +15,7 @@ const StyledButton = styled.button<ButtonProps>`
 		padding: 0.75rem 1.5rem;
 		background-color: ${theme.color.primary};
 		border: 1px solid ${theme.color.border};
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		font-weight: 500;
 		color: white;
 		font-size: 1rem;

@@ -35,7 +35,7 @@ const StyledInput = styled.input`
 	${({ theme }) => css`
 		display: flex;
 		padding: 0.75rem;
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		border: 1px solid ${theme.color.border};
 		background-color: ${theme.color.surface};
 		width: 100%;

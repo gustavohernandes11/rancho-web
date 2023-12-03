@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import { IconButton } from "../IconButton";
+import { IconButton } from "./IconButton";
 import { Trash, Edit } from "@styled-icons/fa-solid";
-import { MobileOnly } from "../utils/MobileOnly";
+import { MobileOnly } from "./utils/MobileOnly";
 
 type IAnimalInfoCardProps = {
 	name: string;
@@ -59,7 +59,7 @@ const Container = styled.div`
 		width: 100%;
 		background-color: ${theme.color.primary};
 		color: white;
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 	`}
 `;
 const ActionsContainer = styled.div`

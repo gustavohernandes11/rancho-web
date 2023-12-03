@@ -30,7 +30,7 @@ const Menu = styled.div`
 	position: absolute;
 	background-color: ${({ theme }) => theme.color.surface};
 	outline: 2px solid ${({ theme }) => theme.color.border};
-	border-radius: 0.5rem;
+	border-radius: 0.25rem;
 	padding: 0.5rem;
 	right: 0;
 	z-index: 10;

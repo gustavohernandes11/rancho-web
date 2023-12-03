@@ -22,11 +22,10 @@ const Container = styled.div`
 	${({ theme }) => css`
 		display: flex;
 		max-width: 20rem;
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		background-color: ${theme.color.surface};
 		border: 1px solid ${theme.color.border};
 		margin-bottom: 1rem;
-		height: 2rem;
 		@media (max-width: ${({ theme }) => theme.screen.laptop}) {
 			margin-block: 1rem;
 		}

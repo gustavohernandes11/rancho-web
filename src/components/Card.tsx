@@ -12,7 +12,7 @@ type ICardProps = {
 export const Card = ({ text, image, alt, href }: ICardProps) => {
 	return (
 		<StyledCard href={href}>
-			<Image src={image} alt={alt} height={60} width={65} />
+			<Image src={image} alt={alt} height={50} width={50} />
 			<StyledHeading>{text}</StyledHeading>
 		</StyledCard>
 	);
@@ -27,9 +27,9 @@ const StyledCard = styled(Link)`
 		justify-content: center;
 		flex-wrap: wrap;
 		color: white;
-		padding: 1rem;
+		padding: 0.5rem;
 		gap: 1rem;
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		transition: background-color ease-in-out 250ms;
 
 		&&:hover {
@@ -38,12 +38,12 @@ const StyledCard = styled(Link)`
 		}
 
 		@media (min-width: ${({ theme }) => theme.screen.laptop}) {
-			padding: 2rem;
+			padding: 1rem;
 		}
 	`}
 `;
 const StyledHeading = styled.h2`
 	text-align: center;
-	font-weight: bold;
+	font-size: 1rem;
 	color: white;
 `;

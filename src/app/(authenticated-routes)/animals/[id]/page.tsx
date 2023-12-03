@@ -1,7 +1,7 @@
 "use client";
 import { Header } from "@/components/Header";
 import { Menu } from "@/components/Menu";
-import { AnimalInfoCard } from "@/components/AnimalTable/AnimalInfoCard";
+import { AnimalInfoCard } from "@/components/AnimalInfoCard";
 import { DesktopOnly } from "@/components/utils/DesktopOnly";
 import { Button } from "@/components/Button";
 import { Span } from "@/components/Span";

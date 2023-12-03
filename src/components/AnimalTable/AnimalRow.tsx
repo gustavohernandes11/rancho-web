@@ -23,9 +23,9 @@ type IAnimalRowProps = {
 };
 export const AnimalRow = ({ viewMode, animal }: IAnimalRowProps) => {
 	return (
-		<Container>
-			<Item>{animal.name}</Item>
-			<Item>{animal.gender}</Item>
+		<StyledTableRow>
+			<Item>{animal?.name}</Item>
+			<Item>{animal?.gender}</Item>
 			<Item>{new Date(animal.age).toLocaleDateString()}</Item>
 			{viewMode ? (
 				<Span>
@@ -50,11 +50,11 @@ export const AnimalRow = ({ viewMode, animal }: IAnimalRowProps) => {
 					</MobileOnly>
 				</>
 			)}
-		</Container>
+		</StyledTableRow>
 	);
 };
 
-const Container = styled.tr`
+const StyledTableRow = styled.tr`
 	${({ theme }) => css`
 		display: grid;
 		grid-auto-flow: column;

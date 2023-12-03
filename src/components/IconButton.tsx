@@ -5,7 +5,7 @@ import Link from "next/link";
 interface IconButtonProps extends React.InputHTMLAttributes<HTMLButtonElement> {
 	icon: React.ReactNode;
 	type?: "primary" | "light" | "secondary";
-	active?: boolean;
+	$active?: boolean;
 	href?: string;
 }
 
@@ -24,7 +24,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
 	);
 };
 const StyledIconButton = styled(Button)<any>`
-	${({ theme, type, active }) => css`
+	${({ theme, type, $active }) => css`
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -32,7 +32,7 @@ const StyledIconButton = styled(Button)<any>`
 		padding: 0.75rem;
 		width: fit-content;
 		border: none;
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 		transition: background-color ease-in-out 250ms;
 
 		${type === "primary" &&
@@ -41,7 +41,7 @@ const StyledIconButton = styled(Button)<any>`
 			path {
 				fill: white;
 			}
-			${active &&
+			${$active &&
 			css`
 				background-color: ${({ theme }) => theme.color.secondary};
 			`}
