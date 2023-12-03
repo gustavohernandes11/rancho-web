@@ -1,9 +1,6 @@
-interface ApiResponse {
-	response: Response | null;
-	data: any;
-}
+import { IApiResponse } from "@/types/IAPIResponse";
 
-export const listAnimals = async (userToken: string): Promise<ApiResponse> => {
+export const listAnimals = async (userToken: string): Promise<IApiResponse> => {
 	let data;
 	let response = null;
 

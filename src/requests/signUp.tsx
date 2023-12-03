@@ -1,17 +1,15 @@
+import { IApiResponse } from "@/types/IAPIResponse";
+
 interface ISignUpCredentials {
 	name: string;
 	email: string;
 	password: string;
 	passwordConfirmation: string;
 }
-interface ISignUpReponse {
-	response: Response | null;
-	data: any;
-}
 
 export const signUp = async (
 	credentials: ISignUpCredentials
-): Promise<ISignUpReponse> => {
+): Promise<IApiResponse> => {
 	let data;
 	let response = null;
 
