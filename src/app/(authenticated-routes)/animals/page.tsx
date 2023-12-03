@@ -22,8 +22,8 @@ export default function AnimalsPage() {
 	const session = useSession();
 
 	useEffect(() => {
-		listAnimals(session.data?.accessToken!).then((response) => {
-			setAnimals(response.data);
+		listAnimals().then(({ data }) => {
+			setAnimals(data);
 		});
 	}, [session]);
 

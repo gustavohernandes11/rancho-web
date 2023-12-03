@@ -8,8 +8,14 @@ import BarnImage from "@/assets/Barn.svg";
 import AddBarnImage from "@/assets/AddBarn.svg";
 import AnimalImage from "@/assets/Animal.svg";
 import AddAnimalImage from "@/assets/AddAnimal.svg";
+import { useEffect } from "react";
+import { addBatch } from "@/requests/addBatch";
 
 export default function Home() {
+	useEffect(() => {
+		addBatch({ name: "qualquer-nome" });
+	}, []);
+
 	return (
 		<Layout>
 			<Container>

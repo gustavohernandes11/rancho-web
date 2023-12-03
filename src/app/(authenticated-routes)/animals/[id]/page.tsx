@@ -37,11 +37,11 @@ export default function AnimalsPage() {
 					<Title marginBottom="0.5rem" marginTop="1rem" as="h3">
 						Maternidade
 					</Title>
-					<AnimalRow viewMode={true} />
+					{/* <AnimalRow viewMode={true} /> */}
 					<Title marginBottom="0.5rem" marginTop="1rem" as="h3">
 						Paternidade
 					</Title>
-					<AnimalRow viewMode={true} />
+					{/* <AnimalRow viewMode={true} /> */}
 					<Title marginBottom="0.5rem" marginTop="1rem" as="h3">
 						Observação
 					</Title>

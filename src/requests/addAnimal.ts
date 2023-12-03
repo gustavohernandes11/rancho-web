@@ -1,4 +1,5 @@
 import { IApiResponse } from "@/types/IAPIResponse";
+import { getSession } from "next-auth/react";
 
 interface IAddAnimalProps {
 	age: string;
@@ -11,24 +12,22 @@ interface IAddAnimalProps {
 }
 
 export const updateAnimal = async (
-	userToken: string,
 	id: string,
 	updateData: IAddAnimalProps
 ): Promise<IApiResponse> => {
-	let data;
-	let response = null;
+	const session = await getSession();
 
 	const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/animals/${id}`;
-	response = await fetch(url, {
+	const response = await fetch(url, {
 		method: "PUT",
 		headers: {
 			"Content-type": "application/json",
-			"x-access-token": userToken,
+			"x-access-token": session?.accessToken!,
 		},
 		body: JSON.stringify(updateData),
 	});
 
-	data = await response.json();
+	const data = await response.json();
 
 	return { response, data };
 };

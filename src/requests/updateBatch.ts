@@ -10,11 +10,8 @@ export const updateAnimal = async (
 	id: string,
 	updateData: IUpdateBatchProps
 ): Promise<IApiResponse> => {
-	let data;
-	let response = null;
-
 	const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/batches/${id}`;
-	response = await fetch(url, {
+	const response = await fetch(url, {
 		method: "PUT",
 		headers: {
 			"Content-type": "application/json",
@@ -23,7 +20,7 @@ export const updateAnimal = async (
 		body: JSON.stringify(updateData),
 	});
 
-	data = await response.json();
+	const data = await response.json();
 
 	return { response, data };
 };
