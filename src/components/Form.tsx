@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const Form = ({ children }: any) => {
-	return <StyledForm>{children}</StyledForm>;
+export const Form = ({ children, ...props }: any) => {
+	return <StyledForm {...props}>{children}</StyledForm>;
 };
 
 const StyledForm = styled.form`

@@ -16,7 +16,7 @@ export const Select: React.FC<ISelectElementProps> = ({
 		<>
 			{label && <Label htmlFor={id}>{label}</Label>}
 			<Wrapper>
-				<StyledSelect {...props} />
+				<StyledSelect id={id} {...props} />
 			</Wrapper>
 		</>
 	);

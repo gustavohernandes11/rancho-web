@@ -11,7 +11,7 @@ export const TextArea = ({ label, id, ...props }: ITextAreaElementProps) => {
 	return (
 		<>
 			{label && <Label htmlFor={id}>{label}</Label>}
-			<StyledTextArea {...props} />
+			<StyledTextArea id={id} {...props} />
 		</>
 	);
 };

@@ -23,6 +23,7 @@ export const Input: React.FC<IInputElementProps> = ({
 				<StyledMessageOnFocus>{messageOnFocus}</StyledMessageOnFocus>
 			)}
 			<StyledInput
+				id={id}
 				{...props}
 				onFocus={() => setFocused(true)}
 				onBlur={() => setFocused(false)}

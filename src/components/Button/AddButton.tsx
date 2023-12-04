@@ -1,3 +1,5 @@
 import { Button } from ".";
 
-export const AddButton = () => <Button>Adicionar</Button>;
+export const AddButton = ({ ...props }) => (
+	<Button {...props}>Adicionar</Button>
+);

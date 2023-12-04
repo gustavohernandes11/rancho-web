@@ -1,10 +1,10 @@
 import { useRouter } from "next/navigation";
 import { Button } from ".";
 
-export const CancelButton = () => {
+export const CancelButton = ({ ...props }) => {
 	const router = useRouter();
 	return (
-		<Button light onClick={() => router.back()}>
+		<Button {...props} light onClick={() => router.back()}>
 			Cancelar
 		</Button>
 	);
