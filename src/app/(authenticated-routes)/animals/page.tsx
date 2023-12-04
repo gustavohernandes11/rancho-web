@@ -6,27 +6,23 @@ import { Menu } from "@/components/Menu";
 import AddBarnImage from "@/assets/AddBarn.svg";
 import AddAnimalImage from "@/assets/AddAnimal.svg";
 import { Search } from "@/components/Search";
-import { AnimalRow } from "@/components/AnimalTable/AnimalRow";
-import { AnimalTableHeader } from "@/components/AnimalTable/AnimalTableHeader";
 import { Aside } from "@/layout/Aside";
 import { Container } from "@/layout/Container";
 import { Content } from "@/layout/Content";
 import { PageLayout } from "@/layout/PageLayout";
-import { useSession } from "next-auth/react";
-import { IAnimal } from "@/types/IAnimal";
 import { useEffect, useState } from "react";
 import { listAnimals } from "@/requests/listAnimals";
 import { AnimalTable } from "@/components/AnimalTable";
+import { IAnimal } from "@/types/IAnimal";
 
 export default function AnimalsPage() {
 	const [animals, setAnimals] = useState<IAnimal[]>([]);
-	const session = useSession();
 
 	useEffect(() => {
 		listAnimals().then(({ data }) => {
 			setAnimals(data);
 		});
-	}, [session]);
+	}, []);
 
 	return (
 		<PageLayout>

@@ -5,26 +5,26 @@ interface IAddAnimalProps {
 	age: string;
 	name: string;
 	gender: string;
+	batchId?: string;
 	maternityId?: string;
 	paternityId?: string;
-	code?: number;
+	code?: string | number;
 	observation?: string;
 }
 
-export const updateAnimal = async (
-	id: string,
-	updateData: IAddAnimalProps
+export const addAnimal = async (
+	animalData: IAddAnimalProps
 ): Promise<IApiResponse> => {
 	const session = await getSession();
 
-	const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/animals/${id}`;
+	const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/animals`;
 	const response = await fetch(url, {
-		method: "PUT",
+		method: "POST",
 		headers: {
 			"Content-type": "application/json",
 			"x-access-token": session?.accessToken!,
 		},
-		body: JSON.stringify(updateData),
+		body: JSON.stringify(animalData),
 	});
 
 	const data = await response.json();
