@@ -3,16 +3,19 @@ import { Card } from "@/components/Card";
 import { Grid } from "@/components/Grid";
 import { Header } from "@/components/Header";
 import { Menu } from "@/components/Menu";
-import styled from "styled-components";
 import BarnImage from "@/assets/Barn.svg";
 import AddBarnImage from "@/assets/AddBarn.svg";
 import AnimalImage from "@/assets/Animal.svg";
 import AddAnimalImage from "@/assets/AddAnimal.svg";
+import { Container } from "@/layout/Container";
+import { Content } from "@/layout/Content";
+import { PageLayout } from "@/layout/PageLayout";
+import { ContainerNoAside } from "@/layout/ContainerNoAside";
 
 export default function Home() {
 	return (
-		<Layout>
-			<Container>
+		<PageLayout>
+			<ContainerNoAside>
 				<Header title={"Início"} />
 				<Content>
 					<Grid>
@@ -43,46 +46,8 @@ export default function Home() {
 						/>
 					</Grid>
 				</Content>
-			</Container>
+			</ContainerNoAside>
 			<Menu />
-		</Layout>
+		</PageLayout>
 	);
 }
-const Layout = styled.main`
-	display: grid;
-	height: 100vh;
-	overflow-y: auto;
-	background-color: #e9e9e9;
-	grid-template-columns: 1fr;
-	grid-template-rows: 3.75rem 1fr 3.75rem;
-	grid-template-areas: "container" "container" "menu";
-	column-gap: 0.5rem;
-
-	@media (min-width: ${({ theme }) => theme.screen.laptop}) {
-		padding: 0.5rem;
-		grid-template-columns: 5rem 1fr;
-		grid-template-rows: 1fr;
-		grid-auto-flow: column;
-		grid-template-areas: "menu container";
-	}
-`;
-
-const Container = styled.section`
-	display: grid;
-	grid-area: container;
-	grid-template-rows: 3.75rem 1fr;
-	border-radius: 0.5rem;
-	overflow-y: auto;
-	grid-template-areas: "header" "content";
-	background-color: white;
-	width: 100%;
-	height: 100%;
-	@media (min-width: ${({ theme }) => theme.screen.laptop}) {
-		padding: 3rem 5rem;
-	}
-`;
-
-const Content = styled.main`
-	padding: 1rem;
-	grid-area: content;
-`;

@@ -1,3 +1,4 @@
+"use client";
 import { ThemeWrapper } from "@/styles/ThemeWrapper";
 import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
@@ -9,10 +10,10 @@ const ubuntu = Ubuntu({
 	subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-	title: "Rancho | Gestão de Gado de Leite",
-	description: "Criado com Next.js",
-};
+// export const metadata: Metadata = {
+// 	title: "Rancho | Gestão de Gado de Leite",
+// 	description: "Criado com Next.js",
+// };
 
 export default function RootLayout({
 	children,

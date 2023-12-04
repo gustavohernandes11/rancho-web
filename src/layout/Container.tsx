@@ -24,7 +24,7 @@ export const Container = styled.section`
 		grid-template-areas:
 			"header header"
 			"content aside";
-		padding: 3rem 5rem;
+		padding: 2rem 2rem;
 		gap: 3rem;
 	}
 `;

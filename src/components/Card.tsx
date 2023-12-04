@@ -39,6 +39,9 @@ const StyledCard = styled(Link)`
 
 		@media (min-width: ${({ theme }) => theme.screen.laptop}) {
 			padding: 1rem;
+
+			height: 12rem;
+			width: 12rem;
 		}
 	`}
 `;
