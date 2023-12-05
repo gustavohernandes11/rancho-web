@@ -38,13 +38,13 @@ export default function AnimalsPage() {
 							image={AddBarnImage}
 							alt="Adicionar lote"
 							text="Adicionar Lote"
-							href="/"
+							href="/batches/add"
 						/>
 						<Card
 							image={AddAnimalImage}
 							alt="Adicionar Animal"
 							text="Adicionar Animal"
-							href="/"
+							href="/animals/add"
 						/>
 					</Grid>
 				</Aside>
