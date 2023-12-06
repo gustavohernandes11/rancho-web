@@ -5,16 +5,50 @@ import { DesktopOnly } from "../utils/DesktopOnly";
 import { MobileOnly } from "../utils/MobileOnly";
 import { DropdownWrapper } from "../DropdownWrapper";
 import { IAnimal } from "@/types/IAnimal";
+import { deleteAnimal } from "@/requests/deleteAnimal";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ConfirmPopup } from "../ConfirmPopup";
 
-const Actions = () => {
+const Actions = ({ id, name }: { id: string; name: string }) => {
+	const router = useRouter();
+	const [isConfirmationActive, setIsConfirmationActive] = useState(false);
+
+	const handleDelete = () => {
+		setIsConfirmationActive(true);
+	};
+	const handleGoToAnimal = () => {
+		router.push("animals/" + id);
+	};
+
 	return (
-		<Span>
-			<IconButton
-				type="secondary"
-				icon={<Trash color="white" size={16} />}
-			/>
-			<IconButton type="primary" icon={<Eye color="white" size={16} />} />
-		</Span>
+		<>
+			<>
+				{isConfirmationActive && (
+					<ConfirmPopup
+						text={
+							"Tem certeza que deseja excluir o animal " +
+							name +
+							"?"
+						}
+						onCancel={() => setIsConfirmationActive(false)}
+						onConfirm={() => deleteAnimal(id)}
+					/>
+				)}
+			</>
+			<Span>
+				<IconButton
+					onClick={handleDelete}
+					type="secondary"
+					icon={<Trash color="white" size={16} />}
+				/>
+				<IconButton
+					onClick={handleGoToAnimal}
+					type="primary"
+					icon={<Eye color="white" size={16} />}
+				/>
+			</Span>
+		</>
 	);
 };
 type IAnimalRowProps = {
@@ -38,10 +72,14 @@ export const AnimalRow = ({ viewMode, animal }: IAnimalRowProps) => {
 			) : (
 				<>
 					<DesktopOnly>
-						<Actions />
+						<Actions id={animal?.id} name={animal?.name} />
 					</DesktopOnly>
 					<MobileOnly>
-						<DropdownWrapper itemsToDropDown={<Actions />}>
+						<DropdownWrapper
+							itemsToDropDown={
+								<Actions id={animal?.id} name={animal?.name} />
+							}
+						>
 							<IconButton
 								type="secondary"
 								icon={<EllipsisVertical size={16} />}
@@ -59,13 +97,14 @@ const StyledTableRow = styled.tr`
 		display: grid;
 		grid-auto-flow: column;
 		grid-column-end: auto;
+		grid-template-columns: 2fr 2fr 2fr 1fr;
 		padding: 0.5rem 0.5rem 0.5rem 1rem;
 		background-color: ${theme.color.surface};
 		border: 1px solid ${theme.color.border};
 		outline-color: ${theme.color.border};
 		column-gap: 1rem;
 
-		:last-child {
+		&:last-child {
 			justify-content: end;
 		}
 
