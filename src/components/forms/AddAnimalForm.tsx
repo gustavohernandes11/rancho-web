@@ -13,9 +13,9 @@ import { IBatch } from "@/types/IBatch";
 import { RadioContainer } from "../RadioContainer";
 import { Option } from "../Option";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 type IAgeType = "age" | "birthdate";
-
 type IFormProps = {
 	handleSubmit: Function;
 };
@@ -37,7 +37,16 @@ export const AddAnimalForm = ({ handleSubmit, ...props }: IFormProps) => {
 			observation: "",
 			code: "",
 		},
-		onSubmit: (values) => handleSubmit(values),
+		validationSchema: Yup.object({
+			name: Yup.string()
+				.min(3, "Nome muito curto!")
+				.required("Campo obrigatório"),
+			age: Yup.date().required("Campo obrigatório"),
+		}),
+		onSubmit: (values, { resetForm }) => {
+			handleSubmit(values, resetForm);
+			handleClearFields();
+		},
 	});
 
 	const [ageType, setAgeType] = useState<IAgeType>("age");
@@ -73,6 +82,11 @@ export const AddAnimalForm = ({ handleSubmit, ...props }: IFormProps) => {
 	};
 	const handleChangeAgeType = (e: any) => {
 		setAgeType(e.target.value as IAgeType);
+		formik.setFieldValue("age", "");
+	};
+	const handleClearFields = () => {
+		setMonths(0);
+		setYears(0);
 		formik.setFieldValue("age", "");
 	};
 
@@ -206,20 +220,30 @@ export const AddAnimalForm = ({ handleSubmit, ...props }: IFormProps) => {
 					<span>
 						<Input
 							id="years"
-							required={true}
+							itemRef="years"
 							type="number"
 							label="Anos*"
 							max={50}
+							defaultValue={0}
+							value={years}
+							onInput={(e: any) =>
+								setYears(() => e.target.value!)
+							}
 							onChange={handleChangeYears}
 						/>
 					</span>
 					<span>
 						<Input
 							id="months"
-							required={true}
+							itemRef="months"
 							type="number"
 							label="Meses"
 							max={12}
+							defaultValue={0}
+							value={months}
+							onInput={(e: any) =>
+								setMonths(() => e.target.value!)
+							}
 							onChange={handleChangeMonths}
 						/>
 					</span>

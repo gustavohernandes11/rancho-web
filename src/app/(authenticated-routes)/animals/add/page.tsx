@@ -13,9 +13,19 @@ import { IAddAnimalData } from "@/types/IAddAnimalData";
 import { addAnimal } from "@/requests/addAnimal";
 
 export default function AddAnimalPage() {
-	const handleSubmit = async (values: IAddAnimalData) => {
+	const handleSubmit = async (
+		values: IAddAnimalData,
+		resetForm: Function
+	) => {
 		const res = await addAnimal(values);
 		console.log(res);
+
+		if (res.response?.ok) {
+			console.log("Ok!");
+			resetForm();
+		} else {
+			console.log("Not ok!");
+		}
 	};
 
 	return (
