@@ -1,19 +1,9 @@
 import { IApiResponse } from "@/types/IAPIResponse";
+import { IAddAnimalData } from "@/types/IAddAnimalData";
 import { getSession } from "next-auth/react";
 
-interface IAddAnimalProps {
-	age: string;
-	name: string;
-	gender: string;
-	batchId?: string;
-	maternityId?: string;
-	paternityId?: string;
-	code?: string | number;
-	observation?: string;
-}
-
 export const addAnimal = async (
-	animalData: IAddAnimalProps
+	animalData: IAddAnimalData
 ): Promise<IApiResponse> => {
 	const session = await getSession();
 

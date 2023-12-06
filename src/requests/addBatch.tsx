@@ -1,13 +1,9 @@
 import { IApiResponse } from "@/types/IAPIResponse";
+import { IAddBatchData } from "@/types/IAddBatchData";
 import { getSession } from "next-auth/react";
 
-interface IAddBatchProps {
-	name: string;
-	observation?: string;
-}
-
 export const addBatch = async (
-	updateData: IAddBatchProps
+	updateData: IAddBatchData
 ): Promise<IApiResponse> => {
 	const session = await getSession();
 
