@@ -10,11 +10,6 @@ const ubuntu = Ubuntu({
 	subsets: ["latin"],
 });
 
-// export const metadata: Metadata = {
-// 	title: "Rancho | Gestão de Gado de Leite",
-// 	description: "Criado com Next.js",
-// };
-
 export default function RootLayout({
 	children,
 }: {
@@ -24,6 +19,8 @@ export default function RootLayout({
 		<html lang="pt">
 			<head>
 				<meta charSet="UTF-8" />
+				<meta name="description" content="Criado com Next.js" />
+				<title>Rancho | Gestão de Gado de Leite</title>
 				<link rel="icon" href="/favicon.ico" sizes="32x32" />
 			</head>
 			<body className={ubuntu.className}>
