@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconButton } from "./IconButton";
 import {
 	ChevronLeft,
@@ -8,21 +8,32 @@ import {
 	Exchange,
 } from "@styled-icons/fa-solid";
 import { IAnimal } from "@/types/IAnimal";
+import { listAnimalsByBatch } from "@/requests/listAnimalsByBatch";
 
 interface IBatchDropdown {
 	title?: string;
 	viewMode?: boolean;
 	description?: string;
-	animals?: IAnimal[];
+	id: string;
 }
 
 export const BatchDropdown = ({
-	animals,
 	title,
 	description,
 	viewMode,
+	id,
 }: IBatchDropdown) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [animals, setAnimals] = useState<IAnimal[]>([]);
+	console.log(id);
+
+	useEffect(() => {
+		listAnimalsByBatch(id).then((res) => {
+			if (res.response?.status === 200) {
+				setAnimals(res.data);
+			}
+		});
+	}, [id]);
 	return (
 		<>
 			<Container>

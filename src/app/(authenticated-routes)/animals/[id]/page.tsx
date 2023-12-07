@@ -27,7 +27,6 @@ export default function AnimalsPage() {
 	const [batch, setBatch] = useState<IBatch>();
 	const [paternity, setPaternity] = useState<IAnimal | undefined>();
 	const [maternity, setMaternity] = useState<IAnimal | undefined>();
-	console.log(batch);
 
 	useEffect(() => {
 		getAnimal(id as string).then(({ data }) => setAnimal(data));
@@ -59,6 +58,7 @@ export default function AnimalsPage() {
 								Lote
 							</Title>
 							<BatchDropdown
+								id={animal?.batchId!}
 								viewMode={true}
 								title={batch?.name}
 							/>
