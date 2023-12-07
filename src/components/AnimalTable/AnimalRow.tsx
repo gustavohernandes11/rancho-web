@@ -9,13 +9,21 @@ import { deleteAnimal } from "@/requests/deleteAnimal";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ConfirmPopup } from "../ConfirmPopup";
+import { useAnimalContext } from "@/hooks/useAnimalContext";
 
 const Actions = ({ id, name }: { id: string; name: string }) => {
 	const router = useRouter();
+	const { setAnimals } = useAnimalContext();
 	const [isConfirmationActive, setIsConfirmationActive] = useState(false);
 
-	const handleDelete = () => {
+	const handleDeleteButtonPressed = () => {
 		setIsConfirmationActive(true);
+	};
+	const handleDeleteConfirmed = () => {
+		deleteAnimal(id);
+		setAnimals((prev: IAnimal[]) =>
+			prev.filter((animal) => animal.id !== id)
+		);
 	};
 	const handleGoToAnimal = () => {
 		router.push("animals/" + id);
@@ -32,13 +40,13 @@ const Actions = ({ id, name }: { id: string; name: string }) => {
 							"?"
 						}
 						onCancel={() => setIsConfirmationActive(false)}
-						onConfirm={() => deleteAnimal(id)}
+						onConfirm={handleDeleteConfirmed}
 					/>
 				)}
 			</>
 			<Span>
 				<IconButton
-					onClick={handleDelete}
+					onClick={handleDeleteButtonPressed}
 					type="secondary"
 					icon={<Trash color="white" size={16} />}
 				/>

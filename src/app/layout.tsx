@@ -1,9 +1,9 @@
 "use client";
 import { ThemeWrapper } from "@/styles/ThemeWrapper";
-import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import StyledComponentsRegistry from "./registry";
 import NextAuthSessionProvider from "./providers/sessionProvider";
+import { AnimalContextProvider } from "@/contexts/AnimalContext";
 
 const ubuntu = Ubuntu({
 	weight: ["300", "400", "500", "700"],
@@ -28,9 +28,11 @@ export default function RootLayout({
 			</head>
 			<body className={ubuntu.className}>
 				<StyledComponentsRegistry>
-					<NextAuthSessionProvider>
-						<ThemeWrapper>{children}</ThemeWrapper>
-					</NextAuthSessionProvider>
+					<AnimalContextProvider>
+						<NextAuthSessionProvider>
+							<ThemeWrapper>{children}</ThemeWrapper>
+						</NextAuthSessionProvider>
+					</AnimalContextProvider>
 				</StyledComponentsRegistry>
 			</body>
 		</html>

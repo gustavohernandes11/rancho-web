@@ -10,19 +10,11 @@ import { Aside } from "@/layout/Aside";
 import { Container } from "@/layout/Container";
 import { Content } from "@/layout/Content";
 import { PageLayout } from "@/layout/PageLayout";
-import { useEffect, useState } from "react";
-import { listAnimals } from "@/requests/listAnimals";
 import { AnimalTable } from "@/components/AnimalTable";
-import { IAnimal } from "@/types/IAnimal";
+import { useAnimalContext } from "@/hooks/useAnimalContext";
 
 export default function AnimalsPage() {
-	const [animals, setAnimals] = useState<IAnimal[]>([]);
-
-	useEffect(() => {
-		listAnimals().then(({ data }) => {
-			setAnimals(data);
-		});
-	}, []);
+	const { animals } = useAnimalContext();
 
 	return (
 		<PageLayout>
