@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ConfirmPopup } from "../ConfirmPopup";
 import { useAnimalContext } from "@/hooks/useAnimalContext";
+import { getAgeFromISO } from "@/utils/getAgeFromISO";
 
 const Actions = ({ id, name }: { id: string; name: string }) => {
 	const router = useRouter();
@@ -66,15 +67,15 @@ type IAnimalRowProps = {
 export const AnimalRow = ({ viewMode, animal }: IAnimalRowProps) => {
 	return (
 		<StyledTableRow>
-			<Item>{animal?.name}</Item>
-			<Item>{animal?.gender}</Item>
-			<Item>{new Date(animal.age).toLocaleDateString()}</Item>
+			<Item>{animal.name}</Item>
+			<Item>{animal.gender === "F" ? "♀ Fêmea" : "♂ Macho"}</Item>
+			<Item>{getAgeFromISO(animal.age)}</Item>
 			{viewMode ? (
 				<Span>
-					<IconButton type="secondary" icon={<Eye size={16} />} />
 					<IconButton
 						type="secondary"
-						icon={<Exchange size={16} />}
+						href={animal?.id}
+						icon={<Eye size={16} />}
 					/>
 				</Span>
 			) : (
@@ -106,6 +107,7 @@ const StyledTableRow = styled.tr`
 		grid-auto-flow: column;
 		grid-column-end: auto;
 		grid-template-columns: 2fr 2fr 2fr 1fr;
+		border-radius: 0.25rem;
 		padding: 0.5rem 0.5rem 0.5rem 1rem;
 		background-color: ${theme.color.surface};
 		border: 1px solid ${theme.color.border};
@@ -138,5 +140,6 @@ const Item = styled.p`
 
 const Span = styled.span`
 	display: flex;
+	justify-content: end;
 	gap: 0.5rem;
 `;

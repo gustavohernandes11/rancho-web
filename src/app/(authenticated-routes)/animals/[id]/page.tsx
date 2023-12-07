@@ -12,42 +12,93 @@ import { PageLayout } from "@/layout/PageLayout";
 import { Title } from "@/components/Title";
 import { BatchDropdown } from "@/components/BatchDropdown";
 import { TextArea } from "@/components/TextArea";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { getAnimal } from "@/requests/getAnimal";
+import { IAnimal } from "@/types/IAnimal";
+import { IBatch } from "@/types/IBatch";
+import { AnimalRow } from "@/components/AnimalTable/AnimalRow";
+import { getAgeFromISO } from "@/utils/getAgeFromISO";
+import { listBatches } from "@/requests/listBatches";
 
 export default function AnimalsPage() {
+	const { id } = useParams();
+	const [animal, setAnimal] = useState<IAnimal>();
+	const [batch, setBatch] = useState<IBatch>();
+	const [paternity, setPaternity] = useState<IAnimal | undefined>();
+	const [maternity, setMaternity] = useState<IAnimal | undefined>();
+	console.log(batch);
+
+	useEffect(() => {
+		getAnimal(id as string).then(({ data }) => setAnimal(data));
+		getAnimal(animal?.paternityId!).then(({ data }) => setPaternity(data));
+		getAnimal(animal?.maternityId!).then(({ data }) => setMaternity(data));
+		listBatches().then(({ data }) =>
+			setBatch(data.find((b: IBatch) => b.id === animal?.batchId))
+		);
+	}, [animal?.batchId, animal?.maternityId, animal?.paternityId, id]);
+
 	return (
 		<PageLayout>
 			<Container>
 				<Header title={"Visualizando animal"} />
 				<Content>
 					<AnimalInfoCard
-						name={"Amarelinha"}
-						age={"3 anos"}
-						code={"123"}
-						gender={"F"}
+						name={animal?.name}
+						age={getAgeFromISO(animal?.age || "")}
+						code={animal?.code}
+						gender={animal?.gender}
 					/>
-					<Title marginBottom="0.5rem" marginTop="1rem" as="h3">
-						Lote
-					</Title>
-					<BatchDropdown
-						viewMode={true}
-						title={"Vacas de leite"}
-						animals={[]}
-					/>
-					<Title marginBottom="0.5rem" marginTop="1rem" as="h3">
-						Maternidade
-					</Title>
-					{/* <AnimalRow viewMode={true} /> */}
-					<Title marginBottom="0.5rem" marginTop="1rem" as="h3">
-						Paternidade
-					</Title>
-					{/* <AnimalRow viewMode={true} /> */}
+					{batch && batch.id && (
+						<>
+							<Title
+								marginBottom="0.5rem"
+								marginTop="1rem"
+								as="h3"
+							>
+								Lote
+							</Title>
+							<BatchDropdown
+								viewMode={true}
+								title={batch?.name}
+							/>
+						</>
+					)}
+					{maternity && maternity.id && (
+						<>
+							<Title
+								marginBottom="0.5rem"
+								marginTop="1rem"
+								as="h3"
+							>
+								Maternidade
+							</Title>
+							<AnimalRow animal={maternity} viewMode={true} />
+						</>
+					)}
+					{paternity && paternity.id && (
+						<>
+							<Title
+								marginBottom="0.5rem"
+								marginTop="1rem"
+								as="h3"
+							>
+								Paternidade
+							</Title>
+							<AnimalRow animal={paternity} viewMode={true} />
+						</>
+					)}
+
 					<Title marginBottom="0.5rem" marginTop="1rem" as="h3">
 						Observação
 					</Title>
 					<TextArea
 						disabled={true}
+						style={{ height: "10rem" }}
 						value={
-							"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+							animal?.observation
+								? animal?.observation
+								: "Não há observação"
 						}
 					/>
 				</Content>

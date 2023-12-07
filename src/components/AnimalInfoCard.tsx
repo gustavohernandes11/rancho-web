@@ -4,10 +4,10 @@ import { Trash, Edit } from "@styled-icons/fa-solid";
 import { MobileOnly } from "./utils/MobileOnly";
 
 type IAnimalInfoCardProps = {
-	name: string;
-	age: string;
-	code: string;
-	gender: string;
+	name?: string;
+	age?: string;
+	code?: string;
+	gender?: string;
 };
 
 export const AnimalInfoCard = ({
@@ -34,9 +34,12 @@ export const AnimalInfoCard = ({
 				</MobileOnly>
 			</SpaceBetween>
 			<Informations>
-				<Info name="sexo" value={gender} />
-				<Info name="idade" value={age} />
-				<Info name="código" value={code} />
+				<Info
+					name="sexo"
+					value={gender === "F" ? "♀ Fêmea" : "♂ Macho"}
+				/>
+				<Info name="idade" value={age || "-"} />
+				<Info name="código" value={code || "-"} />
 			</Informations>
 		</Container>
 	);
@@ -47,8 +50,8 @@ type IInfoProps = { value: string; name: string };
 const Info = ({ value, name }: IInfoProps) => {
 	return (
 		<InfoContainer>
-			<InfoValue>{value || "-"}</InfoValue>
-			<InfoName>{name || "-"}</InfoName>
+			<InfoValue>{value}</InfoValue>
+			<InfoName>{name}</InfoName>
 		</InfoContainer>
 	);
 };

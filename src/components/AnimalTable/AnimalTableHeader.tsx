@@ -6,7 +6,7 @@ export const AnimalTableHeader = () => {
 		<StyledTableHeader>
 			<Item>Nome</Item>
 			<Item>Gênero</Item>
-			<Item>Data de nascimento</Item>
+			<Item>Idade</Item>
 			<DesktopOnly>
 				<Item>Ações</Item>
 			</DesktopOnly>

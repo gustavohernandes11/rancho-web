@@ -10,10 +10,10 @@ import {
 import { IAnimal } from "@/types/IAnimal";
 
 interface IBatchDropdown {
-	title: string;
+	title?: string;
 	viewMode?: boolean;
 	description?: string;
-	animals: IAnimal[];
+	animals?: IAnimal[];
 }
 
 export const BatchDropdown = ({
@@ -33,12 +33,13 @@ export const BatchDropdown = ({
 					)}
 				</div>
 				<BatchCount>
-					{animals.length}
-					{animals.length > 1 ? " animais" : " animal"}
+					{animals && animals.length}
+					{animals && animals.length > 1 ? " animais" : " animal"}
 				</BatchCount>
 				<ActionSpan>
 					{viewMode ? (
 						<IconButton
+							disabled={true}
 							type="secondary"
 							icon={<Exchange size={16} />}
 						/>
@@ -63,10 +64,6 @@ export const BatchDropdown = ({
 					)}
 				</ActionSpan>
 			</Container>
-			{/* <AnimalsContainer>
-				{isOpen &&
-					animals.map((animal: any) => <AnimalRow key={animal.id} />)}
-			</AnimalsContainer> */}
 		</>
 	);
 };

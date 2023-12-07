@@ -3,4 +3,9 @@ export type IAnimal = {
 	name: string;
 	gender: string;
 	age: string;
+	batchId?: string;
+	maternityId?: string;
+	paternityId?: string;
+	observation?: string;
+	code?: string;
 };
