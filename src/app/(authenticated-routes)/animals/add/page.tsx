@@ -18,13 +18,9 @@ export default function AddAnimalPage() {
 		resetForm: Function
 	) => {
 		const res = await addAnimal(values);
-		console.log(res);
-
-		if (res.response?.ok) {
-			console.log("Ok!");
-			resetForm();
-		} else {
-			console.log("Not ok!");
+		if (res.response?.ok) resetForm();
+		else {
+			alert("Não foi adicionado!");
 		}
 	};
 
@@ -37,7 +33,7 @@ export default function AddAnimalPage() {
 				</Content>
 				<Aside>
 					<Span>
-						<AddButton type="submit" form="addAnimal" />
+						<AddButton type="submit" form="addAnimalForm" />
 						<CancelButton />
 					</Span>
 				</Aside>

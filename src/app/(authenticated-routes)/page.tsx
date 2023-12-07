@@ -7,7 +7,6 @@ import BarnImage from "@/assets/Barn.svg";
 import AddBarnImage from "@/assets/AddBarn.svg";
 import AnimalImage from "@/assets/Animal.svg";
 import AddAnimalImage from "@/assets/AddAnimal.svg";
-import { Container } from "@/layout/Container";
 import { Content } from "@/layout/Content";
 import { PageLayout } from "@/layout/PageLayout";
 import { ContainerNoAside } from "@/layout/ContainerNoAside";

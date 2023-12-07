@@ -25,10 +25,6 @@ const Container = styled.div`
 		border-radius: 0.25rem;
 		background-color: ${theme.color.surface};
 		border: 1px solid ${theme.color.border};
-		margin-bottom: 1rem;
-		@media (max-width: ${({ theme }) => theme.screen.laptop}) {
-			margin-block: 1rem;
-		}
 	`}
 `;
 const SmallIconButton = styled(IconButton)`

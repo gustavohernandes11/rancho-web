@@ -7,7 +7,7 @@ import { createContext, useEffect, useState } from "react";
 type IAnimalContext = {
 	animals: IAnimal[];
 	setAnimals: Function;
-	refetchAnimals: Function;
+	refetchAnimals: () => void;
 };
 
 export const AnimalContext = createContext<IAnimalContext>(

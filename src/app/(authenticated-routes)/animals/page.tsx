@@ -12,16 +12,26 @@ import { Content } from "@/layout/Content";
 import { PageLayout } from "@/layout/PageLayout";
 import { AnimalTable } from "@/components/AnimalTable";
 import { useAnimalContext } from "@/hooks/useAnimalContext";
+import { IconButton } from "@/components/IconButton";
+import { Refresh } from "@styled-icons/fa-solid";
+import { InlineBox } from "@/components/InlineBox";
 
 export default function AnimalsPage() {
-	const { animals } = useAnimalContext();
+	const { animals, refetchAnimals } = useAnimalContext();
 
 	return (
 		<PageLayout>
 			<Container>
 				<Header title={"Animais"} />
 				<Content>
-					<Search />
+					<InlineBox>
+						<Search />
+						<IconButton
+							type="light"
+							icon={<Refresh size={14} />}
+							onClick={refetchAnimals}
+						/>
+					</InlineBox>
 					<AnimalTable animals={animals} />
 				</Content>
 				<Aside>

@@ -11,49 +11,32 @@ import { Aside } from "@/layout/Aside";
 import { Content } from "@/layout/Content";
 import { Container } from "@/layout/Container";
 import { PageLayout } from "@/layout/PageLayout";
-
-const mockedAnimals = [
-	{
-		name: "any-name",
-		id: "any-id",
-		age: "123123",
-		gender: "F",
-	},
-	{
-		name: "any-name",
-		id: "any-id2",
-		age: "123123",
-		gender: "F",
-	},
-	{
-		name: "any-name",
-		id: "any-id3",
-		age: "123123",
-		gender: "F",
-	},
-];
+import { listBatches } from "@/requests/listBatches";
+import { IBatch } from "@/types/IBatch";
+import { useState, useEffect } from "react";
 
 export default function BatchesPage() {
+	const [batches, setBatches] = useState<IBatch[]>();
+	console.log(batches);
+
+	useEffect(() => {
+		listBatches().then(({ data }) => setBatches(data));
+	}, []);
 	return (
 		<PageLayout>
 			<Container>
 				<Header title={"Lotes"} />
 				<Content>
 					<Section>
-						<BatchDropdown
-							title="Bezerros"
-							description="Bezerros que estão com as vacas de leite"
-							animals={mockedAnimals}
-						/>
-						<BatchDropdown
-							title="Vacas em lactação"
-							animals={mockedAnimals}
-						/>
-						<BatchDropdown title="Touros" animals={mockedAnimals} />
-						<BatchDropdown
-							title="Vacas solteiras"
-							animals={mockedAnimals}
-						/>
+						{batches &&
+							batches.map((batch) => (
+								<BatchDropdown
+									key={batch.id}
+									title={batch.name}
+									description={batch?.observation}
+									id={batch.id}
+								/>
+							))}
 					</Section>
 				</Content>
 				<Aside>

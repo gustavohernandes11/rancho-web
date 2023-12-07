@@ -53,8 +53,6 @@ export const AddAnimalForm = ({ handleSubmit, ...props }: IFormProps) => {
 	const [animals, setAnimals] = useState<IAnimal[]>([]);
 	const [batches, setBatches] = useState<IBatch[]>([]);
 
-	console.log(animals);
-
 	const [years, setYears] = useState<number>(0);
 	const [months, setMonths] = useState<number>(0);
 
@@ -88,15 +86,17 @@ export const AddAnimalForm = ({ handleSubmit, ...props }: IFormProps) => {
 		setMonths(0);
 		setYears(0);
 		formik.setFieldValue("age", "");
+		formik.setFieldValue("bachId", "");
 	};
 
 	return (
 		<Form
-			id="addAnimal"
+			id="addAnimalForm"
 			onReset={formik.handleReset}
 			onSubmit={formik.handleSubmit}
 			{...props}
 		>
+			<p>{JSON.stringify(formik.values)}</p>
 			<WrappableDoubleRow>
 				<span>
 					<Input
@@ -111,15 +111,15 @@ export const AddAnimalForm = ({ handleSubmit, ...props }: IFormProps) => {
 				<span>
 					<Select label="Lote" {...formik.getFieldProps("batchId")}>
 						<Option value="">Nenhum lote selecionado.</Option>
-						<>
-							{batches &&
-								batches.length > 0 &&
-								batches.map((batch) => {
-									<Option value={batch?.id}>
-										{batch?.name}
-									</Option>;
-								})}
-						</>
+						{batches &&
+							batches.length > 0 &&
+							batches.map((batch) => {
+								return (
+									<Option value={batch.id} key={batch.id}>
+										{batch.name}
+									</Option>
+								);
+							})}
 					</Select>
 				</span>
 			</WrappableDoubleRow>
