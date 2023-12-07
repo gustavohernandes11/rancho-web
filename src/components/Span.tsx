@@ -1,12 +1,12 @@
-import styled, { css } from "styled-components";
+import styled, { css } from "styled-components"
 
 export const Span = ({ children }: any) => {
-	return <StyledSpan>{children}</StyledSpan>;
-};
+    return <StyledSpan>{children}</StyledSpan>
+}
 
 const StyledSpan = styled.span`
-	${() => css`
-		display: inline-flex;
-		gap: 0.5rem;
-	`}
-`;
+    ${() => css`
+        display: inline-flex;
+        gap: 0.5rem;
+    `}
+`

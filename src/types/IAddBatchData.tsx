@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
 export type IAddBatchData = {
-	name: string;
-	observation?: string;
-};
+    name: string
+    observation?: string
+}

@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from "styled-components";
+import { createGlobalStyle, css } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
 path {
   ${({ theme }) => css`
-		color: ${theme.color.icon};
+      color: ${theme.color.icon};
   `}
 }
 
@@ -20,9 +20,9 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   ${({ theme }) => css`
-		color: ${theme.color.text};
-		margin: 0;
-		font-weight: 300;
+      color: ${theme.color.text};
+      margin: 0;
+      font-weight: 300;
   `}
   } 
   
@@ -70,6 +70,6 @@ input {
     border-radius: 0.25rem;
   }
 }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle

@@ -1,5 +1,5 @@
 export type IBatch = {
-	id: string;
-	name: string;
-	observation?: string;
-};
+    id: string
+    name: string
+    observation?: string
+}
