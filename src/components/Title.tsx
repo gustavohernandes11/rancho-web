@@ -16,5 +16,6 @@ const StyledTitle = styled.h2<ITitleProps>`
 		margin-bottom: ${marginBottom || "0"};
 		margin-top: ${marginTop || "0"};
 		text-align: ${textAlign || "start"};
+		font-size: 1rem;
 	`}
 `;

@@ -26,7 +26,7 @@ export const Header = ({ title }: { title: string }) => {
 			<Title>{title}</Title>
 			<ActionsContainer>
 				<DesktopOnly>
-					<Paragraph>{data?.name}</Paragraph>
+					<AccountName>{data?.name}</AccountName>
 					<IconButton
 						onClick={() => signOut()}
 						type="light"
@@ -43,6 +43,7 @@ const StyledHeader = styled.header`
 	display: grid;
 	grid-template-columns: auto 2fr 1fr;
 	grid-template-areas: "goback title actions";
+	align-items: center;
 	column-gap: 1rem;
 	grid-auto-flow: row;
 	grid-area: header;
@@ -50,20 +51,17 @@ const StyledHeader = styled.header`
 	justify-content: space-between;
 	width: 100%;
 	height: 3.75rem;
-
-	/* @media (max-width: ${({ theme }) => theme.screen.laptop}) {
-		padding-inline: 1rem;
-	} */
 `;
-const Paragraph = styled.p`
+const AccountName = styled.p`
 	display: inline;
 	text-align: start;
-	padding-block: 1rem;
 	grid-area: title;
+	margin-right: 1rem;
 `;
 const ActionsContainer = styled.span`
 	display: inline-flex;
 	gap: 0.5rem;
+	align-items: center;
 	justify-self: end;
 	grid-area: actions;
 `;

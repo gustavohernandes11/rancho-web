@@ -34,20 +34,20 @@ export const Menu = () => {
 					<IconButton
 						href="/"
 						type="primary"
-						active={pathname === "/"}
+						$active={pathname === "/"}
 						icon={<House size={16} />}
 					/>
 
 					<IconButton
 						href={"/animals/add"}
 						type="primary"
-						active={pathname === "/animals/add"}
+						$active={pathname === "/animals/add"}
 						icon={<Plus size={16} />}
 					/>
 					<IconButton
 						href="/animals"
 						type="primary"
-						active={pathname === "/animals"}
+						$active={pathname === "/animals"}
 						icon={<List size={16} />}
 					/>
 				</VerticalStyledMenu>

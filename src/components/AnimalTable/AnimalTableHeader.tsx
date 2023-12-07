@@ -6,7 +6,7 @@ export const AnimalTableHeader = () => {
 		<StyledTableHeader>
 			<Item>Nome</Item>
 			<Item>Gênero</Item>
-			<Item>Idade</Item>
+			<Item>Data de nascimento</Item>
 			<DesktopOnly>
 				<Item>Ações</Item>
 			</DesktopOnly>
@@ -17,6 +17,7 @@ export const AnimalTableHeader = () => {
 const StyledTableHeader = styled.thead`
 	display: grid;
 	grid-auto-flow: column;
+	grid-template-columns: 2fr 2fr 2fr 1fr;
 	column-gap: 1rem;
 
 	padding: 0.5rem 0.5rem 0.5rem 1rem;

@@ -18,7 +18,7 @@ export const ConfirmPopup = ({
 			<StyledConfirmPopup>
 				<p>{text}</p>
 				<Span>
-					<Button light onClick={onCancel}>
+					<Button light={true} onClick={onCancel}>
 						Cancelar
 					</Button>
 					<Button primary={true} onClick={onConfirm}>

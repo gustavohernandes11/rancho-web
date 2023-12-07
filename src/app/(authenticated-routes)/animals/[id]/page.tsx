@@ -10,7 +10,6 @@ import { Content } from "@/layout/Content";
 import { Container } from "@/layout/Container";
 import { PageLayout } from "@/layout/PageLayout";
 import { Title } from "@/components/Title";
-import { AnimalRow } from "@/components/AnimalTable/AnimalRow";
 import { BatchDropdown } from "@/components/BatchDropdown";
 import { TextArea } from "@/components/TextArea";
 
@@ -55,8 +54,8 @@ export default function AnimalsPage() {
 				<DesktopOnly>
 					<Aside>
 						<Span>
-							<Button primary>Editar</Button>
-							<Button light>Remover</Button>
+							<Button primary={true}>Editar</Button>
+							<Button light={true}>Remover</Button>
 						</Span>
 					</Aside>
 				</DesktopOnly>
