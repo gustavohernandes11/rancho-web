@@ -9,6 +9,7 @@ import {
 } from "@styled-icons/fa-solid";
 import { IAnimal } from "@/types/IAnimal";
 import { listAnimalsByBatch } from "@/requests/listAnimalsByBatch";
+import { AnimalRow } from "./AnimalTable/AnimalRow";
 
 interface IBatchDropdown {
 	title?: string;
@@ -25,13 +26,11 @@ export const BatchDropdown = ({
 }: IBatchDropdown) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [animals, setAnimals] = useState<IAnimal[]>([]);
-	console.log(id);
 
 	useEffect(() => {
-		listAnimalsByBatch(id).then((res) => {
-			if (res.response?.status === 200) {
-				setAnimals(res.data);
-			}
+		listAnimalsByBatch(id).then(({ data, response }) => {
+			console.log(data);
+			setAnimals(data);
 		});
 	}, [id]);
 	return (
@@ -75,6 +74,8 @@ export const BatchDropdown = ({
 					)}
 				</ActionSpan>
 			</Container>
+			{isOpen &&
+				animals.map((al) => <AnimalRow key={al.id} animal={al} />)}
 		</>
 	);
 };
