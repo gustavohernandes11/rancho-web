@@ -5,7 +5,7 @@ interface IUpdateBatchProps {
 	observation?: string;
 }
 
-export const updateAnimal = async (
+export const updateBatch = async (
 	userToken: string,
 	id: string,
 	updateData: IUpdateBatchProps

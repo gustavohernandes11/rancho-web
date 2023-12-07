@@ -4,6 +4,7 @@ import { Ubuntu } from "next/font/google";
 import StyledComponentsRegistry from "./registry";
 import NextAuthSessionProvider from "./providers/sessionProvider";
 import { AnimalContextProvider } from "@/contexts/AnimalContext";
+import { BatchContextProvider } from "@/contexts/BatchContext";
 
 const ubuntu = Ubuntu({
 	weight: ["300", "400", "500", "700"],
@@ -25,11 +26,13 @@ export default function RootLayout({
 			</head>
 			<body className={ubuntu.className}>
 				<StyledComponentsRegistry>
-					<AnimalContextProvider>
-						<NextAuthSessionProvider>
-							<ThemeWrapper>{children}</ThemeWrapper>
-						</NextAuthSessionProvider>
-					</AnimalContextProvider>
+					<BatchContextProvider>
+						<AnimalContextProvider>
+							<NextAuthSessionProvider>
+								<ThemeWrapper>{children}</ThemeWrapper>
+							</NextAuthSessionProvider>
+						</AnimalContextProvider>
+					</BatchContextProvider>
 				</StyledComponentsRegistry>
 			</body>
 		</html>

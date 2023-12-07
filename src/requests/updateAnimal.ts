@@ -5,6 +5,11 @@ interface IUpdateAnimalProps {
 	name?: string;
 	gender?: string;
 	age?: string;
+	batchId?: string;
+	maternityId?: string;
+	paternityId?: string;
+	observation?: string;
+	code?: string;
 }
 
 export const updateAnimal = async (

@@ -40,6 +40,7 @@ export const AddAnimalForm = ({ handleSubmit, ...props }: IFormProps) => {
 		validationSchema: Yup.object({
 			name: Yup.string()
 				.min(3, "Nome muito curto!")
+				.max(15, "Nome muito longo!")
 				.required("Campo obrigatório"),
 			age: Yup.date().required("Campo obrigatório"),
 		}),

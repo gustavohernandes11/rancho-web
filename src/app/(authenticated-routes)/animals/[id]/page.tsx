@@ -22,6 +22,8 @@ import { getAgeFromISO } from "@/utils/getAgeFromISO";
 import { listBatches } from "@/requests/listBatches";
 import { deleteAnimal } from "@/requests/deleteAnimal";
 import { ConfirmPopup } from "@/components/ConfirmPopup";
+import { useBatchContext } from "@/hooks/useBatchContext";
+import { updateAnimal } from "@/requests/updateAnimal";
 
 export default function AnimalsPage() {
 	const { id } = useParams();
@@ -40,6 +42,9 @@ export default function AnimalsPage() {
 		deleteAnimal(id as string).then((r) => {
 			if (r.response?.ok) router.push("/animals");
 		});
+	};
+	const handleEditBatch = (e: any) => {
+		updateAnimal(id as string, { batchId: e.target.value || null });
 	};
 
 	useEffect(() => {
@@ -89,6 +94,7 @@ export default function AnimalsPage() {
 									id={animal?.batchId!}
 									viewMode={true}
 									title={batch?.name}
+									onClickToEdit={(e) => handleEditBatch(e)}
 								/>
 							</>
 						)}

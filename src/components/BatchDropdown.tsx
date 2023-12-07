@@ -10,12 +10,16 @@ import {
 import { IAnimal } from "@/types/IAnimal";
 import { listAnimalsByBatch } from "@/requests/listAnimalsByBatch";
 import { AnimalRow } from "./AnimalTable/AnimalRow";
+import { DropdownWrapper } from "./DropdownWrapper";
+import { Option } from "./Option";
+import { useBatchContext } from "@/hooks/useBatchContext";
 
 interface IBatchDropdown {
 	title?: string;
 	viewMode?: boolean;
 	description?: string;
 	id: string;
+	onClickToEdit?: (e: any) => void;
 }
 
 export const BatchDropdown = ({
@@ -23,16 +27,23 @@ export const BatchDropdown = ({
 	description,
 	viewMode,
 	id,
+	onClickToEdit,
 }: IBatchDropdown) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [animals, setAnimals] = useState<IAnimal[]>([]);
+	const { batches } = useBatchContext();
 
 	useEffect(() => {
-		listAnimalsByBatch(id).then(({ data, response }) => {
+		listAnimalsByBatch(id).then(({ data }) => {
 			console.log(data);
 			setAnimals(data);
 		});
 	}, [id]);
+
+	const handleSetNewBatch = (e: any) => {
+		onClickToEdit && onClickToEdit(e);
+	};
+
 	return (
 		<>
 			<Container>
@@ -48,11 +59,38 @@ export const BatchDropdown = ({
 				</BatchCount>
 				<ActionSpan>
 					{viewMode ? (
-						<IconButton
-							disabled={true}
-							type="secondary"
-							icon={<Exchange size={16} />}
-						/>
+						<DropdownWrapper
+							itemsToDropDown={
+								<form>
+									<Option
+										value={""}
+										onClick={(e) => handleSetNewBatch(e)}
+									>
+										Remover lote
+									</Option>
+									{batches &&
+										batches.length > 0 &&
+										batches.map((batch) => {
+											return (
+												<Option
+													onClick={(e) =>
+														handleSetNewBatch(e)
+													}
+													value={batch.id}
+													key={batch.id}
+												>
+													{batch.name}
+												</Option>
+											);
+										})}
+								</form>
+							}
+						>
+							<IconButton
+								type="secondary"
+								icon={<Exchange size={16} />}
+							/>
+						</DropdownWrapper>
 					) : (
 						<>
 							<IconButton
