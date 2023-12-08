@@ -30,7 +30,7 @@ export default function BatchesPage() {
                 <Header title={"Lotes"} />
                 <Content>
                     <Section>
-                        {batches &&
+                        {batches ? (
                             batches.map((batch) => (
                                 <BatchDropdown
                                     key={batch.id}
@@ -38,7 +38,10 @@ export default function BatchesPage() {
                                     description={batch?.observation}
                                     id={batch.id}
                                 />
-                            ))}
+                            ))
+                        ) : (
+                            <p>Nenhum lote registrado por enquanto.</p>
+                        )}
                     </Section>
                 </Content>
                 <Aside>
