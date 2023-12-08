@@ -4,16 +4,16 @@ import { TextArea } from "../TextArea"
 import * as Yup from "yup"
 import { ErrorMessage } from "../ErrorMessage"
 import { Form } from "../Form"
-import { IAddBatchData } from "@/types/IAddBatchData"
 import { useEffect, useState } from "react"
+import { IAddBatchData } from "@/types/IAddBatchData"
 
-type EditPropBatch = {
+export type EditPropBatch = {
     name?: string
     observation?: string
 }
 
 type IFormProps = {
-    handleSubmit: (values: EditPropBatch, resetForm: Function) => void
+    handleSubmit: (values: IAddBatchData, resetForm: Function) => void
     initialValues?: EditPropBatch
     onClearFields?: () => void
 }
@@ -48,7 +48,7 @@ export const AddBatchForm = ({
         enableReinitialize: true,
         validationSchema,
         onSubmit: ({ name, observation }) => {
-            handleSubmit({ name, observation }, resetForm)
+            handleSubmit({ name, observation } as IAddBatchData, resetForm)
         },
     })
     const resetForm = () => {

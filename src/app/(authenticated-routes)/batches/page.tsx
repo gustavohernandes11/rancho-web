@@ -19,7 +19,6 @@ import { listBatches } from "@/requests/listBatches"
 
 export default function BatchesPage() {
     const [batches, setBatches] = useState<IBatch[]>()
-    console.log(batches)
 
     useEffect(() => {
         listBatches().then(({ data }) => setBatches(data))
