@@ -18,11 +18,16 @@ import { AlertPopup } from "@/components/AlertPopup"
 import { AddBatchForm } from "@/components/forms/AddBatchForm"
 import { IAddBatchData } from "@/types/IAddBatchData"
 import { getBatch } from "@/requests/TEMPORARY_getBatch"
+import { Button } from "@/components/Button"
+import { ConfirmPopup } from "@/components/ConfirmPopup"
+import { deleteBatch } from "@/requests/deleteBatch"
 
 export default function EditBatchPage() {
     const router = useRouter()
     const [batch, setBatch] = useState<IBatch>()
     const [alertMessage, setAlertMessage] = useState("")
+    const [deleteConfirmationMessage, setDeleteConfirmationMessage] =
+        useState("")
     const { id } = useParams()
 
     const handleSubmit = async (
@@ -41,12 +46,24 @@ export default function EditBatchPage() {
         getBatch(id as string).then(({ data }) => setBatch(data))
     }, [id])
 
+    const handleDeleteBatch = () => {
+        deleteBatch(id as string).then((r) => {
+            if (r.response?.ok) router.push("/batches")
+        })
+    }
     return (
         <>
             {alertMessage && (
                 <AlertPopup
                     text={alertMessage}
                     onClose={() => setAlertMessage("")}
+                />
+            )}
+            {deleteConfirmationMessage && (
+                <ConfirmPopup
+                    text={deleteConfirmationMessage}
+                    onCancel={() => setDeleteConfirmationMessage("")}
+                    onConfirm={() => handleDeleteBatch()}
                 />
             )}
             <PageLayout>
@@ -62,6 +79,16 @@ export default function EditBatchPage() {
                         <Span>
                             <SaveButton type="submit" form="addBatchForm" />
                             <CancelButton />
+                            <Button
+                                light={true}
+                                onClick={() =>
+                                    setDeleteConfirmationMessage(
+                                        "Deseja realmente deletar esse lote? (animais não serão afetados)"
+                                    )
+                                }
+                            >
+                                Deletar lote
+                            </Button>
                         </Span>
                     </Aside>
                 </ContainerAsideAtBottom>

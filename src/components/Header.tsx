@@ -57,6 +57,7 @@ const AccountName = styled.p`
     text-align: start;
     grid-area: title;
     margin-right: 1rem;
+    font-size: 0.75rem;
 `
 const ActionsContainer = styled.span`
     display: inline-flex;
