@@ -16,22 +16,25 @@ import { SaveButton } from "@/components/Button/SaveButton"
 import { Span } from "@/components/Span"
 import { getAnimal } from "@/requests/getAnimal"
 import { updateAnimal } from "@/requests/updateAnimal"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
+import { AlertPopup } from "@/components/AlertPopup"
 
 export default function AddAnimalPage() {
+    const router = useRouter()
     const [animal, setAnimal] = useState<IAnimal>()
+    const [alertMessage, setAlertMessage] = useState("")
     const { id } = useParams()
 
     const handleSubmit = async (
         values: IAddAnimalData,
         resetForm: Function
     ) => {
-        console.log(values)
         const res = await updateAnimal(id as string, values)
-        console.log(res)
-        if (res.response?.ok) resetForm()
-        else {
-            alert("Não foi modificado!")
+        if (res.response?.ok) {
+            router.back()
+            resetForm()
+        } else {
+            setAlertMessage("Não foi possível editar.")
         }
     }
     useEffect(() => {
@@ -39,23 +42,31 @@ export default function AddAnimalPage() {
     }, [id])
 
     return (
-        <PageLayout>
-            <ContainerAsideAtBottom>
-                <Header title={"Editar animal: " + animal?.name} />
-                <Content>
-                    <AddAnimalForm
-                        initialValues={animal as IInitialValues}
-                        handleSubmit={handleSubmit}
-                    />
-                </Content>
-                <Aside>
-                    <Span>
-                        <SaveButton type="submit" form="addAnimalForm" />
-                        <CancelButton />
-                    </Span>
-                </Aside>
-            </ContainerAsideAtBottom>
-            <Menu />
-        </PageLayout>
+        <>
+            {alertMessage && (
+                <AlertPopup
+                    text={alertMessage}
+                    onClose={() => setAlertMessage("")}
+                />
+            )}
+            <PageLayout>
+                <ContainerAsideAtBottom>
+                    <Header title={"Editar animal: " + animal?.name} />
+                    <Content>
+                        <AddAnimalForm
+                            initialValues={animal as IInitialValues}
+                            handleSubmit={handleSubmit}
+                        />
+                    </Content>
+                    <Aside>
+                        <Span>
+                            <SaveButton type="submit" form="addAnimalForm" />
+                            <CancelButton />
+                        </Span>
+                    </Aside>
+                </ContainerAsideAtBottom>
+                <Menu />
+            </PageLayout>
+        </>
     )
 }

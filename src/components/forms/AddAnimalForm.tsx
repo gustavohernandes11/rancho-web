@@ -2,7 +2,6 @@ import * as Yup from "yup"
 
 import { useEffect, useState } from "react"
 
-import { ErrorMessage } from "../ErrorMessage"
 import { Form } from "../Form"
 import { GridTwoColumns } from "../GridTwoColumns"
 import { IAnimal } from "@/types/IAnimal"
@@ -18,7 +17,6 @@ import { listAnimals } from "@/requests/listAnimals"
 import { listBatches } from "@/requests/listBatches"
 import moment from "moment"
 import { useFormik } from "formik"
-import { useRouter } from "next/navigation"
 
 type IAgeType = "age" | "birthdate"
 export type IInitialValues = {
@@ -34,14 +32,15 @@ export type IInitialValues = {
 type IAddAnimalFormProps = {
     handleSubmit: Function
     initialValues?: IInitialValues
+    onClearFields?: () => void
 }
 
 export const AddAnimalForm = ({
     handleSubmit,
     initialValues,
+    onClearFields,
     ...props
 }: IAddAnimalFormProps) => {
-    const router = useRouter()
     const [editingAnimalData, setEditingAnimalData] = useState(initialValues)
     useEffect(() => {
         listAnimals().then(({ data }) => setAnimals(data))
@@ -99,10 +98,8 @@ export const AddAnimalForm = ({
                 .required("Campo obrigatório"),
             age: Yup.date().required("Campo obrigatório"),
         }),
-        onSubmit: (values, { resetForm }) => {
+        onSubmit: (values) => {
             handleSubmit(values, resetForm)
-            handleClearFields()
-            router.back()
         },
     })
 
@@ -139,7 +136,8 @@ export const AddAnimalForm = ({
         setAgeType(e.target.value as IAgeType)
         formik.setFieldValue("age", "")
     }
-    const handleClearFields = () => {
+    const resetForm = () => {
+        formik.resetForm()
         setMonths(0)
         setYears(0)
         formik.setFieldValue("age", "")
