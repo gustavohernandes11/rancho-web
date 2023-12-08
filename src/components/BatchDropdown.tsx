@@ -13,6 +13,7 @@ import { AnimalRow } from "./AnimalTable/AnimalRow"
 import { DropdownWrapper } from "./DropdownWrapper"
 import { Option } from "./Option"
 import { useBatchContext } from "@/hooks/useBatchContext"
+import { useRouter } from "next/navigation"
 
 interface IBatchDropdown {
     title?: string
@@ -32,6 +33,7 @@ export const BatchDropdown = ({
     const [isOpen, setIsOpen] = useState(false)
     const [animals, setAnimals] = useState<IAnimal[]>([])
     const { batches } = useBatchContext()
+    const router = useRouter()
 
     useEffect(() => {
         listAnimalsByBatch(id).then(({ data }) => {
@@ -96,6 +98,9 @@ export const BatchDropdown = ({
                             <IconButton
                                 type="secondary"
                                 icon={<Edit color="white" size={16} />}
+                                onClick={() =>
+                                    router.push(`batches/${id}/edit`)
+                                }
                             />
                             <IconButton
                                 onClick={() => setIsOpen(() => !isOpen)}

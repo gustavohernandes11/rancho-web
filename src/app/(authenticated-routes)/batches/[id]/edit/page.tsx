@@ -1,34 +1,45 @@
 "use client"
 
-import { AddAnimalForm } from "@/components/forms/AddAnimalForm"
-import { AddButton } from "@/components/Button/AddButton"
+import { useEffect, useState } from "react"
+
 import { Aside } from "@/layout/Aside"
 import { CancelButton } from "@/components/Button/CancelButton"
 import { ContainerAsideAtBottom } from "@/layout/ContainerAsideAtBottom"
 import { Content } from "@/layout/Content"
 import { Header } from "@/components/Header"
-import { IAddAnimalData } from "@/types/IAddAnimalData"
+import { IBatch } from "@/types/IBatch"
 import { Menu } from "@/components/Menu"
 import { PageLayout } from "@/layout/PageLayout"
+import { SaveButton } from "@/components/Button/SaveButton"
 import { Span } from "@/components/Span"
-import { addAnimal } from "@/requests/addAnimal"
-import { useState } from "react"
+import { updateBatch } from "@/requests/updateBatch"
+import { useParams, useRouter } from "next/navigation"
 import { AlertPopup } from "@/components/AlertPopup"
+import { AddBatchForm } from "@/components/forms/AddBatchForm"
+import { IAddBatchData } from "@/types/IAddBatchData"
+import { getBatch } from "@/requests/TEMPORARY_getBatch"
 
-export default function AddAnimalPage() {
+export default function EditBatchPage() {
+    const router = useRouter()
+    const [batch, setBatch] = useState<IBatch>()
     const [alertMessage, setAlertMessage] = useState("")
+    const { id } = useParams()
+
     const handleSubmit = async (
-        values: IAddAnimalData,
+        values: { name?: string; observation?: string },
         resetForm: Function
     ) => {
-        const res = await addAnimal(values)
+        const res = await updateBatch(id as string, values)
         if (res.response?.ok) {
-            setAlertMessage("Adicionado com sucesso!")
+            router.back()
             resetForm()
         } else {
-            setAlertMessage("Não foi adicionado!")
+            setAlertMessage("Não foi possível editar.")
         }
     }
+    useEffect(() => {
+        getBatch(id as string).then(({ data }) => setBatch(data))
+    }, [id])
 
     return (
         <>
@@ -40,13 +51,16 @@ export default function AddAnimalPage() {
             )}
             <PageLayout>
                 <ContainerAsideAtBottom>
-                    <Header title={"Adicionar animal"} />
+                    <Header title={"Editar batch: " + batch?.name} />
                     <Content>
-                        <AddAnimalForm handleSubmit={handleSubmit} />
+                        <AddBatchForm
+                            initialValues={batch as IAddBatchData}
+                            handleSubmit={handleSubmit}
+                        />
                     </Content>
                     <Aside>
                         <Span>
-                            <AddButton type="submit" form="addAnimalForm" />
+                            <SaveButton type="submit" form="addBatchForm" />
                             <CancelButton />
                         </Span>
                     </Aside>

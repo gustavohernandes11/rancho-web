@@ -5,9 +5,17 @@ import * as Yup from "yup"
 import { ErrorMessage } from "../ErrorMessage"
 import { Form } from "../Form"
 import { IAddBatchData } from "@/types/IAddBatchData"
+import { useEffect, useState } from "react"
+
+type EditPropBatch = {
+    name?: string
+    observation?: string
+}
 
 type IFormProps = {
-    handleSubmit: (values: IAddBatchData, resetForm: Function) => void
+    handleSubmit: (values: EditPropBatch, resetForm: Function) => void
+    initialValues?: EditPropBatch
+    onClearFields?: () => void
 }
 
 const validationSchema = Yup.object().shape({
@@ -18,14 +26,34 @@ const validationSchema = Yup.object().shape({
     observation: Yup.string().max(100, "Descrição muito longa"),
 })
 
-export const AddBatchForm = ({ handleSubmit, ...props }: IFormProps) => {
+export const AddBatchForm = ({
+    handleSubmit,
+    initialValues,
+    ...props
+}: IFormProps) => {
+    const [editingBatchData, setEditingBatchData] = useState(initialValues)
+    useEffect(() => {
+        setEditingBatchData(initialValues)
+    }, [initialValues])
+
+    const getEditingBatchData = (): EditPropBatch => {
+        return {
+            name: editingBatchData?.name || "",
+            observation: editingBatchData?.observation || "",
+        }
+    }
+
     const formik = useFormik({
-        initialValues: { name: "", observation: "" },
+        initialValues: getEditingBatchData(),
+        enableReinitialize: true,
         validationSchema,
-        onSubmit: (values, { resetForm }) => {
-            handleSubmit(values, resetForm)
+        onSubmit: ({ name, observation }) => {
+            handleSubmit({ name, observation }, resetForm)
         },
     })
+    const resetForm = () => {
+        formik.resetForm()
+    }
     return (
         <Form
             id="addBatchForm"
@@ -39,6 +67,7 @@ export const AddBatchForm = ({ handleSubmit, ...props }: IFormProps) => {
                 autoComplete="false"
                 autoCapitalize="true"
                 autoFocus={true}
+                required={true}
                 {...formik.getFieldProps("name")}
             />
             {formik.errors.name ? (
