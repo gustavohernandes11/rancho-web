@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components"
 import { IconButton } from "../IconButton"
-import { Trash, EllipsisVertical, Eye, Exchange } from "@styled-icons/fa-solid"
+import { Trash, EllipsisVertical, Eye } from "@styled-icons/fa-solid"
 import { DesktopOnly } from "../utils/DesktopOnly"
 import { MobileOnly } from "../utils/MobileOnly"
 import { DropdownWrapper } from "../DropdownWrapper"
@@ -23,7 +23,7 @@ const Actions = ({ id, name }: { id: string; name: string }) => {
     const handleDeleteConfirmed = () => {
         deleteAnimal(id)
         setAnimals((prev: IAnimal[]) =>
-            prev.filter((animal) => animal.id !== id),
+            prev.filter((animal) => animal.id !== id)
         )
     }
     const handleGoToAnimal = () => {

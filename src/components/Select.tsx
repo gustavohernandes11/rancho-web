@@ -1,15 +1,19 @@
 import styled, { css } from "styled-components"
+
+import { ErrorMessage } from "./ErrorMessage"
 import { Label } from "./Label"
 
 interface ISelectElementProps
     extends React.SelectHTMLAttributes<HTMLSelectElement> {
     id?: string
     label?: string
+    error?: string
 }
 
 export const Select: React.FC<ISelectElementProps> = ({
     label,
     id,
+    error,
     ...props
 }) => {
     return (
@@ -18,6 +22,7 @@ export const Select: React.FC<ISelectElementProps> = ({
             <Wrapper>
                 <StyledSelect id={id} {...props} />
             </Wrapper>
+            {error && <ErrorMessage>{error}</ErrorMessage>}
         </>
     )
 }

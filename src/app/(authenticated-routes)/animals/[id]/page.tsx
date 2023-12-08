@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useParams, useRouter } from "next/navigation"
+import { useRouter as useNavigationRouter, useParams } from "next/navigation"
 
 import { AnimalInfoCard } from "@/components/AnimalInfoCard"
 import { AnimalRow } from "@/components/AnimalTable/AnimalRow"
@@ -32,7 +32,7 @@ export default function AnimalsPage() {
     const [batch, setBatch] = useState<IBatch>()
     const [paternity, setPaternity] = useState<IAnimal | undefined>()
     const [maternity, setMaternity] = useState<IAnimal | undefined>()
-    const router = useRouter()
+    const router = useNavigationRouter()
 
     const [isConfirmationActive, setIsConfirmationActive] = useState(false)
 
@@ -53,7 +53,7 @@ export default function AnimalsPage() {
         getAnimal(animal?.paternityId!).then(({ data }) => setPaternity(data))
         getAnimal(animal?.maternityId!).then(({ data }) => setMaternity(data))
         listBatches().then(({ data }) =>
-            setBatch(data.find((b: IBatch) => b.id === animal?.batchId)),
+            setBatch(data.find((b: IBatch) => b.id === animal?.batchId))
         )
     }, [animal?.batchId, animal?.maternityId, animal?.paternityId, id])
 
@@ -140,7 +140,13 @@ export default function AnimalsPage() {
                     <DesktopOnly>
                         <Aside>
                             <Span>
-                                <Button primary={true}>Editar</Button>
+                                <Button
+                                    primary={true}
+                                    onClick={() => router.push(`${id}/edit`)}
+                                >
+                                    Editar
+                                </Button>
+
                                 <Button
                                     light={true}
                                     onClick={handleDeleteButtonPressed}

@@ -11,6 +11,7 @@
     "dependencies": {
         "@styled-icons/fa-solid": "^10.47.0",
         "formik": "^2.4.5",
+        "moment": "^2.29.4",
         "next": "14.0.2",
         "next-auth": "^4.3.4",
         "react": "^18",

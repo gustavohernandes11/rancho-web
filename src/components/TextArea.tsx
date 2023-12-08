@@ -1,17 +1,26 @@
 import styled, { css } from "styled-components"
+
+import { ErrorMessage } from "./ErrorMessage"
 import { Label } from "./Label"
 
 interface ITextAreaElementProps
     extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
     id?: string
     label?: string
+    error?: string
 }
 
-export const TextArea = ({ label, id, ...props }: ITextAreaElementProps) => {
+export const TextArea = ({
+    label,
+    id,
+    error,
+    ...props
+}: ITextAreaElementProps) => {
     return (
         <>
             {label && <Label htmlFor={id}>{label}</Label>}
             <StyledTextArea id={id} {...props} />
+            {error && <ErrorMessage>{error}</ErrorMessage>}
         </>
     )
 }

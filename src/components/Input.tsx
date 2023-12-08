@@ -1,18 +1,22 @@
-import { useState } from "react"
 import styled, { css } from "styled-components"
+
+import { ErrorMessage } from "./ErrorMessage"
 import { Label } from "./Label"
+import { useState } from "react"
 
 interface IInputElementProps
     extends React.InputHTMLAttributes<HTMLInputElement> {
     id?: string
     messageOnFocus?: string
     label?: string
+    error?: string
 }
 
 export const Input: React.FC<IInputElementProps> = ({
     messageOnFocus,
     label,
     id,
+    error,
     ...props
 }) => {
     const [focused, setFocused] = useState(false)
@@ -28,6 +32,7 @@ export const Input: React.FC<IInputElementProps> = ({
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
             />
+            {error && <ErrorMessage>{error}</ErrorMessage>}
         </>
     )
 }

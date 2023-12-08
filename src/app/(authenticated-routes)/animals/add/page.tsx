@@ -16,11 +16,12 @@ import { addAnimal } from "@/requests/addAnimal"
 export default function AddAnimalPage() {
     const handleSubmit = async (
         values: IAddAnimalData,
-        resetForm: Function,
+        resetForm: Function
     ) => {
         const res = await addAnimal(values)
-        if (res.response?.ok) resetForm()
-        else {
+        if (res.response?.ok) {
+            resetForm()
+        } else {
             alert("Não foi adicionado!")
         }
     }
