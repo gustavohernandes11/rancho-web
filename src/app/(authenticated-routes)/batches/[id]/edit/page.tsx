@@ -12,15 +12,13 @@ import { Menu } from "@/components/Menu"
 import { PageLayout } from "@/layout/PageLayout"
 import { SaveButton } from "@/components/Button/SaveButton"
 import { Span } from "@/components/Span"
-import { updateBatch } from "@/requests/updateBatch"
+import { deleteBatch, getBatch, updateBatch } from "@/requests/"
 import { useParams, useRouter } from "next/navigation"
 import { AlertPopup } from "@/components/AlertPopup"
 import { AddBatchForm } from "@/components/forms/AddBatchForm"
 import { IAddBatchData } from "@/types/IAddBatchData"
-import { getBatch } from "@/requests/TEMPORARY_getBatch"
 import { Button } from "@/components/Button"
 import { ConfirmPopup } from "@/components/ConfirmPopup"
-import { deleteBatch } from "@/requests/deleteBatch"
 
 export default function EditBatchPage() {
     const router = useRouter()

@@ -11,25 +11,21 @@ import { Container } from "@/layout/Container"
 import { Content } from "@/layout/Content"
 import { Grid } from "@/components/Grid"
 import { Header } from "@/components/Header"
-import { IBatch } from "@/types/IBatch"
 import { Menu } from "@/components/Menu"
 import { PageLayout } from "@/layout/PageLayout"
 import { Section } from "@/layout/Section"
-import { listBatches } from "@/requests/listBatches"
+import { useBatchContext } from "@/hooks/useBatchContext"
 
 export default function BatchesPage() {
-    const [batches, setBatches] = useState<IBatch[]>()
+    const { batches } = useBatchContext()
 
-    useEffect(() => {
-        listBatches().then(({ data }) => setBatches(data))
-    }, [])
     return (
         <PageLayout>
             <Container>
                 <Header title={"Lotes"} />
                 <Content>
                     <Section>
-                        {batches ? (
+                        {batches.length > 0 ? (
                             batches.map((batch) => (
                                 <BatchDropdown
                                     key={batch.id}

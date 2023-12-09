@@ -8,7 +8,7 @@ import {
     Exchange,
 } from "@styled-icons/fa-solid"
 import { IAnimal } from "@/types/IAnimal"
-import { listAnimalsByBatch } from "@/requests/listAnimalsByBatch"
+import { listAnimalsByBatch } from "@/requests"
 import { AnimalRow } from "./AnimalTable/AnimalRow"
 import { DropdownWrapper } from "./DropdownWrapper"
 import { Option } from "./Option"

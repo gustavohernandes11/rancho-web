@@ -1,6 +1,6 @@
 "use client"
 
-import { AddAnimalForm } from "@/components/forms/AddAnimalForm"
+import { AnimalForm } from "@/components/forms/AnimalForm"
 import { AddButton } from "@/components/Button/AddButton"
 import { Aside } from "@/layout/Aside"
 import { CancelButton } from "@/components/Button/CancelButton"
@@ -11,7 +11,7 @@ import { IAddAnimalData } from "@/types/IAddAnimalData"
 import { Menu } from "@/components/Menu"
 import { PageLayout } from "@/layout/PageLayout"
 import { Span } from "@/components/Span"
-import { addAnimal } from "@/requests/addAnimal"
+import { addAnimal } from "@/requests"
 import { useState } from "react"
 import { AlertPopup } from "@/components/AlertPopup"
 
@@ -42,7 +42,7 @@ export default function AddAnimalPage() {
                 <ContainerAsideAtBottom>
                     <Header title={"Adicionar animal"} />
                     <Content>
-                        <AddAnimalForm handleSubmit={handleSubmit} />
+                        <AnimalForm handleSubmit={handleSubmit} />
                     </Content>
                     <Aside>
                         <Span>

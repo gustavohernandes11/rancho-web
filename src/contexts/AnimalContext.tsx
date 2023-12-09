@@ -1,6 +1,6 @@
 "use client"
 
-import { listAnimals } from "@/requests/listAnimals"
+import { listAnimals } from "@/requests"
 import { IAnimal } from "@/types/IAnimal"
 import { createContext, useEffect, useState } from "react"
 
@@ -11,7 +11,7 @@ type IAnimalContext = {
 }
 
 export const AnimalContext = createContext<IAnimalContext>(
-    null as unknown as IAnimalContext,
+    null as unknown as IAnimalContext
 )
 
 export const AnimalContextProvider = ({ children }: any) => {

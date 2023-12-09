@@ -2,68 +2,50 @@ import * as Yup from "yup"
 
 import { useEffect, useState } from "react"
 
-import { Form } from "../Form"
-import { GridTwoColumns } from "../GridTwoColumns"
-import { IAnimal } from "@/types/IAnimal"
-import { IBatch } from "@/types/IBatch"
-import { Input } from "../Input"
-import { Option } from "../Option"
-import { RadioContainer } from "../RadioContainer"
-import { Select } from "../Select"
-import { Span } from "../Span"
-import { TextArea } from "../TextArea"
-import { WrappableDoubleRow } from "../WrappableDoubleRow"
-import { listAnimals } from "@/requests/listAnimals"
-import { listBatches } from "@/requests/listBatches"
+import { Form } from "../../Form"
+import { GridTwoColumns } from "../../GridTwoColumns"
+import { Input } from "../../Input"
+import { Option } from "../../Option"
+import { RadioContainer } from "../../RadioContainer"
+import { Select } from "../../Select"
+import { Span } from "../../Span"
+import { TextArea } from "../../TextArea"
+import { WrappableDoubleRow } from "../../WrappableDoubleRow"
 import moment from "moment"
 import { useFormik } from "formik"
+import { IAgeType } from "@/types/IAgeType"
+import { getMonthsDiffFromISO } from "../../../utils/getMonthsDiffFromISO"
+import { getYearsDiffFromISO } from "../../../utils/getYearsDiffFromISO"
+import { IAnimalFormInitialValues } from "./IAnimalFormInitialValues"
+import { IAnimalFormProps } from "./IAnimalFormProps"
+import { getBirthdateFromYearsAndMonths } from "../../../utils/getBirthdateFromYearsAndMonths"
+import { useAnimalContext } from "@/hooks/useAnimalContext"
+import { useBatchContext } from "@/hooks/useBatchContext"
 
-type IAgeType = "age" | "birthdate"
-export type IInitialValues = {
-    name: string
-    age: string
-    gender: string
-    batchId: string
-    maternityId: string
-    paternityId: string
-    observation: string
-    code: string
-}
-type IAddAnimalFormProps = {
-    handleSubmit: Function
-    initialValues?: IInitialValues
-    onClearFields?: () => void
-}
-
-export const AddAnimalForm = ({
+export const AnimalForm = ({
     handleSubmit,
     initialValues,
     onClearFields,
     ...props
-}: IAddAnimalFormProps) => {
+}: IAnimalFormProps) => {
     const [editingAnimalData, setEditingAnimalData] = useState(initialValues)
-    useEffect(() => {
-        listAnimals().then(({ data }) => setAnimals(data))
-        listBatches().then(({ data }) => setBatches(data))
-    }, [])
+
+    const { animals } = useAnimalContext()
+    const { batches } = useBatchContext()
     useEffect(() => {
         setEditingAnimalData(initialValues)
     }, [initialValues])
 
     useEffect(() => {
         setMonths(
-            initialValues?.age
-                ? moment().diff(new Date(initialValues?.age), "months") % 12
-                : 0
+            initialValues?.age ? getMonthsDiffFromISO(initialValues.age) : 0
         )
         setYears(
-            initialValues?.age
-                ? moment().diff(new Date(initialValues?.age), "years") % 12
-                : 0
+            initialValues?.age ? getYearsDiffFromISO(initialValues.age) : 0
         )
     }, [initialValues?.age])
 
-    const getEditingAnimalData = (): IInitialValues => {
+    const getEditingAnimalData = (): IAnimalFormInitialValues => {
         return {
             name: editingAnimalData?.name || "",
             age: editingAnimalData?.age || "",
@@ -76,7 +58,7 @@ export const AddAnimalForm = ({
         }
     }
 
-    const getInitialValues = (): IInitialValues => {
+    const getInitialValues = (): IAnimalFormInitialValues => {
         return {
             name: "",
             age: "",
@@ -104,33 +86,23 @@ export const AddAnimalForm = ({
     })
 
     const [ageType, setAgeType] = useState<IAgeType>("birthdate")
-    const [animals, setAnimals] = useState<IAnimal[]>([])
-    const [batches, setBatches] = useState<IBatch[]>([])
 
     const [years, setYears] = useState<number>(0)
     const [months, setMonths] = useState<number>(0)
 
-    const getBirthdate = (years: number, months: number) => {
-        const dateNow = new Date()
-
-        var birthYear = dateNow.getFullYear() - years
-        var birthMonth = dateNow.getMonth() - months
-
-        while (birthMonth < 0) {
-            birthMonth += 12
-            birthYear--
-        }
-
-        return new Date(birthYear, birthMonth, dateNow.getDate()).toISOString()
-    }
-
     const handleChangeYears = (e: any) => {
         setYears(() => e.target.value)
-        formik.setFieldValue("age", getBirthdate(e.target.value, months))
+        formik.setFieldValue(
+            "age",
+            getBirthdateFromYearsAndMonths(e.target.value, months)
+        )
     }
     const handleChangeMonths = (e: any) => {
         setMonths(() => e.target.value)
-        formik.setFieldValue("age", getBirthdate(years, e.target.value))
+        formik.setFieldValue(
+            "age",
+            getBirthdateFromYearsAndMonths(years, e.target.value)
+        )
     }
     const handleChangeAgeType = (e: any) => {
         setAgeType(e.target.value as IAgeType)

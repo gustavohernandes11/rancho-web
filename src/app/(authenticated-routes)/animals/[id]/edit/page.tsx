@@ -1,6 +1,6 @@
 "use client"
 
-import { AddAnimalForm, IInitialValues } from "@/components/forms/AddAnimalForm"
+import { AnimalForm } from "@/components/forms/AnimalForm"
 import { useEffect, useState } from "react"
 
 import { Aside } from "@/layout/Aside"
@@ -14,10 +14,10 @@ import { Menu } from "@/components/Menu"
 import { PageLayout } from "@/layout/PageLayout"
 import { SaveButton } from "@/components/Button/SaveButton"
 import { Span } from "@/components/Span"
-import { getAnimal } from "@/requests/getAnimal"
-import { updateAnimal } from "@/requests/updateAnimal"
+import { getAnimal, updateAnimal } from "@/requests/"
 import { useParams, useRouter } from "next/navigation"
 import { AlertPopup } from "@/components/AlertPopup"
+import { IAnimalFormInitialValues } from "@/components/forms/AnimalForm/IAnimalFormInitialValues"
 
 export default function AddAnimalPage() {
     const router = useRouter()
@@ -53,14 +53,14 @@ export default function AddAnimalPage() {
                 <ContainerAsideAtBottom>
                     <Header title={"Editar animal: " + animal?.name} />
                     <Content>
-                        <AddAnimalForm
-                            initialValues={animal as IInitialValues}
+                        <AnimalForm
+                            initialValues={animal as IAnimalFormInitialValues}
                             handleSubmit={handleSubmit}
                         />
                     </Content>
                     <Aside>
                         <Span>
-                            <SaveButton type="submit" form="addAnimalForm" />
+                            <SaveButton type="submit" form="AnimalForm" />
                             <CancelButton />
                         </Span>
                     </Aside>

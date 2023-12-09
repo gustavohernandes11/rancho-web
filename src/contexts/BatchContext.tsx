@@ -1,6 +1,6 @@
 "use client"
 
-import { listBatches } from "@/requests/listBatches"
+import { listBatches } from "@/requests"
 import { IBatch } from "@/types/IBatch"
 import { createContext, useEffect, useState } from "react"
 
@@ -11,7 +11,7 @@ type IBatchContext = {
 }
 
 export const BatchContext = createContext<IBatchContext>(
-    null as unknown as IBatchContext,
+    null as unknown as IBatchContext
 )
 
 export const BatchContextProvider = ({ children }: any) => {

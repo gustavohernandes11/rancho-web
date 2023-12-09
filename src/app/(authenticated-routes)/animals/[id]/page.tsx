@@ -20,11 +20,8 @@ import { PageLayout } from "@/layout/PageLayout"
 import { Span } from "@/components/Span"
 import { TextArea } from "@/components/TextArea"
 import { Title } from "@/components/Title"
-import { deleteAnimal } from "@/requests/deleteAnimal"
 import { getAgeFromISO } from "@/utils/getAgeFromISO"
-import { getAnimal } from "@/requests/getAnimal"
-import { listBatches } from "@/requests/listBatches"
-import { updateAnimal } from "@/requests/updateAnimal"
+import { deleteAnimal, updateAnimal, getAnimal, listBatches } from "@/requests"
 
 export default function AnimalsPage() {
     const { id } = useParams()

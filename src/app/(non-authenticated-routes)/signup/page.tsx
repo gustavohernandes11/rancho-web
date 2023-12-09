@@ -11,7 +11,7 @@ import Link from "next/link"
 import { NextPage } from "next"
 import { Title } from "@/components/Title"
 import { signIn } from "next-auth/react"
-import { signUp } from "@/requests/signUp"
+import { signUp } from "@/requests"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
