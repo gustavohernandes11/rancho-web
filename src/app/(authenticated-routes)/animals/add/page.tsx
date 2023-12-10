@@ -12,47 +12,38 @@ import { Menu } from "@/components/Menu"
 import { PageLayout } from "@/layout/PageLayout"
 import { Span } from "@/components/Span"
 import { addAnimal } from "@/requests"
-import { useState } from "react"
-import { AlertPopup } from "@/components/AlertPopup"
+import { usePopupContext } from "@/hooks/usePopupContext"
 
 export default function AddAnimalPage() {
-    const [alertMessage, setAlertMessage] = useState("")
+    const { dispatchAlert } = usePopupContext()
     const handleSubmit = async (
         values: IAddAnimalData,
         resetForm: Function
     ) => {
         const res = await addAnimal(values)
         if (res.response?.ok) {
-            setAlertMessage("Adicionado com sucesso!")
+            dispatchAlert("Adicionado com sucesso!")
             resetForm()
         } else {
-            setAlertMessage("Não foi adicionado!")
+            dispatchAlert("Não foi adicionado!")
         }
     }
 
     return (
-        <>
-            {alertMessage && (
-                <AlertPopup
-                    text={alertMessage}
-                    onClose={() => setAlertMessage("")}
-                />
-            )}
-            <PageLayout>
-                <ContainerAsideAtBottom>
-                    <Header title={"Adicionar animal"} />
-                    <Content>
-                        <AnimalForm handleSubmit={handleSubmit} />
-                    </Content>
-                    <Aside>
-                        <Span>
-                            <AddButton type="submit" form="addAnimalForm" />
-                            <CancelButton />
-                        </Span>
-                    </Aside>
-                </ContainerAsideAtBottom>
-                <Menu />
-            </PageLayout>
-        </>
+        <PageLayout>
+            <ContainerAsideAtBottom>
+                <Header title={"Adicionar animal"} />
+                <Content>
+                    <AnimalForm handleSubmit={handleSubmit} />
+                </Content>
+                <Aside>
+                    <Span>
+                        <AddButton type="submit" form="addAnimalForm" />
+                        <CancelButton />
+                    </Span>
+                </Aside>
+            </ContainerAsideAtBottom>
+            <Menu />
+        </PageLayout>
     )
 }

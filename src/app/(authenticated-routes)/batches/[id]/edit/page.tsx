@@ -14,30 +14,27 @@ import { SaveButton } from "@/components/Button/SaveButton"
 import { Span } from "@/components/Span"
 import { deleteBatch, getBatch, updateBatch } from "@/requests/"
 import { useParams, useRouter } from "next/navigation"
-import { AlertPopup } from "@/components/AlertPopup"
 import { AddBatchForm } from "@/components/forms/AddBatchForm"
 import { IAddBatchData } from "@/types/IAddBatchData"
 import { Button } from "@/components/Button"
-import { ConfirmPopup } from "@/components/ConfirmPopup"
+import { usePopupContext } from "@/hooks/usePopupContext"
 
 export default function EditBatchPage() {
     const router = useRouter()
+    const { dispatchAlert, dispatchConfirmation } = usePopupContext()
     const [batch, setBatch] = useState<IBatch>()
-    const [alertMessage, setAlertMessage] = useState("")
-    const [deleteConfirmationMessage, setDeleteConfirmationMessage] =
-        useState("")
     const { id } = useParams()
 
     const handleSubmit = async (
         values: { name?: string; observation?: string },
         resetForm: Function
     ) => {
-        const res = await updateBatch(id as string, values)
-        if (res.response?.ok) {
+        const { response } = await updateBatch(id as string, values)
+        if (response?.ok) {
             router.back()
             resetForm()
         } else {
-            setAlertMessage("Não foi possível editar.")
+            dispatchAlert("Não foi possível editar.")
         }
     }
     useEffect(() => {
@@ -45,53 +42,43 @@ export default function EditBatchPage() {
     }, [id])
 
     const handleDeleteBatch = () => {
-        deleteBatch(id as string).then((r) => {
-            if (r.response?.ok) router.push("/batches")
+        deleteBatch(id as string).then(({ response }) => {
+            if (response?.ok) {
+                dispatchAlert("Lote deletado com sucesso!")
+                router.push("/batches")
+            }
         })
     }
     return (
-        <>
-            {alertMessage && (
-                <AlertPopup
-                    text={alertMessage}
-                    onClose={() => setAlertMessage("")}
-                />
-            )}
-            {deleteConfirmationMessage && (
-                <ConfirmPopup
-                    text={deleteConfirmationMessage}
-                    onCancel={() => setDeleteConfirmationMessage("")}
-                    onConfirm={() => handleDeleteBatch()}
-                />
-            )}
-            <PageLayout>
-                <ContainerAsideAtBottom>
-                    <Header title={"Editar batch: " + batch?.name} />
-                    <Content>
-                        <AddBatchForm
-                            initialValues={batch as IAddBatchData}
-                            handleSubmit={handleSubmit}
-                        />
-                    </Content>
-                    <Aside>
-                        <Span>
-                            <SaveButton type="submit" form="addBatchForm" />
-                            <CancelButton />
-                            <Button
-                                light={true}
-                                onClick={() =>
-                                    setDeleteConfirmationMessage(
-                                        "Deseja realmente deletar esse lote? (animais não serão afetados)"
-                                    )
-                                }
-                            >
-                                Deletar lote
-                            </Button>
-                        </Span>
-                    </Aside>
-                </ContainerAsideAtBottom>
-                <Menu />
-            </PageLayout>
-        </>
+        <PageLayout>
+            <ContainerAsideAtBottom>
+                <Header title={"Editar batch: " + batch?.name} />
+                <Content>
+                    <AddBatchForm
+                        initialValues={batch as IAddBatchData}
+                        handleSubmit={handleSubmit}
+                    />
+                </Content>
+                <Aside>
+                    <Span>
+                        <SaveButton type="submit" form="addBatchForm" />
+                        <CancelButton />
+                        <Button
+                            type="button"
+                            light={true}
+                            onClick={() =>
+                                dispatchConfirmation(
+                                    "Deseja realmente deletar esse lote? (animais não serão afetados)",
+                                    handleDeleteBatch
+                                )
+                            }
+                        >
+                            Deletar lote
+                        </Button>
+                    </Span>
+                </Aside>
+            </ContainerAsideAtBottom>
+            <Menu />
+        </PageLayout>
     )
 }

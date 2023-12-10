@@ -4,16 +4,16 @@ import { Span } from "./Span"
 
 type IAlertPopupProps = {
     text: string
-    onClose: () => void
+    onAlertClose?: () => void
 }
 
-export const AlertPopup = ({ text, onClose }: IAlertPopupProps) => {
+export const AlertPopup = ({ text, onAlertClose }: IAlertPopupProps) => {
     return (
-        <StyledBackground onClick={onClose}>
+        <StyledBackground onClick={onAlertClose}>
             <StyledAlertPopup>
                 <p>{text}</p>
                 <Span>
-                    <Button primary={true} onClick={onClose}>
+                    <Button primary={true} onClick={onAlertClose}>
                         Ok
                     </Button>
                 </Span>

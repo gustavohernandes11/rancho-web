@@ -4,21 +4,21 @@ import { Span } from "./Span"
 
 type IConfirmPopupProps = {
     text: string
-    onConfirm: () => void
-    onCancel: () => void
+    onConfirm?: () => void
+    onDeniedConfirmation?: () => void
 }
 
 export const ConfirmPopup = ({
     text,
-    onCancel,
+    onDeniedConfirmation,
     onConfirm,
 }: IConfirmPopupProps) => {
     return (
-        <StyledBackground onClick={onCancel}>
+        <StyledBackground onClick={onDeniedConfirmation}>
             <StyledConfirmPopup>
                 <p>{text}</p>
                 <Span>
-                    <Button light={true} onClick={onCancel}>
+                    <Button light={true} onClick={onDeniedConfirmation}>
                         Cancelar
                     </Button>
                     <Button primary={true} onClick={onConfirm}>

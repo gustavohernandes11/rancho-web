@@ -13,7 +13,7 @@ export const getAnimal = async (id: string): Promise<IApiResponse> => {
         },
     })
 
-    const data = await response.json()
+    const data = response?.status === 200 ? await response.json() : {}
 
     return { response, data }
 }

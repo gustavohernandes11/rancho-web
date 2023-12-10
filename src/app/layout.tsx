@@ -5,6 +5,7 @@ import StyledComponentsRegistry from "./registry"
 import NextAuthSessionProvider from "./providers/sessionProvider"
 import { AnimalContextProvider } from "@/contexts/AnimalContext"
 import { BatchContextProvider } from "@/contexts/BatchContext"
+import { PopupContextProvider } from "@/contexts/PopupContext"
 
 const ubuntu = Ubuntu({
     weight: ["300", "400", "500", "700"],
@@ -29,7 +30,11 @@ export default function RootLayout({
                     <BatchContextProvider>
                         <AnimalContextProvider>
                             <NextAuthSessionProvider>
-                                <ThemeWrapper>{children}</ThemeWrapper>
+                                <ThemeWrapper>
+                                    <PopupContextProvider>
+                                        {children}
+                                    </PopupContextProvider>
+                                </ThemeWrapper>
                             </NextAuthSessionProvider>
                         </AnimalContextProvider>
                     </BatchContextProvider>

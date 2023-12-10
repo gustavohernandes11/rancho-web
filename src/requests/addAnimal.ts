@@ -3,7 +3,7 @@ import { IAddAnimalData } from "@/types/IAddAnimalData"
 import { getSession } from "next-auth/react"
 
 export const addAnimal = async (
-    animalData: IAddAnimalData,
+    animalData: IAddAnimalData
 ): Promise<IApiResponse> => {
     const session = await getSession()
 
@@ -17,7 +17,7 @@ export const addAnimal = async (
         body: JSON.stringify(animalData),
     })
 
-    const data = await response.json()
+    const data = response?.status === 200 ? await response.json() : {}
 
     return { response, data }
 }

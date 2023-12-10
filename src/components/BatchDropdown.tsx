@@ -37,7 +37,6 @@ export const BatchDropdown = ({
 
     useEffect(() => {
         listAnimalsByBatch(id).then(({ data }) => {
-            console.log(data)
             setAnimals(data)
         })
     }, [id])
@@ -118,6 +117,8 @@ export const BatchDropdown = ({
                 </ActionSpan>
             </Container>
             {isOpen &&
+                animals &&
+                animals.length > 0 &&
                 animals.map((al) => <AnimalRow key={al.id} animal={al} />)}
         </>
     )

@@ -3,7 +3,7 @@ import { IAddBatchData } from "@/types/IAddBatchData"
 import { getSession } from "next-auth/react"
 
 export const addBatch = async (
-    updateData: IAddBatchData,
+    updateData: IAddBatchData
 ): Promise<IApiResponse> => {
     const session = await getSession()
 
@@ -17,7 +17,7 @@ export const addBatch = async (
         body: JSON.stringify(updateData),
     })
 
-    const data = await response.json()
+    const data = response?.status === 200 ? await response.json() : {}
 
     return { response, data }
 }

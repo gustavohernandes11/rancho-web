@@ -21,7 +21,7 @@ export const updateBatch = async (
         body: JSON.stringify(updateData),
     })
 
-    const data = await response.json()
+    const data = response?.status === 200 ? await response.json() : {}
 
     return { response, data }
 }

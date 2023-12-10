@@ -14,7 +14,7 @@ export const getBatch = async (id: string): Promise<IApiResponse> => {
         },
     })
 
-    const data = await response.json()
+    const data = response?.status === 200 ? await response.json() : {}
     const filtered = data.find((b: IBatch) => b.id === id)
 
     return { response, data: filtered }

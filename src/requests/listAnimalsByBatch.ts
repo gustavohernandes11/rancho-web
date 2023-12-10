@@ -2,7 +2,7 @@ import { IApiResponse } from "@/types/IAPIResponse"
 import { getSession } from "next-auth/react"
 
 export const listAnimalsByBatch = async (
-    batchId: string,
+    batchId: string
 ): Promise<IApiResponse> => {
     const session = await getSession()
 
@@ -15,7 +15,7 @@ export const listAnimalsByBatch = async (
         },
     })
 
-    const data = await response.json()
+    const data = response?.status === 200 ? await response.json() : {}
 
     return { response, data }
 }
