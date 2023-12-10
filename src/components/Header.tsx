@@ -33,7 +33,8 @@ export const Header = ({ title }: { title: string }) => {
                         icon={<SignOut size={16} />}
                     />
                 </DesktopOnly>
-                <IconButton type="light" icon={<Cog size={16} />} />
+                {/* TODO */}
+                {/* <IconButton type="light" icon={<Cog size={16} />} /> */}
             </ActionsContainer>
         </StyledHeader>
     )
