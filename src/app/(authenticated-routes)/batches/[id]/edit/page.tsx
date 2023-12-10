@@ -14,7 +14,7 @@ import { SaveButton } from "@/components/Button/SaveButton"
 import { Span } from "@/components/Span"
 import { deleteBatch, getBatch, updateBatch } from "@/requests/"
 import { useParams, useRouter } from "next/navigation"
-import { AddBatchForm } from "@/components/forms/AddBatchForm"
+import { BatchForm } from "@/components/forms/BatchForm/"
 import { IAddBatchData } from "@/types/IAddBatchData"
 import { Button } from "@/components/Button"
 import { usePopupContext } from "@/hooks/usePopupContext"
@@ -54,14 +54,14 @@ export default function EditBatchPage() {
             <ContainerAsideAtBottom>
                 <Header title={"Editar batch: " + batch?.name} />
                 <Content>
-                    <AddBatchForm
+                    <BatchForm
                         initialValues={batch as IAddBatchData}
                         handleSubmit={handleSubmit}
                     />
                 </Content>
                 <Aside>
                     <Span>
-                        <SaveButton type="submit" form="addBatchForm" />
+                        <SaveButton type="submit" form="BatchForm" />
                         <CancelButton />
                         <Button
                             type="button"

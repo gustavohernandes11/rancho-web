@@ -1,42 +1,25 @@
 import { useFormik } from "formik"
-import { Input } from "../Input"
-import { TextArea } from "../TextArea"
-import * as Yup from "yup"
-import { ErrorMessage } from "../ErrorMessage"
-import { Form } from "../Form"
+import { Input } from "../../Input"
+import { TextArea } from "../../TextArea"
+import { ErrorMessage } from "../../ErrorMessage"
 import { useEffect, useState } from "react"
 import { IAddBatchData } from "@/types/IAddBatchData"
+import { IBatchFormProps } from "./IBatchFormProps"
+import { Form } from "@/components/Form"
+import { IEditPropBatch } from "./IEditPropBatch"
+import { validationSchema } from "./validationSchema"
 
-export type EditPropBatch = {
-    name?: string
-    observation?: string
-}
-
-type IFormProps = {
-    handleSubmit: (values: IAddBatchData, resetForm: Function) => void
-    initialValues?: EditPropBatch
-    onClearFields?: () => void
-}
-
-const validationSchema = Yup.object().shape({
-    name: Yup.string()
-        .max(35, "Nome muito longo")
-        .min(3, "Nome muito curto")
-        .required("Campo requerido"),
-    observation: Yup.string().max(100, "Descrição muito longa"),
-})
-
-export const AddBatchForm = ({
+export const BatchForm = ({
     handleSubmit,
     initialValues,
     ...props
-}: IFormProps) => {
+}: IBatchFormProps) => {
     const [editingBatchData, setEditingBatchData] = useState(initialValues)
     useEffect(() => {
         setEditingBatchData(initialValues)
     }, [initialValues])
 
-    const getEditingBatchData = (): EditPropBatch => {
+    const getEditingBatchData = (): IEditPropBatch => {
         return {
             name: editingBatchData?.name || "",
             observation: editingBatchData?.observation || "",
@@ -56,7 +39,7 @@ export const AddBatchForm = ({
     }
     return (
         <Form
-            id="addBatchForm"
+            id="BatchForm"
             onReset={formik.handleReset}
             onSubmit={formik.handleSubmit}
             {...props}

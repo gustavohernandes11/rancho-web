@@ -1,5 +1,5 @@
+import * as Yup from "yup"
 import { useEffect, useRef, useState } from "react"
-
 import { Form } from "@/components/Form"
 import { GridTwoColumns } from "@/components/GridTwoColumns"
 import { Input } from "@/components/Input"
@@ -21,7 +21,7 @@ import {
     getMonthsDiffFromISO,
     getYearsDiffFromISO,
 } from "@/utils"
-import { validationSchema } from "./validationSchema"
+import moment from "moment"
 
 export const AnimalForm = ({
     handleSubmit,
@@ -30,6 +30,7 @@ export const AnimalForm = ({
     ...props
 }: IAnimalFormProps) => {
     const [editingAnimalData, setEditingAnimalData] = useState(initialValues)
+    const birthdateRef = useRef(null)
 
     const { animals } = useAnimalContext()
     const { batches } = useBatchContext()
@@ -60,6 +61,28 @@ export const AnimalForm = ({
         observation: "",
         code: "",
     }
+    const validationSchema = Yup.object({
+        name: Yup.string()
+            .min(3, "Nome muito curto!")
+            .max(45, "Nome muito longo!")
+            .required("Campo obrigatório"),
+        age: Yup.date()
+            .required("Campo obrigatório")
+            .test(
+                "is-future-date",
+                "A data deve ser menor que a atual",
+                function (value) {
+                    return moment(value).isBefore(moment.now())
+                }
+            )
+            .test(
+                "is-too-early-date",
+                "Use uma data mais próxima da atualidade.",
+                function (value) {
+                    return moment(value).isAfter(moment().year(1950))
+                }
+            ),
+    })
 
     const formik = useFormik({
         initialValues: getEditingAnimalData(),
@@ -109,6 +132,7 @@ export const AnimalForm = ({
             onSubmit={formik.handleSubmit}
             {...props}
         >
+            <p>{JSON.stringify(formik.values)}</p>
             <WrappableDoubleRow>
                 <span>
                     <Input
@@ -306,6 +330,7 @@ export const AnimalForm = ({
                     type="date"
                     label="Data de Nascimento*"
                     error={formik.errors.age}
+                    ref={birthdateRef}
                     value={formatISOString(formik.values.age)}
                     defaultValue={
                         initialValues?.age! &&

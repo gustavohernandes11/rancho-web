@@ -1,6 +1,6 @@
 "use client"
 
-import { AnimalForm } from "@/components/forms/AnimalForm"
+import { AnimalForm } from "@/components/forms/AnimalForm/AnimalForm"
 import { AddButton } from "@/components/Button/AddButton"
 import { Aside } from "@/layout/Aside"
 import { CancelButton } from "@/components/Button/CancelButton"

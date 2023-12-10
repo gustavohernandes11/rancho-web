@@ -10,6 +10,7 @@ interface IInputElementProps
     id?: string
     messageOnFocus?: string
     label?: string
+    ref?: any
     error?: string
 }
 
@@ -18,6 +19,7 @@ export const Input: React.FC<IInputElementProps> = ({
     label,
     id,
     error,
+    ref,
     ...props
 }) => {
     const [focused, setFocused] = useState(false)
@@ -28,6 +30,7 @@ export const Input: React.FC<IInputElementProps> = ({
                 <StyledMessageOnFocus>{messageOnFocus}</StyledMessageOnFocus>
             )}
             <StyledInput
+                ref={ref}
                 id={id}
                 {...props}
                 onFocus={() => setFocused(true)}
