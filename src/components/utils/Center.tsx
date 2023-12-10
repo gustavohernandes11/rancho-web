@@ -1,7 +1,6 @@
+import { Mixins } from "@/styles/mixins"
 import styled from "styled-components"
 
 export const Center = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${Mixins.flexCenter};
 `

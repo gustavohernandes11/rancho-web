@@ -4,6 +4,7 @@ import { House, Plus, List } from "@styled-icons/fa-solid"
 import { MobileOnly } from "./utils/MobileOnly"
 import { DesktopOnly } from "./utils/DesktopOnly"
 import { usePathname } from "next/navigation"
+import { Mixins } from "@/styles/mixins"
 
 export const Menu = () => {
     const pathname = usePathname()
@@ -67,10 +68,8 @@ const HorizontalStyledMenu = styled.menu`
 `
 const VerticalStyledMenu = styled.menu`
     ${() => css`
-        display: flex;
+        ${Mixins.flexCenter};
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
         grid-area: menu;
         gap: 0.5rem;
         width: 5rem;

@@ -1,3 +1,4 @@
+import { Mixins } from "@/styles/mixins"
 import styled, { css } from "styled-components"
 
 interface IOptionElementProps
@@ -8,14 +9,8 @@ export const Option: React.FC<IOptionElementProps> = ({ ...props }) => {
 }
 
 const StyledOption = styled.option`
-    ${({ theme }) => css`
-        display: flex;
-        padding: 0.75rem;
-        border-radius: 0.25rem;
-        border: 1px solid ${theme.color.border};
-        background-color: ${theme.color.surface};
-        padding: 1rem;
-        width: 100%;
-        box-sizing: border-box;
-    `}
+    ${Mixins.inputAspect};
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
 `

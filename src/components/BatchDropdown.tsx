@@ -134,9 +134,9 @@ const Container = styled.div`
         justify-content: space-between;
         padding: 0.5rem 0.5rem 0.5rem 1rem;
         border: 1px solid ${theme.color.border};
+        border-radius: 0.25rem;
         outline-color: ${theme.color.border};
         margin-bottom: 0.5rem;
-        border-radius: 0.25rem;
 
         &&:hover {
             cursor: pointer;

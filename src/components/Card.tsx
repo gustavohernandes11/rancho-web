@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from "next/image"
 import styled, { css } from "styled-components"
 import Link from "next/link"
+import { Mixins } from "@/styles/mixins"
 
 type ICardProps = {
     text: string
@@ -20,12 +21,10 @@ export const Card = ({ text, image, alt, href }: ICardProps) => {
 
 const StyledCard = styled(Link)`
     ${({ theme }) => css`
-        display: flex;
-        align-items: center;
+        ${Mixins.flexCenter};
         flex-direction: row;
-        background-color: ${theme.color.primary};
-        justify-content: center;
         flex-wrap: wrap;
+        background-color: ${theme.color.primary};
         color: white;
         padding: 0.5rem;
         gap: 1rem;
@@ -39,7 +38,6 @@ const StyledCard = styled(Link)`
 
         @media (min-width: ${({ theme }) => theme.screen.laptop}) {
             padding: 1rem;
-
             height: 12rem;
             width: 12rem;
         }

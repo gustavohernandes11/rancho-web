@@ -2,6 +2,7 @@ import styled, { css } from "styled-components"
 import { Input } from "./Input"
 import { MagnifyingGlass } from "@styled-icons/fa-solid"
 import { IconButton } from "./IconButton"
+import { Mixins } from "@/styles/mixins"
 
 export const Search = () => {
     return (
@@ -19,13 +20,9 @@ const StyledInput = styled(Input)`
     border: none;
 `
 const Container = styled.div`
-    ${({ theme }) => css`
-        display: flex;
-        max-width: 20rem;
-        border-radius: 0.25rem;
-        background-color: ${theme.color.surface};
-        border: 1px solid ${theme.color.border};
-    `}
+    ${Mixins.boxAspect};
+    display: flex;
+    max-width: 20rem;
 `
 const SmallIconButton = styled(IconButton)`
     padding: 0.5rem 0.875rem;

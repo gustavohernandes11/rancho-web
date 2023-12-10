@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components"
 import { Button } from "./Button"
 import Link from "next/link"
+import { Mixins } from "@/styles/mixins"
 
 interface IconButtonProps extends React.InputHTMLAttributes<HTMLButtonElement> {
     icon: React.ReactNode
@@ -25,9 +26,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
 }
 const StyledIconButton = styled(Button)<any>`
     ${({ theme, type, $active }) => css`
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        ${Mixins.flexCenter};
         flex-direction: row;
         padding: 0.75rem;
         width: fit-content;

@@ -7,19 +7,16 @@ import { DropdownWrapper } from "../DropdownWrapper"
 import { IAnimal } from "@/types/IAnimal"
 import { deleteAnimal } from "@/requests"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { ConfirmPopup } from "../ConfirmPopup"
 import { useAnimalContext } from "@/hooks/useAnimalContext"
 import { getAgeFromISO } from "@/utils/getAgeFromISO"
+import { Mixins } from "@/styles/mixins"
+import { usePopupContext } from "@/hooks/usePopupContext"
 
 const Actions = ({ id, name }: { id: string; name: string }) => {
     const router = useRouter()
     const { setAnimals } = useAnimalContext()
-    const [isConfirmationActive, setIsConfirmationActive] = useState(false)
+    const { dispatchConfirmation } = usePopupContext()
 
-    const handleDeleteButtonPressed = () => {
-        setIsConfirmationActive(true)
-    }
     const handleDeleteConfirmed = () => {
         deleteAnimal(id)
         setAnimals((prev: IAnimal[]) =>
@@ -31,33 +28,23 @@ const Actions = ({ id, name }: { id: string; name: string }) => {
     }
 
     return (
-        <>
-            <>
-                {isConfirmationActive && (
-                    <ConfirmPopup
-                        text={
-                            "Tem certeza que deseja excluir o animal " +
-                            name +
-                            "?"
-                        }
-                        onCancel={() => setIsConfirmationActive(false)}
-                        onConfirm={handleDeleteConfirmed}
-                    />
-                )}
-            </>
-            <Span>
-                <IconButton
-                    onClick={handleDeleteButtonPressed}
-                    type="secondary"
-                    icon={<Trash color="white" size={16} />}
-                />
-                <IconButton
-                    onClick={handleGoToAnimal}
-                    type="primary"
-                    icon={<Eye color="white" size={16} />}
-                />
-            </Span>
-        </>
+        <Span>
+            <IconButton
+                onClick={() =>
+                    dispatchConfirmation(
+                        "Tem certeza que deseja excluir o animal " + name + "?",
+                        handleDeleteConfirmed
+                    )
+                }
+                type="secondary"
+                icon={<Trash color="white" size={16} />}
+            />
+            <IconButton
+                onClick={handleGoToAnimal}
+                type="primary"
+                icon={<Eye color="white" size={16} />}
+            />
+        </Span>
     )
 }
 type IAnimalRowProps = {
@@ -103,14 +90,12 @@ export const AnimalRow = ({ viewMode, animal }: IAnimalRowProps) => {
 
 const StyledTableRow = styled.tr`
     ${({ theme }) => css`
+        ${Mixins.boxAspect};
         display: grid;
         grid-auto-flow: column;
         grid-column-end: auto;
         grid-template-columns: 2fr 2fr 2fr 1fr;
-        border-radius: 0.25rem;
         padding: 0.5rem 0.5rem 0.5rem 1rem;
-        background-color: ${theme.color.surface};
-        border: 1px solid ${theme.color.border};
         outline-color: ${theme.color.border};
         column-gap: 1rem;
 

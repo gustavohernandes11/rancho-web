@@ -47,7 +47,6 @@ const StyledHeader = styled.header`
     column-gap: 1rem;
     grid-auto-flow: row;
     grid-area: header;
-    align-items: center;
     justify-content: space-between;
     width: 100%;
     height: 3.75rem;

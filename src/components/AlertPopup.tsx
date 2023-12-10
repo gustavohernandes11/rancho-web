@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components"
 import { Button } from "./Button"
 import { Span } from "./Span"
+import { Mixins } from "@/styles/mixins"
 
 type IAlertPopupProps = {
     text: string
@@ -33,21 +34,13 @@ const StyledBackground = styled.div`
 `
 
 const StyledAlertPopup = styled.div`
-    ${({ theme }) => css`
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        position: absolute;
-        background-color: ${theme.color.surface};
-        border: 1px solid ${theme.color.border};
-        border-radius: 0.25rem;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 2rem;
-        min-height: 12rem;
-        min-width: 15rem;
-        z-index: 10;
-    `}
+    ${Mixins.flexCenter};
+    ${Mixins.absoluteCenter};
+    ${Mixins.boxAspect};
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 2rem;
+    min-height: 12rem;
+    min-width: 15rem;
+    z-index: 10;
 `

@@ -2,6 +2,7 @@ import styled, { css } from "styled-components"
 
 import { ErrorMessage } from "./ErrorMessage"
 import { Label } from "./Label"
+import { Mixins } from "@/styles/mixins"
 
 interface ITextAreaElementProps
     extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -26,16 +27,10 @@ export const TextArea = ({
 }
 
 const StyledTextArea = styled.textarea`
-    ${({ theme }) => css`
-        display: flex;
-        padding: 0.75rem;
-        border-radius: 0.25rem;
-        border: 1px solid ${theme.color.border};
-        background-color: ${theme.color.surface};
-        width: 100%;
-        box-sizing: border-box;
-        resize: vertical;
-        max-height: 10rem;
-        min-height: 3rem;
-    `}
+    ${Mixins.inputAspect};
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    max-height: 10rem;
+    min-height: 3rem;
 `
