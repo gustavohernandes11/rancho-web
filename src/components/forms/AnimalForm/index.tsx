@@ -11,7 +11,6 @@ import { Select } from "../../Select"
 import { Span } from "../../Span"
 import { TextArea } from "../../TextArea"
 import { WrappableDoubleRow } from "../../WrappableDoubleRow"
-import moment from "moment"
 import { useFormik } from "formik"
 import { IAgeType } from "@/types/IAgeType"
 import { getMonthsDiffFromISO } from "../../../utils/getMonthsDiffFromISO"
@@ -21,6 +20,7 @@ import { IAnimalFormProps } from "./IAnimalFormProps"
 import { getBirthdateFromYearsAndMonths } from "../../../utils/getBirthdateFromYearsAndMonths"
 import { useAnimalContext } from "@/hooks/useAnimalContext"
 import { useBatchContext } from "@/hooks/useBatchContext"
+import { formatISOString } from "@/utils/formatISOString"
 
 export const AnimalForm = ({
     handleSubmit,
@@ -282,10 +282,7 @@ export const AnimalForm = ({
                             max={50}
                             defaultValue={
                                 initialValues?.age
-                                    ? moment().diff(
-                                          new Date(initialValues?.age),
-                                          "years"
-                                      )
+                                    ? getYearsDiffFromISO(initialValues?.age)
                                     : 0
                             }
                             value={years}
@@ -305,10 +302,7 @@ export const AnimalForm = ({
                             max={12}
                             defaultValue={
                                 initialValues?.age
-                                    ? moment().diff(
-                                          new Date(initialValues?.age),
-                                          "months"
-                                      ) % 12
+                                    ? getYearsDiffFromISO(initialValues?.age)
                                     : 0
                             }
                             value={months}
@@ -327,9 +321,7 @@ export const AnimalForm = ({
                     error={formik.errors.age}
                     defaultValue={
                         initialValues?.age! &&
-                        moment(new Date(initialValues?.age!)).format(
-                            "yyyy-MM-DD"
-                        )
+                        formatISOString(initialValues?.age)
                     }
                     onChange={(e) => {
                         formik.setFieldValue(
