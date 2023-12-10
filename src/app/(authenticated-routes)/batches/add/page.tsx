@@ -1,6 +1,6 @@
 "use client"
 
-import { AddBatchForm } from "@/components/forms/AddBatchForm"
+import { BatchForm } from "@/components/forms/BatchForm"
 import { AddButton } from "@/components/Button/AddButton"
 import { Aside } from "@/layout/Aside"
 import { CancelButton } from "@/components/Button/CancelButton"
@@ -24,11 +24,11 @@ export default function AddBatchPage() {
             <ContainerAsideAtBottom>
                 <Header title={"Adicionar lote"} />
                 <Content>
-                    <AddBatchForm handleSubmit={handleSubmit} />
+                    <BatchForm handleSubmit={handleSubmit} />
                 </Content>
                 <Aside>
                     <Span>
-                        <AddButton type="submit" form="addBatchForm" />
+                        <AddButton type="submit" form="BatchForm" />
                         <CancelButton />
                     </Span>
                 </Aside>

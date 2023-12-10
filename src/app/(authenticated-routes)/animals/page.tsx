@@ -33,10 +33,11 @@ export default function AnimalsPage() {
                             onClick={refetchAnimals}
                         />
                     </InlineBox>
-                    {animals.length === 0 ? (
-                        <p>Nenhum animal registrado por enquanto.</p>
-                    ) : (
+
+                    {animals && animals.length > 0 ? (
                         <AnimalTable animals={animals} />
+                    ) : (
+                        <p>Nenhum animal registrado por enquanto.</p>
                     )}
                 </Content>
                 <Aside>

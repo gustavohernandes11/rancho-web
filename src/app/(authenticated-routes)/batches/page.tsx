@@ -1,7 +1,5 @@
 "use client"
 
-import { useEffect, useState } from "react"
-
 import AddAnimalImage from "@/assets/AddAnimal.svg"
 import AddBarnImage from "@/assets/AddBarn.svg"
 import { Aside } from "@/layout/Aside"
@@ -15,9 +13,12 @@ import { Menu } from "@/components/Menu"
 import { PageLayout } from "@/layout/PageLayout"
 import { Section } from "@/layout/Section"
 import { useBatchContext } from "@/hooks/useBatchContext"
+import { IconButton } from "@/components/IconButton"
+import { Refresh } from "@styled-icons/fa-solid"
+import { VerticalSpan } from "@/components/VerticalSpan"
 
 export default function BatchesPage() {
-    const { batches } = useBatchContext()
+    const { batches, refetchBatches } = useBatchContext()
 
     return (
         <PageLayout>
@@ -25,6 +26,13 @@ export default function BatchesPage() {
                 <Header title={"Lotes"} />
                 <Content>
                     <Section>
+                        <VerticalSpan>
+                            <IconButton
+                                type="light"
+                                icon={<Refresh size={14} />}
+                                onClick={refetchBatches}
+                            />
+                        </VerticalSpan>
                         {batches.length > 0 ? (
                             batches.map((batch) => (
                                 <BatchDropdown

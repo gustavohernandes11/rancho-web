@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 import { Button } from "./Button"
 import { Span } from "./Span"
 import { Mixins } from "@/styles/mixins"
