@@ -27,17 +27,13 @@ export default function RootLayout({
             </head>
             <body className={ubuntu.className}>
                 <StyledComponentsRegistry>
-                    <BatchContextProvider>
-                        <AnimalContextProvider>
-                            <NextAuthSessionProvider>
-                                <ThemeWrapper>
-                                    <PopupContextProvider>
-                                        {children}
-                                    </PopupContextProvider>
-                                </ThemeWrapper>
-                            </NextAuthSessionProvider>
-                        </AnimalContextProvider>
-                    </BatchContextProvider>
+                    <NextAuthSessionProvider>
+                        <ThemeWrapper>
+                            <PopupContextProvider>
+                                {children}
+                            </PopupContextProvider>
+                        </ThemeWrapper>
+                    </NextAuthSessionProvider>
                 </StyledComponentsRegistry>
             </body>
         </html>
