@@ -8,7 +8,7 @@ interface ITextAreaElementProps
     extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
     id?: string
     label?: string
-    error?: string
+    error?: string | null
 }
 
 export const TextArea = ({

@@ -29,12 +29,13 @@ export const AnimalForm = ({
     onClearFields,
     ...props
 }: IAnimalFormProps) => {
-    const [editingAnimalData, setEditingAnimalData] = useState(initialValues)
+    const [animalDataToEdit, setAnimalDataToEdit] = useState(initialValues)
+    const birthdateInputRef = useRef<HTMLInputElement>(null)
 
     const { animals } = useAnimalContext()
     const { batches } = useBatchContext()
     useEffect(() => {
-        setEditingAnimalData(initialValues)
+        setAnimalDataToEdit(initialValues)
     }, [initialValues])
 
     useEffect(() => {
@@ -46,8 +47,8 @@ export const AnimalForm = ({
         )
     }, [initialValues?.age])
 
-    const getEditingAnimalData = (): IAnimalFormInitialValues => {
-        return Object.assign({}, emptyFieldValues, editingAnimalData)
+    const getAnimalDataToEdit = (): IAnimalFormInitialValues => {
+        return Object.assign({}, emptyFieldValues, animalDataToEdit)
     }
 
     const emptyFieldValues: IAnimalFormInitialValues = {
@@ -62,7 +63,7 @@ export const AnimalForm = ({
     }
 
     const formik = useFormik({
-        initialValues: getEditingAnimalData(),
+        initialValues: getAnimalDataToEdit(),
         enableReinitialize: true,
         validationSchema,
         onSubmit: (values) => {
@@ -99,7 +100,7 @@ export const AnimalForm = ({
         setYears(0)
         formik.setFieldValue("age", "")
         formik.setFieldValue("bachId", "")
-        setEditingAnimalData(emptyFieldValues)
+        setAnimalDataToEdit(emptyFieldValues)
     }
 
     return (
@@ -118,14 +119,22 @@ export const AnimalForm = ({
                         required
                         autoFocus={true}
                         defaultValue={initialValues?.name}
-                        error={formik.errors.name}
+                        error={
+                            formik.touched.observation
+                                ? formik.errors.name
+                                : null
+                        }
                         {...formik.getFieldProps("name")}
                     />
                 </span>
                 <span>
                     <Select
                         label="Lote"
-                        error={formik.errors.batchId}
+                        error={
+                            formik.touched.batchId
+                                ? formik.errors.batchId
+                                : null
+                        }
                         {...formik.getFieldProps("batchId")}
                     >
                         <Option value="">Nenhum lote selecionado.</Option>
@@ -151,7 +160,11 @@ export const AnimalForm = ({
                 <span>
                     <Select
                         label="Paternidade"
-                        error={formik.errors.paternityId}
+                        error={
+                            formik.touched.paternityId
+                                ? formik.errors.paternityId
+                                : null
+                        }
                         {...formik.getFieldProps("paternityId")}
                     >
                         <Option value="">Nenhum animal selecionado.</Option>
@@ -180,7 +193,11 @@ export const AnimalForm = ({
                 <span>
                     <Select
                         label="Maternidade"
-                        error={formik.errors.maternityId}
+                        error={
+                            formik.touched.maternityId
+                                ? formik.errors.maternityId
+                                : null
+                        }
                         {...formik.getFieldProps("maternityId")}
                     >
                         <Option value="">Nenhum animal selecionado.</Option>
@@ -211,7 +228,11 @@ export const AnimalForm = ({
                 <span>
                     <Input
                         label="Código"
-                        error={formik.errors.code}
+                        error={
+                            formik.touched.observation
+                                ? formik.errors.code
+                                : null
+                        }
                         defaultValue={initialValues?.code}
                         {...formik.getFieldProps("code")}
                     />
@@ -219,7 +240,9 @@ export const AnimalForm = ({
                 <span>
                     <Select
                         label="Sexo*"
-                        error={formik.errors.gender}
+                        error={
+                            formik.touched.gender ? formik.errors.gender : null
+                        }
                         required={true}
                         defaultValue={initialValues?.gender}
                         {...formik.getFieldProps("gender")}
@@ -237,9 +260,10 @@ export const AnimalForm = ({
                         id="age-radio-option"
                         type="radio"
                         value="age"
-                        onChange={() =>
-                            setAgeType((e: any) => e.target.value as IAgeType)
-                        }
+                        onChange={() => {
+                            setAgeType(() => "age")
+                            formik.setFieldValue("age", "")
+                        }}
                     />
                     <label htmlFor="age-radio-option">Anos e meses</label>
                 </Span>
@@ -250,7 +274,10 @@ export const AnimalForm = ({
                         type="radio"
                         value="birthdate"
                         defaultChecked={true}
-                        onChange={(e) => setAgeType(e.target.value as IAgeType)}
+                        onChange={() => {
+                            setAgeType(() => "birthdate")
+                            formik.setFieldValue("age", "")
+                        }}
                     />
                     <label htmlFor="birthdate-radio-option">
                         Data de nascimento
@@ -262,14 +289,17 @@ export const AnimalForm = ({
                     <span>
                         <Input
                             id="years"
-                            itemRef="years"
                             type="number"
                             label="Anos*"
-                            error={formik.errors.age}
+                            error={
+                                formik.touched.observation
+                                    ? formik.errors.age
+                                    : null
+                            }
                             max={50}
                             defaultValue={
                                 initialValues?.age
-                                    ? getYearsDiffFromISO(initialValues?.age)
+                                    ? getYearsDiffFromISO(initialValues.age)
                                     : 0
                             }
                             value={years}
@@ -283,13 +313,12 @@ export const AnimalForm = ({
                     <span>
                         <Input
                             id="months"
-                            itemRef="months"
                             type="number"
                             label="Meses"
                             max={12}
                             defaultValue={
                                 initialValues?.age
-                                    ? getYearsDiffFromISO(initialValues?.age)
+                                    ? getYearsDiffFromISO(initialValues.age)
                                     : 0
                             }
                             value={months}
@@ -305,16 +334,16 @@ export const AnimalForm = ({
                     id="birthdate"
                     type="date"
                     label="Data de Nascimento*"
-                    error={formik.errors.age}
-                    value={formatISOString(formik.values.age)}
+                    error={formik.touched.age ? formik.errors.age : null}
+                    ref={birthdateInputRef}
                     defaultValue={
                         initialValues?.age! &&
                         formatISOString(initialValues?.age)
                     }
-                    onChange={(e) => {
+                    onChange={(e: any) => {
                         formik.setFieldValue(
                             "age",
-                            new Date(e.target.value).toISOString()
+                            new Date(e.target.value as string).toISOString()
                         )
                     }}
                 />
@@ -323,7 +352,11 @@ export const AnimalForm = ({
             <TextArea
                 {...formik.getFieldProps("observation")}
                 defaultValue={initialValues?.observation}
-                error={formik.errors.observation}
+                error={
+                    formik.touched.observation
+                        ? formik.errors.observation
+                        : null
+                }
                 id="observation"
                 label="Observação"
                 maxLength={250}

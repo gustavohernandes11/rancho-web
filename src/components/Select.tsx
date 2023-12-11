@@ -7,7 +7,7 @@ interface ISelectElementProps
     extends React.SelectHTMLAttributes<HTMLSelectElement> {
     id?: string
     label?: string
-    error?: string
+    error?: string | null
 }
 
 export const Select: React.FC<ISelectElementProps> = ({

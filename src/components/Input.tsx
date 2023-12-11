@@ -10,8 +10,8 @@ interface IInputElementProps
     id?: string
     messageOnFocus?: string
     label?: string
-    ref?: any
-    error?: string
+    ref?: React.Ref<any>
+    error?: string | null
 }
 
 export const Input: React.FC<IInputElementProps> = ({
