@@ -2,7 +2,7 @@ import styled, { css } from "styled-components"
 
 import { ErrorMessage } from "./ErrorMessage"
 import { Label } from "./Label"
-import { useState } from "react"
+import { forwardRef, useState } from "react"
 import { Mixins } from "@/styles/mixins"
 
 interface IInputElementProps
@@ -14,32 +14,31 @@ interface IInputElementProps
     error?: string | null
 }
 
-export const Input: React.FC<IInputElementProps> = ({
-    messageOnFocus,
-    label,
-    id,
-    error,
-    ref,
-    ...props
-}) => {
-    const [focused, setFocused] = useState(false)
-    return (
-        <>
-            {label && <Label htmlFor={id}>{label}</Label>}
-            {focused && messageOnFocus && (
-                <StyledMessageOnFocus>{messageOnFocus}</StyledMessageOnFocus>
-            )}
-            <StyledInput
-                ref={ref}
-                id={id}
-                {...props}
-                onFocus={() => setFocused(true)}
-                onBlur={() => setFocused(false)}
-            />
-            {error && <ErrorMessage>{error}</ErrorMessage>}
-        </>
-    )
-}
+const Input: React.FC<IInputElementProps> = forwardRef(
+    ({ messageOnFocus, label, id, error, ...props }, ref) => {
+        const [focused, setFocused] = useState(false)
+        return (
+            <>
+                {label && <Label htmlFor={id}>{label}</Label>}
+                {focused && messageOnFocus && (
+                    <StyledMessageOnFocus>
+                        {messageOnFocus}
+                    </StyledMessageOnFocus>
+                )}
+                <StyledInput
+                    ref={ref}
+                    id={id}
+                    {...props}
+                    onFocus={() => setFocused(true)}
+                    onBlur={() => setFocused(false)}
+                />
+                {error && <ErrorMessage>{error}</ErrorMessage>}
+            </>
+        )
+    }
+)
+Input.displayName = "Input"
+export { Input }
 
 const StyledInput = styled.input`
     ${Mixins.inputAspect};

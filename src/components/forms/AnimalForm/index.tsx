@@ -71,6 +71,10 @@ export const AnimalForm = ({
         },
     })
 
+    const [birthdate, setBirthdate] = useState<string>(
+        formatISOString(initialValues?.age || "")
+    )
+
     const [ageType, setAgeType] = useState<IAgeType>("birthdate")
 
     const [years, setYears] = useState<number>(0)
@@ -110,6 +114,9 @@ export const AnimalForm = ({
             onSubmit={formik.handleSubmit}
             {...props}
         >
+            {JSON.stringify(formik.values)}
+            <p>Ref</p>
+            {JSON.stringify(birthdateInputRef.current?.value)}
             <WrappableDoubleRow>
                 <span>
                     <Input
@@ -262,7 +269,10 @@ export const AnimalForm = ({
                         value="age"
                         onChange={() => {
                             setAgeType(() => "age")
-                            formik.setFieldValue("age", "")
+                            formik.setFieldValue(
+                                "age",
+                                getBirthdateFromYearsAndMonths(years, months)
+                            )
                         }}
                     />
                     <label htmlFor="age-radio-option">Anos e meses</label>
@@ -276,7 +286,7 @@ export const AnimalForm = ({
                         defaultChecked={true}
                         onChange={() => {
                             setAgeType(() => "birthdate")
-                            formik.setFieldValue("age", "")
+                            formik.setFieldValue("age", birthdate)
                         }}
                     />
                     <label htmlFor="birthdate-radio-option">
@@ -343,6 +353,9 @@ export const AnimalForm = ({
                     onChange={(e: any) => {
                         formik.setFieldValue(
                             "age",
+                            new Date(e.target.value as string).toISOString()
+                        )
+                        setBirthdate(
                             new Date(e.target.value as string).toISOString()
                         )
                     }}
