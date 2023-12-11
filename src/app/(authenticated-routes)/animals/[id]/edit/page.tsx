@@ -1,6 +1,6 @@
 "use client"
 
-import { AnimalForm } from "@/components/forms/AnimalForm/AnimalForm"
+import { AnimalForm } from "@/components/forms/AnimalForm/"
 import { useEffect, useState } from "react"
 
 import { Aside } from "@/layout/Aside"

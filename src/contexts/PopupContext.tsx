@@ -36,7 +36,6 @@ export const PopupContextProvider = ({ children }: any) => {
         onDeniedConfirmationFn?: () => void
     ) => {
         setConfirmationMessage(text)
-        console.log("setConfirmCallback")
         setOnConfirmCallback(() => onConfirmFn)
         setOnDeniedConfirmationCallback(() => onDeniedConfirmationFn)
     }
@@ -50,7 +49,6 @@ export const PopupContextProvider = ({ children }: any) => {
     }
 
     const onConfirm = () => {
-        console.log("onConfirm")
         setConfirmationMessage("")
         if (onConfirmCallback) {
             onConfirmCallback()
