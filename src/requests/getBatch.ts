@@ -1,11 +1,10 @@
 import { IApiResponse } from "@/types/IAPIResponse"
 import { getSession } from "next-auth/react"
-import { IBatch } from "../types/IBatch"
 
 export const getBatch = async (id: string): Promise<IApiResponse> => {
     const session = await getSession()
 
-    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/batches`
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/batches/${id}/info`
     const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -15,7 +14,6 @@ export const getBatch = async (id: string): Promise<IApiResponse> => {
     })
 
     const data = response?.status === 200 ? await response.json() : {}
-    const filtered = data.find((b: IBatch) => b.id === id)
 
-    return { response, data: filtered }
+    return { response, data }
 }
