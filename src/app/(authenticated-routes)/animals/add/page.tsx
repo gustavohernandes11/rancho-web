@@ -38,7 +38,7 @@ export default function AddAnimalPage() {
                 </Content>
                 <Aside>
                     <Span>
-                        <AddButton type="submit" form="addAnimalForm" />
+                        <AddButton type="submit" form="AnimalForm" />
                         <CancelButton />
                     </Span>
                 </Aside>

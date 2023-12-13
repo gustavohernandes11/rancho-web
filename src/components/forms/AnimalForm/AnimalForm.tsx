@@ -127,7 +127,7 @@ export const AnimalForm = ({
 
     return (
         <Form
-            id="addAnimalForm"
+            id="AnimalForm"
             onReset={formik.handleReset}
             onSubmit={formik.handleSubmit}
             {...props}
