@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter as useNavigationRouter, useParams } from "next/navigation"
+import { useRouter, useParams } from "next/navigation"
 
 import { AnimalInfoCard } from "@/components/AnimalInfoCard"
 import { AnimalRow } from "@/components/AnimalTable/AnimalRow"
@@ -30,7 +30,7 @@ export default function AnimalsPage() {
     const [batch, setBatch] = useState<IBatch>()
     const [paternity, setPaternity] = useState<IAnimal | undefined>()
     const [maternity, setMaternity] = useState<IAnimal | undefined>()
-    const router = useNavigationRouter()
+    const router = useRouter()
 
     const handleDeleteButtonPressed = () => {
         dispatchConfirmation(
@@ -44,7 +44,13 @@ export default function AnimalsPage() {
         })
     }
     const handleEditBatch = (e: any) => {
-        updateAnimal(id as string, { batchId: e.target.value || null })
+        console.log("updated request")
+        updateAnimal(id as string, { batchId: e.target.value || null }).then(
+            ({ response }) => {
+                console.log(response)
+                if (response?.ok) router.refresh()
+            }
+        )
     }
 
     useEffect(() => {
