@@ -25,7 +25,7 @@ import { usePopupContext } from "@/hooks/usePopupContext"
 
 export default function AnimalsPage() {
     const { id } = useParams()
-    const { dispatchConfirmation } = usePopupContext()
+    const { dispatchConfirmation, dispatchAlert } = usePopupContext()
     const [animal, setAnimal] = useState<IAnimal>()
     const [batch, setBatch] = useState<IBatch>()
     const [paternity, setPaternity] = useState<IAnimal | undefined>()
@@ -40,15 +40,21 @@ export default function AnimalsPage() {
     }
     const handleDeleteConfirmed = () => {
         deleteAnimal(id as string).then((r) => {
-            if (r.response?.ok) router.push("/animals")
+            if (r.response?.ok) {
+                router.push("/animals")
+            } else {
+                dispatchAlert("Não foi possível deletar.")
+            }
         })
     }
     const handleEditBatch = (e: any) => {
-        console.log("updated request")
         updateAnimal(id as string, { batchId: e.target.value || null }).then(
             ({ response }) => {
-                console.log(response)
-                if (response?.ok) router.refresh()
+                if (response?.ok) {
+                    router.refresh()
+                } else {
+                    dispatchAlert("Não foi possível editar o lote.")
+                }
             }
         )
     }

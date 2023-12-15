@@ -33,7 +33,6 @@ export default function AnimalsPage() {
                             onClick={refetchAnimals}
                         />
                     </InlineBox>
-
                     {animals && animals.length > 0 ? (
                         <AnimalTable animals={animals} />
                     ) : (

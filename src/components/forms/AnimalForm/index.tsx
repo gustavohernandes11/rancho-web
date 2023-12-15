@@ -109,14 +109,11 @@ export const AnimalForm = ({
 
     return (
         <Form
-            id="addAnimalForm"
+            id="AnimalForm"
             onReset={formik.handleReset}
             onSubmit={formik.handleSubmit}
             {...props}
         >
-            {JSON.stringify(formik.values)}
-            <p>Ref</p>
-            {JSON.stringify(birthdateInputRef.current?.value)}
             <WrappableDoubleRow>
                 <span>
                     <Input

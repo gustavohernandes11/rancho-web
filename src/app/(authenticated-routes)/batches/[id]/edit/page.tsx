@@ -68,7 +68,7 @@ export default function EditBatchPage() {
                             light={true}
                             onClick={() =>
                                 dispatchConfirmation(
-                                    "Deseja realmente deletar esse lote? (animais não serão afetados)",
+                                    "Deseja realmente deletar esse lote? (animais não serão afetados).",
                                     handleDeleteBatch
                                 )
                             }

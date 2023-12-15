@@ -12,11 +12,17 @@ import { PageLayout } from "@/layout/PageLayout"
 import { Span } from "@/components/Span"
 import { addBatch } from "@/requests"
 import { IAddBatchData } from "@/types/IAddBatchData"
+import { usePopupContext } from "@/hooks/usePopupContext"
 
 export default function AddBatchPage() {
+    const { dispatchAlert } = usePopupContext()
     const handleSubmit = async (values: IAddBatchData, resetForm: Function) => {
         const res = await addBatch(values)
-        if (res.response?.ok) resetForm()
+        if (res.response?.ok) {
+            resetForm()
+        } else {
+            dispatchAlert("Não foi possível adicionar o lote.")
+        }
     }
 
     return (

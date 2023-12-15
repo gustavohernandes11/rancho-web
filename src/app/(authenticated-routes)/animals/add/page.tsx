@@ -25,7 +25,7 @@ export default function AddAnimalPage() {
             dispatchAlert("Adicionado com sucesso!")
             resetForm()
         } else {
-            dispatchAlert("Não foi adicionado!")
+            dispatchAlert("Houve um erro ao tentar adicionar!")
         }
     }
 
