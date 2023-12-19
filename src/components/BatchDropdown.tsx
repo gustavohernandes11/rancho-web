@@ -1,19 +1,19 @@
-import styled, { css } from "styled-components"
-import { useEffect, useState } from "react"
-import { IconButton } from "./IconButton"
+import { useBatchContext } from "@/hooks/useBatchContext"
+import { listAnimalsByBatch } from "@/requests"
+import { IAnimal } from "@/types/IAnimal"
 import {
-    ChevronLeft,
     ChevronDown,
+    ChevronLeft,
     Edit,
     Exchange,
 } from "@styled-icons/fa-solid"
-import { IAnimal } from "@/types/IAnimal"
-import { listAnimalsByBatch } from "@/requests"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import styled, { css } from "styled-components"
 import { AnimalRow } from "./AnimalTable/AnimalRow"
 import { DropdownWrapper } from "./DropdownWrapper"
+import { IconButton } from "./IconButton"
 import { Option } from "./Option"
-import { useBatchContext } from "@/hooks/useBatchContext"
-import { useRouter } from "next/navigation"
 
 interface IBatchDropdown {
     title?: string

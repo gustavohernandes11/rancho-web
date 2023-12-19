@@ -1,13 +1,22 @@
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 import { Input } from "./Input"
 import { MagnifyingGlass } from "@styled-icons/fa-solid"
 import { IconButton } from "./IconButton"
 import { Mixins } from "@/styles/mixins"
 
-export const Search = () => {
+type ISearchProps = {
+    onChange: (e: any) => void
+    value: string
+}
+
+export const Search = ({ onChange, ...props }: ISearchProps) => {
     return (
         <Container>
-            <StyledInput placeholder="Buscar..." />
+            <StyledInput
+                placeholder="Buscar..."
+                onChange={onChange}
+                {...props}
+            />
             <SmallIconButton
                 type="primary"
                 icon={<MagnifyingGlass color="white" size={16} />}

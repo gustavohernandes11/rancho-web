@@ -16,27 +16,40 @@ import { PageLayout } from "@/layout/PageLayout"
 import { Refresh } from "@styled-icons/fa-solid"
 import { Search } from "@/components/Search"
 import { useAnimalContext } from "@/hooks/useAnimalContext"
+import { useState } from "react"
 
 export default function AnimalsPage() {
     const { animals, refetchAnimals } = useAnimalContext()
+    const [search, setSearch] = useState("")
 
+    const handleRefreshClick: React.MouseEventHandler<
+        HTMLButtonElement
+    > = () => {
+        refetchAnimals()
+        setSearch("")
+    }
+
+    const handleSearch = (e: any) => {
+        setSearch(() => e.target.value)
+        refetchAnimals({ search })
+    }
     return (
         <PageLayout>
             <Container>
                 <Header title={"Animais"} />
                 <Content>
                     <InlineBox>
-                        <Search />
+                        <Search onChange={handleSearch} value={search} />
                         <IconButton
                             type="light"
                             icon={<Refresh size={14} />}
-                            onClick={refetchAnimals}
+                            onClick={handleRefreshClick}
                         />
                     </InlineBox>
                     {animals && animals.length > 0 ? (
                         <AnimalTable animals={animals} />
                     ) : (
-                        <p>Nenhum animal registrado por enquanto.</p>
+                        <p>Nenhum resultado.</p>
                     )}
                 </Content>
                 <Aside>
