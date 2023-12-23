@@ -16,7 +16,8 @@ import { PageLayout } from "@/layout/PageLayout"
 import { Refresh } from "@styled-icons/fa-solid"
 import { Search } from "@/components/Search"
 import { useAnimalContext } from "@/hooks/useAnimalContext"
-import { useState } from "react"
+import { Suspense, useState } from "react"
+import { Loading } from "@/components/Loading"
 
 export default function AnimalsPage() {
     const { animals, refetchAnimals } = useAnimalContext()
@@ -46,11 +47,13 @@ export default function AnimalsPage() {
                             onClick={handleRefreshClick}
                         />
                     </InlineBox>
-                    {animals && animals.length > 0 ? (
-                        <AnimalTable animals={animals} />
-                    ) : (
-                        <p>Nenhum resultado.</p>
-                    )}
+                    <Suspense fallback={<Loading />}>
+                        {animals && animals.length > 0 ? (
+                            <AnimalTable animals={animals} />
+                        ) : (
+                            <p>Nenhum resultado.</p>
+                        )}
+                    </Suspense>
                 </Content>
                 <Aside>
                     <Grid>

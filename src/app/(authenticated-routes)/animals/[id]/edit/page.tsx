@@ -1,7 +1,7 @@
 "use client"
 
 import { AnimalForm } from "@/components/forms/AnimalForm/"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 
 import { Aside } from "@/layout/Aside"
 import { CancelButton } from "@/components/Button/CancelButton"
@@ -18,6 +18,7 @@ import { getAnimal, updateAnimal } from "@/requests/"
 import { useParams, useRouter } from "next/navigation"
 import { IAnimalFormInitialValues } from "@/components/forms/AnimalForm/IAnimalFormInitialValues"
 import { usePopupContext } from "@/hooks/usePopupContext"
+import { Loading } from "@/components/Loading"
 
 export default function AddAnimalPage() {
     const router = useRouter()
@@ -46,10 +47,12 @@ export default function AddAnimalPage() {
             <ContainerAsideAtBottom>
                 <Header title={"Editar animal: " + animal?.name} />
                 <Content>
-                    <AnimalForm
-                        initialValues={animal as IAnimalFormInitialValues}
-                        handleSubmit={handleSubmit}
-                    />
+                    <Suspense fallback={<Loading />}>
+                        <AnimalForm
+                            initialValues={animal as IAnimalFormInitialValues}
+                            handleSubmit={handleSubmit}
+                        />
+                    </Suspense>
                 </Content>
                 <Aside>
                     <Span>

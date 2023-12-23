@@ -16,6 +16,8 @@ import { useBatchContext } from "@/hooks/useBatchContext"
 import { IconButton } from "@/components/IconButton"
 import { Refresh } from "@styled-icons/fa-solid"
 import { VerticalSpan } from "@/components/VerticalSpan"
+import { Suspense } from "react"
+import { Loading } from "@/components/Loading"
 
 export default function BatchesPage() {
     const { batches, refetchBatches } = useBatchContext()
@@ -33,18 +35,20 @@ export default function BatchesPage() {
                                 onClick={refetchBatches}
                             />
                         </VerticalSpan>
-                        {batches.length > 0 ? (
-                            batches.map((batch) => (
-                                <BatchDropdown
-                                    key={batch.id}
-                                    title={batch.name}
-                                    description={batch?.observation}
-                                    id={batch.id}
-                                />
-                            ))
-                        ) : (
-                            <p>Nenhum lote registrado por enquanto.</p>
-                        )}
+                        <Suspense fallback={<Loading />}>
+                            {batches.length > 0 ? (
+                                batches.map((batch) => (
+                                    <BatchDropdown
+                                        key={batch.id}
+                                        title={batch.name}
+                                        description={batch?.observation}
+                                        id={batch.id}
+                                    />
+                                ))
+                            ) : (
+                                <p>Nenhum lote registrado por enquanto.</p>
+                            )}
+                        </Suspense>
                     </Section>
                 </Content>
                 <Aside>

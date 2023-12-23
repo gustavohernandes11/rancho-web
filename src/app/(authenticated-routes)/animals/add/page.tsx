@@ -13,6 +13,8 @@ import { PageLayout } from "@/layout/PageLayout"
 import { Span } from "@/components/Span"
 import { addAnimal } from "@/requests"
 import { usePopupContext } from "@/hooks/usePopupContext"
+import { Suspense } from "react"
+import { Loading } from "@/components/Loading"
 
 export default function AddAnimalPage() {
     const { dispatchAlert } = usePopupContext()
@@ -34,7 +36,9 @@ export default function AddAnimalPage() {
             <ContainerAsideAtBottom>
                 <Header title={"Adicionar animal"} />
                 <Content>
-                    <AnimalForm handleSubmit={handleSubmit} />
+                    <Suspense fallback={<Loading />}>
+                        <AnimalForm handleSubmit={handleSubmit} />
+                    </Suspense>
                 </Content>
                 <Aside>
                     <Span>
