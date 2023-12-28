@@ -47,7 +47,6 @@ export const BatchForm = ({
             <Input
                 label="Nome*"
                 placeholder="ex: Bezerros desmamados"
-                autoComplete="false"
                 autoCapitalize="true"
                 autoFocus={true}
                 required={true}
@@ -57,7 +56,6 @@ export const BatchForm = ({
                 <ErrorMessage>{formik.errors.name}</ErrorMessage>
             ) : null}
             <TextArea
-                autoComplete="false"
                 label="Descrição"
                 maxLength={250}
                 {...formik.getFieldProps("observation")}

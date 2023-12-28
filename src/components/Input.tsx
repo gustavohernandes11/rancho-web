@@ -28,6 +28,7 @@ const Input: React.FC<IInputElementProps> = forwardRef(
                 <StyledInput
                     ref={ref}
                     id={id}
+                    autoComplete="nope"
                     {...props}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}

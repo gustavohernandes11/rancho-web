@@ -20,7 +20,7 @@ export const TextArea = ({
     return (
         <>
             {label && <Label htmlFor={id}>{label}</Label>}
-            <StyledTextArea id={id} {...props} />
+            <StyledTextArea autoComplete="nope" id={id} {...props} />
             {error && <ErrorMessage>{error}</ErrorMessage>}
         </>
     )
