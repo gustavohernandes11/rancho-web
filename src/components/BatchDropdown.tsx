@@ -55,7 +55,7 @@ export const BatchDropdown = ({
                     )}
                 </div>
                 <BatchCount>
-                    {animals && animals.length}
+                    {(animals && animals.length) || "0"}
                     {animals && animals.length > 1 ? " animais" : " animal"}
                 </BatchCount>
                 <ActionSpan>

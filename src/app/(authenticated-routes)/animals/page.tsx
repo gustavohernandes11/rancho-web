@@ -16,12 +16,16 @@ import { PageLayout } from "@/layout/PageLayout"
 import { Refresh } from "@styled-icons/fa-solid"
 import { Search } from "@/components/Search"
 import { useAnimalContext } from "@/hooks/useAnimalContext"
-import { Suspense, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { Loading } from "@/components/Loading"
 
 export default function AnimalsPage() {
     const { animals, refetchAnimals } = useAnimalContext()
     const [search, setSearch] = useState("")
+
+    useEffect(() => {
+        refetchAnimals()
+    }, [refetchAnimals])
 
     const handleRefreshClick: React.MouseEventHandler<
         HTMLButtonElement

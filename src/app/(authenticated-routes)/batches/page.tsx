@@ -16,11 +16,15 @@ import { useBatchContext } from "@/hooks/useBatchContext"
 import { IconButton } from "@/components/IconButton"
 import { Refresh } from "@styled-icons/fa-solid"
 import { VerticalSpan } from "@/components/VerticalSpan"
-import { Suspense } from "react"
+import { Suspense, useEffect } from "react"
 import { Loading } from "@/components/Loading"
 
 export default function BatchesPage() {
     const { batches, refetchBatches } = useBatchContext()
+
+    useEffect(() => {
+        refetchBatches()
+    }, [refetchBatches])
 
     return (
         <PageLayout>
