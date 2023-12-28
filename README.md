@@ -30,3 +30,8 @@ Esse repositório é o Frontend do projeto "Rancho" criado para auxiliar no gere
 -   Inserir produção de leite por dia/semana/mês, com visualização por gráfico.
 -   Gerar relatórios sobre os lotes.
 -   Exportar dados para formato EXCEL.
+
+## Demonstração
+
+https://github.com/gustavohernandes11/rancho-web/assets/66632840/4ec54eac-d33c-40e3-afd0-890afaa6534a
+
